@@ -28,7 +28,8 @@
 \tableofcontents
 \end{frame}
 
-\section{Theoretical Introduction}
+\section{Background}
+\subsection{Theoretical Introduction}
 \newcommand{\whatisplasma}{What plasma is?}
 \begin{frame}{\whatisplasma}
 Plasma is defined as an ionized gas of charged and neutral particles, which  satisfies  the quasi–-neutrality condition.
@@ -53,19 +54,87 @@ One electron volt is equal to approximately \SI{11600}{\K}.
 Electron densities in the range \SIrange{e6}{e18}{\per\cubic\cm}
 \end{columns}
 \end{frame}
-\section{The Spectrum of Hydrogen}
+\newcommand{\debye}{Debye shielding length}
+\begin{frame}{\debye}
+  Debye length, $\lambda_D$, determines the effective interaction between charged particles in a plasma.
+  \begin{equation*}
+\lambda_D=\sqrt{\frac{\varepsilon_0 k_B T_e}{n_e e^2}}=\sqrt{\frac{k_B T}{m_e}}\frac{1}{\omega_p}.
+\end{equation*}
+\begin{itemize}
+  \item Determined by the density and temperature of the plasma.
+\end{itemize}
+For a plasma with $T\approx \SI{1}{\eV}$ and $N_e\approx \SI{e18}{\per\cubic\cm}$, $\lambda_D\sim \SI{7}{\nm}$.
+
+For any volume with a length scale $L$ satisfying 
+\begin{equation*}
+L \gg \lambda_D,
+\label{eq:quasiNeutrality}
+\end{equation*}
+overall quasi-neutrality is a good approximation.
+\end{frame}
+\newcommand{\plasmafreq}{Plasma Frequency}
+\begin{frame}{\plasmafreq}
+This is the typical electrostatic oscillation frequency of electrons in response to a small charge separation.
+\begin{figure}
+  \includegraphics[width=100px]{figures/plasma_oscillation.PNG}
+\end{figure}
+\begin{equation*}
+		\omega_p=\sqrt{\frac{N_e e^2}{m_e \varepsilon_0}}\si[per-mode=fraction]{\radian\per\sec}.\label{eq:plasma-frequency}
+\end{equation*}
+For a typical plasma density of $N_e \sim \SI{e18}{\per\cubic\cm}$, we get $\omega_p=\SI{5.6e13}{\radian\per\sec}$.%, which lies in the microwave range.
+\end{frame}
+\begin{frame}{The plasma parameter}
+The plasma parameter $\Lambda$ is defined as
+\begin{equation*}
+  \Lambda=4\pi N_e \lambda_D ^3.
+\end{equation*}
+It is a measure for the amount of electrons inside a sphere of radius $\lambda_D$.
+
+Collective behaviour for plasmas in LWFA environments requires two criteria:
+\begin{enumerate}
+  \item overall quasi-neutrality
+  \item hot plasma, yet underdense\footnotemark --- $\Lambda \gg 1$.
+\end{enumerate}
+\footnotetext{Not yet presented.}
+\end{frame}
+
+\newcommand{\collectivebehaviour}{Collective behaviour --- Quantitative description}
+\begin{frame}{\collectivebehaviour}
+  In an ionized gas there is a significant number of unbound electrons and electrically charged ions.
+  
+  Although these electrons are unbound, they are \emph{not} free.
+  
+  %When the charges move they generate electrical currents and magnetic field. As a result, they are affected by each other magnetic fields.
+
+  %This ultimately governs their collectric behaviour.
+
+  When the gas is neutral, two--particle (binary) collisions are predominant.
+
+  In plasma, charged particles interact with other charged particles in a \emph{Collective manner}.
+
+  A charged particle encounters the electrostatic forces from all the other nearby charged particles\footnotemark.
+
+  \footnotetext{The generated electromagnetic fields are regarded as properties of the plasma.}
+  
+\end{frame}
+\begin{frame}{\collectivebehaviour}
+  Indside such a medium, diverse collective phenomena can occur.
+
+  This allows for electron acceleration in laser--driven plasma wake--fields.
+\end{frame}
+\subsection{The Spectrum of Hydrogen}
 \newcommand{\hydrogenspecrum}{The Spectrum of Hydrogen}
 \begin{frame}{\hydrogenspecrum}
-    
-
 An electron making a transition between two energy levels emits a photon.
 
 Hydrogen spectrum is divided into series, determined by the transitions to the final state.
-Balmer series:
 \begin{itemize}
     \item $n_i=3 \to n_f=2$, \SI{656.3}{\nm} --- H\textsubscript{$\alpha$}
     \item $n_i=4 \to n_f=2$, \SI{656.3}{\nm} --- H\textsubscript{$\beta$}
 \end{itemize}
+\begin{figure}
+  \includegraphics[width=100px]{figures/halphagrotrian.png}
+\end{figure}
 Both H\textsubscript{$\alpha$} and H\textsubscript{$\beta$} are in the visible spectrum, and so are easy to observe.
 
 Other series are Lyman ($n_f=1$) and Paschen ($n_f=3$).
@@ -73,16 +142,33 @@ Other series are Lyman ($n_f=1$) and Paschen ($n_f=3$).
 \begin{frame}{\hydrogenspecrum}
 Spectroscopy study of such emission can give information about the physical conditions in the plasma, such as density and temperature.
 
-Spectroscopic techniques have the advantage over some other methods -- those involving probes, for example -- that they do not interfere in any way with the plasma.
+Advantage: No probes --- no interferance in any way with the plasma.
 
-An inherent shortcoming of such observation is the fact that radiation is collected only along the line of sight in the direction of observation and any local information is therefore lost.
+Disadvantage: Radiation is collected only along the lone of sight in the direction of observation.
+\end{frame}
+\begin{frame}{The emitted radiation process depends on:}
+  The probability that 
+ \begin{enumerate}
+   \item there is an electron in the upper level of the transition,
+   \item the electron transition is significant,
+   \item the emitted photon escapes from the volume of the plasma without being absorbed.
+ \end{enumerate} 
+ We neglect process (3) and use the approximation of \emph{Optically thin plasma}.
+
+ Values of the transition probabily $A_{i\to j}$ for process (2) are tabulated\footnote[frame]{See \url{https://physics.nist.gov/PhysRefData/ASD/lines_form.html} for example.}.
+\end{frame}
+\begin{frame}{Optical Depth}{Optically thin plasma}
+  text
 \end{frame}
 \newcommand{\lte}{Local Thermodynamic Equilibrium(LTE)}
 \begin{frame}{\lte}
-    Electrons are energy providers for many plasma-chemical processes. The rate of such processes depends on the number of electrons having sufficient energy to do the job. This can be described by means of the electron energy distribution function f (e), which is a probability density for an electron to have the energy e. Quite often this distribution function strongly depends upon the electric field and gas composition, and can be very far from equilibrium. Sometimes, however, (even in nonequilibrium plasmas of nonthermal discharges), the f(e) depends mostly on electron temperature Te, and can then be defined by the quasi-equilibrium Maxwell–Boltzmann distribution function:
+    Electrons are energy providers for many plasma-chemical processes. The rate of such processes depends on the number of electrons having sufficient energy to do the job. This can be described by means of the electron energy distribution function f (e), which is a probability density for an electron to have the energy e. Quite often this distribution function strongly depends upon the electric field and gas composition, and can be very far from equilibrium. Sometimes, however, (even in nonequilibrium plasmas of nonthermal discharges), the f(e) depends mostly on electron temperature Te, and can then be defined by the quasi--equilibrium Maxwell–Boltzmann distribution function:
 \end{frame}
 \begin{frame}{Line Broadening}
 A perfectly sharp energy line is impossible, and thus there is a distribution of transitions from states near $E_2$ to $E_1$.
-    
+\end{frame}
+\section{Next Section}
+\begin{frame}{text}
+  Some dummy text.
 \end{frame}
 \end{document}
