@@ -1,4 +1,4 @@
-\documentclass[draft]{beamer}
+\documentclass[final]{beamer}
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage[english]{babel}
@@ -157,12 +157,86 @@ Disadvantage: Radiation is collected only along the lone of sight in the directi
 
  Values of the transition probabily $A_{i\to j}$ for process (2) are tabulated\footnote[frame]{See \url{https://physics.nist.gov/PhysRefData/ASD/lines_form.html} for example.}.
 \end{frame}
-\begin{frame}{Optical Depth}{Optically thin plasma}
-  text
+
+\newcommand{\opticaldepth}{Optical Depth}
+\begin{frame}{\opticaldepth}{Optically thin plasma}
+  The optical depth $\tau$ (dimensionless) is a measure of the opacity of the element:
+  \begin{equation*}
+    \tau=-\kappa z
+  \end{equation*}
+  where $\kappa$ is the linear absorption coefficient (\si{\per\cm}).
+
+  For a beam transferring through a plane medium (plasma in our case), $I_\text{out}$ and $I_\text{in}$ are related by
+  \begin{equation*}
+    I_\text{out} = I_\text{in}\mathrm{e}^{-\kappa z} %\tag{(Simplest)radiative transfer equation}
+  \end{equation*}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.5\textwidth]{figures/radiativeTransfer.jpg}
+\end{figure}
+
+\end{frame}
+\begin{frame}{\opticaldepth}{Optically thin plasma}
+ \begin{center}
+\begin{tabular}{ c c c }
+  $\tau<1$ & $\longrightarrow$ & optically thin medium\\ 
+  $\tau>1$ & $\longrightarrow$ & optically thick medium
+\end{tabular}
+\end{center}
+By optically thin plasma we mean that the freely propagating radiation
+
+is not significantly attenuated by the plasma environment, 
+
+and reaches the detector without re--absorption.
 \end{frame}
 \newcommand{\lte}{Local Thermodynamic Equilibrium(LTE)}
 \begin{frame}{\lte}
-    Electrons are energy providers for many plasma-chemical processes. The rate of such processes depends on the number of electrons having sufficient energy to do the job. This can be described by means of the electron energy distribution function f (e), which is a probability density for an electron to have the energy e. Quite often this distribution function strongly depends upon the electric field and gas composition, and can be very far from equilibrium. Sometimes, however, (even in nonequilibrium plasmas of nonthermal discharges), the f(e) depends mostly on electron temperature Te, and can then be defined by the quasi--equilibrium Maxwell–Boltzmann distribution function:
+  In an isolated, closed system where the radiation and matter have reached equilibrium (black body cavity) the distribution of the kinetic motions, level populations and radiation fields are described by well-defined function of a single parameter ---
+
+  The system temperature.
+
+  This situation is called \emph{complete thermodynamic equilibrium}.
+\end{frame}
+\begin{frame}{\lte}
+  \begin{center}
+\resizebox{\textwidth}{!}{%
+  \begin{tabular}{ c | c}
+  Radiation field  & $\rho(\nu)=\frac{8\pi}{c^{3}}\frac{\nu^{3}}{\mathrm{e}^{\frac{h\nu}{k_{B}T}}-1}$ \\ \hline
+  Ionisation degree  & $\frac{N_2}{N_1}=\frac{g_2}{g_1}\mathrm{e}^{-\frac{E_2-E_1}{k_BT}}$ \\ \hline %Eq 6.68 from Ryden and eq II.4 from Verdeyen
+  Populations ratio of bound quantum states  & $f\left(v\right)=4\pi\left(\frac{m}{2\pi k_{B}T}\right)^{3/2}v^{2}\mathrm{e}^{-\frac{1}{2}\frac{mv^{2}}{k_{B}T}}$ % eq 2.2.4 from Moshe Elitzur.
+  % Important : What is then equation 5.69 in Ryden??? See also Tallents 12.7
+\end{tabular}
+}
+\end{center}
+Each temperature would be different from each other, and become the same only for a system in thermodynamic equilibrium --- a black body cavity.
+
+Those equilibrium populations are achieved because collisional process dominate the radiative processes.
+\end{frame}
+\begin{frame}{Collisional Processes}{And their inverses}
+  \begin{center}
+\resizebox{\textwidth}{!}{%
+  \begin{tabular}{ c | c | c }
+  Ionisation  & $ \left(\ \right)^{-1} \rightarrow$ & Recombination \\
+  \hline
+  Excitation  &  $\overset{\left(\:\right)^{-1}}{\longleftrightarrow}$ & De--excitation \\
+  \hline
+\end{tabular}
+}
+\end{center}
+Inverse collisional processes have a \emph{detailed balance} relationship to each other.
+% From Tallents, between equations 12.2 and 12.3:
+In equilibrium, the principle of detailed balance requires these inverse processes to occur at equal rates.
+
+\end{frame}
+\begin{frame}{Detailed Balance Implications}
+Thus, knowing the rate coefficient (cross section, for example) for one process, we can compute its inverse rate coefficient.
+
+But those collisional--rate coefficients are simply atomic parameters\footnotemark, and so are independent of the state of the plasma, and apply also to plasmas not in equilibrium.
+
+
+If no other process occur (apart from the detailed balance process) the populations have the equilibrium values for the particular density and temperature of the plasma.
+\footnotetext{NIST.gov}
 \end{frame}
 \begin{frame}{Line Broadening}
 A perfectly sharp energy line is impossible, and thus there is a distribution of transitions from states near $E_2$ to $E_1$.
