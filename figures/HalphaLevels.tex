@@ -1,0 +1,18 @@
+\documentclass{standalone}
+\usepackage[dvipsnames]{xcolor}
+
+\usepackage{tikz,siunitx}
+
+\begin{document}
+\begin{tikzpicture}
+    \draw [-latex,line width=2pt] (0,0) -- (0,7) node [above] {E};
+    \draw [-,line width=2pt] (-0.2,1) -- (+0.2,1) node [left] {\SI{-13.6}{\electronvolt}};
+    \draw [-,line width=2pt] (-0.2,1) -- (+0.2,1) node [left] {\SI{-13.6}{\electronvolt}};
+
+    \draw [-,line width=2pt] (1,0) -- (2,0) node [midway, below] {S};
+    \draw [-,line width=2pt] (3,0) -- (4,0) node [midway, below] {P};
+    \draw [-,line width=2pt] (5,0) -- (6,0) node [midway, below] {D};
+    \draw [-,line width=2pt] (5,0) -- (6,0) node [midway, below] {D};
+    
+\end{tikzpicture}
+\end{document}

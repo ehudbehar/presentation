@@ -2,7 +2,8 @@
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage[english]{babel}
-\usepackage{graphicx,siunitx}
+\usepackage{tikz,graphicx,siunitx}
+\usepackage{adjustbox} % for \adjincludegraphics for begin{columns}
 %Information to be included in the title page:
 \title{Low jitter plasma channel in 3D printed gas filled capillary discharges}
 \subtitle{Thesis Presentation}
@@ -58,7 +59,7 @@ Electron densities in the range \SIrange{e6}{e18}{\per\cubic\cm}
 \begin{frame}{\debye}
   Debye length, $\lambda_D$, determines the effective interaction between charged particles in a plasma.
   \begin{equation*}
-\lambda_D=\sqrt{\frac{\varepsilon_0 k_B T_e}{n_e e^2}}=\sqrt{\frac{k_B T}{m_e}}\frac{1}{\omega_p}.
+\lambda_D=\sqrt{\frac{\varepsilon_0 k_B T_e}{N_e e^2}}=\sqrt{\frac{k_B T}{m_e}}\frac{1}{\omega_p}.
 \end{equation*}
 \begin{itemize}
   \item Determined by the density and temperature of the plasma.
@@ -113,6 +114,9 @@ Collective behaviour for plasmas in LWFA environments requires two criteria:
   In plasma, charged particles interact with other charged particles in a \emph{Collective manner}.
 
   A charged particle encounters the electrostatic forces from all the other nearby charged particles\footnotemark.
+  \begin{figure}
+    \input{figures/collision.tikz}
+  \end{figure}
 
   \footnotetext{The generated electromagnetic fields are regarded as properties of the plasma.}
   
@@ -125,15 +129,17 @@ Collective behaviour for plasmas in LWFA environments requires two criteria:
 \subsection{The Spectrum of Hydrogen}
 \newcommand{\hydrogenspecrum}{The Spectrum of Hydrogen}
 \begin{frame}{\hydrogenspecrum}
-An electron making a transition between two energy levels emits a photon.
+%An electron making a transition between two energy levels emits a photon.
 
 Hydrogen spectrum is divided into series, determined by the transitions to the final state.
 \begin{itemize}
-    \item $n_i=3 \to n_f=2$, \SI{656.3}{\nm} --- H\textsubscript{$\alpha$}
-    \item $n_i=4 \to n_f=2$, \SI{656.3}{\nm} --- H\textsubscript{$\beta$}
+    \item $n_i=3 \to n_f=2$, \SI{656.23}{\nm} --- H\textsubscript{$\alpha$}
+    \item $n_i=4 \to n_f=2$, \SI{486.13}{\nm} --- H\textsubscript{$\beta$}
 \end{itemize}
 \begin{figure}
-  \includegraphics[width=100px]{figures/halphagrotrian.png}
+  %\includegraphics[width=100px]{figures/halphagrotrian.png}
+    \def\svgwidth{0.48\textwidth}
+    \input{figures/halphagrotrian.pdf_tex}
 \end{figure}
 Both H\textsubscript{$\alpha$} and H\textsubscript{$\beta$} are in the visible spectrum, and so are easy to observe.
 
@@ -144,7 +150,7 @@ Spectroscopy study of such emission can give information about the physical cond
 
 Advantage: No probes --- no interferance in any way with the plasma.
 
-Disadvantage: Radiation is collected only along the lone of sight in the direction of observation.
+Disadvantage: Radiation is collected only along the line of sight in the direction of observation.
 \end{frame}
 \begin{frame}{The emitted radiation process depends on:}
   The probability that 
@@ -234,15 +240,232 @@ Thus, knowing the rate coefficient (cross section, for example) for one process,
 
 But those collisional--rate coefficients are simply atomic parameters\footnotemark, and so are independent of the state of the plasma, and apply also to plasmas not in equilibrium.
 
-
 If no other process occur (apart from the detailed balance process) the populations have the equilibrium values for the particular density and temperature of the plasma.
 \footnotetext{NIST.gov}
 \end{frame}
 \begin{frame}{Line Broadening}
 A perfectly sharp energy line is impossible, and thus there is a distribution of transitions from states near $E_2$ to $E_1$.
 \end{frame}
-\section{Next Section}
-\begin{frame}{text}
-  Some dummy text.
+\subsection{Classification of Radiation Transition}
+\begin{frame}{Classification of Radiation Transition}
+  \begin{columns}%[t]
+  \begin{column}{0.6\textwidth}
+  \begin{figure}
+    \includegraphics[width=\textwidth]{figures/Deuterium_lamp_1.png} 
+    \caption{Spectrum of light emitted by a deuterium lamp}
+  \end{figure}
+  \end{column}  
+  \begin{column}{0.4\textwidth}
+  The contributions to the spectrum emitted by a plasma are classified according to their type:
+  \begin{itemize}
+    \item continuum, or
+    \item line radiation
+  \end{itemize}
+  \end{column}
+  \end{columns}
 \end{frame}
+\begin{frame}{Radiation Transition}
+  \begin{columns}%[t]
+  \begin{column}{0.6\textwidth}
+  \begin{enumerate}
+    \item Free--free transition. Both initial and final electron states are in continuum. Usually infared.
+    \item Free--bound transition. Electron transition between a free state in continuum and a bound state in atom.
+    \item Bound--bound transition. Electron transition between discrete atomic levels, results in emission (and absorption) of spectral lines.
+  \end{enumerate}
+  \end{column}
+  \begin{column}{0.4\textwidth}
+\includegraphics[width=\columnwidth]{figures/electron-transitions.png}
+  \end{column}
+  \end{columns}
+\end{frame}
+\begin{frame}
+  All transitions emit spectral lines that have finite width.
+  
+  The observed line shape function $f(\lambda)$ and its width $\Delta \lambda_{1/2}$ depend on the temperature and pressure of the emitting plasma.
+\begin{figure}{Line Broadening}
+  \includegraphics[width=100pt,height=100pt]{figures/lineshape.PNG}
+\end{figure}
+The dominant cause of line Broadening in plasma is the inter--atomic Stark effect.
+\end{frame}
+\begin{frame}{Stark effect}
+  Plasma is a charged medium.
+
+  When the density of charged particles is sufficiently large, their electric micro--fields perturb the atomic energy levels.
+  \begin{figure}
+    \includegraphics[width=0.5\textwidth]{figures/stark_effect_1.png}
+  \end{figure}
+  The splitting of states by an electric field is called the \emph{Stark effect}.
+
+  Measurement of Stark half-widths --- reliable and convinient method for the determination of electron densities.
+  \end{frame}
+  \begin{frame}{Stark effect}
+    Since the distance of the perturber is continuously changing, the line shift also changes accordingly giving rise to what is called the Stark Broadening.
+    \begin{figure}
+      \includegraphics[width=0.7\textwidth]{figures/stark_effect_2.png}
+    \end{figure}
+  \end{frame}
+  \begin{frame}{Stark effect}
+    The line shape for the Stark broadening takes that of a Lorentzian:
+    \begin{equation*}
+      I\left( \lambda \right)=\frac{A^2}{4\left( \left(\lambda-\lambda_0\right)^2+\Delta \lambda_{1/2}^2\right)}
+    \end{equation*}
+    \begin{figure}
+      \includegraphics[width=0.6\textwidth]{figures/lorentzian_lineshape.png}
+    \end{figure}
+    \resizebox{\textwidth}{!}{%
+  \begin{tabular}{ c c }
+    The relation between density and the line width is tabulated: & $n_e=\left( \frac{\Delta\lambda_{1/2}}{\gamma\left(n_e,T_e\right)}\right)^{3/2}.$
+    \\
+    Weak dependence on temperature. In our experinemt we work with & $n_e\left[\SI{e18}{\per\cubic\cm}\right]=\left( \frac{\Delta\lambda_{1/2}\left[\si{\nm}\right]}{5.4}\right)^{3/2}.$
+  \end{tabular}
+    }
+  \end{frame}
+  \subsection{Plsama acceleration, laser wake--field acceleration}
+  \begin{frame}{LWFA}
+  Originally proposed by Toshiki Tajima and John Dawson in 1979,
+  
+  on purpose for experiments on nuclear physics and the structure of matter.
+  \begin{figure}
+    \includegraphics[height=0.7\textheight]{figures/PhysRevLett.43.267.pdf}
+  \end{figure}
+  \end{frame}
+  \begin{frame}{Linear accelerators}
+    At present, all high energy accelerators run into limits.
+    Requiring larger physical size and,
+
+    The acclerating electric fields must be less than \SI{100}{\mega \V}, to avoid material breakdown.
+
+    Each \si{\giga \eV} of energy requires $\sim$\SI{100}{\meter} of accleration length.
+    \begin{figure}
+      \includegraphics[width=200pt]{figures/lhc_cern_compressed.jpg}
+    \end{figure}
+  \end{frame}
+  \begin{frame}{LWFA}
+  The idea: to build a plasma--based chraged particles accelerator.
+
+  An intense short laser pulse generating a plasma wave wake as it propagates through the plasma.
+
+  Electron trapped in the plasma wave can gain significant energy from the electric field of the plasma.
+  \begin{figure}
+    \includegraphics[width=300pt]{figures/lwfa-schematic.PNG}
+  \end{figure}
+  \end{frame}
+  \begin{frame}{LWFA}{Limitations}
+    Two limitations preventing well--defined particle beams:
+    \begin{description}
+      \item[Defocusing of the laser radiation] Transverse spreading of the wake--driving laser when propagating within the plasma. Withput optical guiding, the wake would propagate over a distance of the order of the Rayleigh length.
+      \item[Electron dephasing length] The distance over which an ultra relativistiv electron outruns the wakefield and no longer gains energy.
+    \end{description}
+  \end{frame}
+  \begin{frame}{A brief review of Gaussian beams}
+    The divergence of a laser beam is usually neglected.
+
+    This is not the case in a plasma accleration.
+    
+    Acceleration is achieved only when the laser beam is focused to a tiny spot of a few tens of microns in diameter.
+
+    \begin{center}
+      plot of a beam through a lens with numbers, Rayleigh length of about 0.4 mm.
+    \end{center}
+    We need to extend this length.
+
+    Solution: Use a waveguide.
+  \end{frame}
+  \begin{frame}{Waveguides}{Basic concept}
+   \begin{figure}
+     \includegraphics[width=0.3\textwidth]{figures/optical_fiber.png}
+   \end{figure}
+   Total internal reflection resulting from axially--peaked refraction index.
+
+   A transparent core in which light is confined and a cladding with a smaller refractive index.
+  \end{frame}
+  \begin{frame}{Solution: Construct a plasma waveguide}
+    Making a tightly focused laser pulse propagate over many tens of Rayleigh lengths without divergence ---
+
+    construct a preformed plasma channel with radially increasing density.
+
+    Contrary to optical fibers, plasma waveguides
+    \begin{enumerate}
+      \item form dynamically
+      \item continuous radial decrease of $\tilde n$
+      \item results from the increase of plasma density
+    \end{enumerate}
+  \end{frame}
+  \begin{frame}{Preformed plasma channel}
+  The dispersion relation for an electromagnetic wave propagating in a plasma is
+  \begin{equation}
+    \omega^2=\omega_p^2+c^2k^2
+  \end{equation}
+  The index of refraction $\tilde n$ is
+  \begin{equation}
+    \tilde{n}=\frac{c k}{\omega}=\sqrt{1-\frac{\omega_p^2}{\omega^2}}\approx1-\frac{\omega_p^2}{2\omega^2}=1-\frac{N_e}{2N_\text{cr}}
+  \end{equation}
+  where
+    \begin{equation}
+        N_\text{cr}=\frac{\omega_L^2\varepsilon_0 m_e}{e^2}
+    \end{equation}
+    is the critical plasma density.
+
+    The plasma is called \textit{underdense} for $N_e < N_\text{cr}$, with $N_\text{cr}\sim\SI{1.7e21}{\per\cubic\cm}$ for an \SI{800}{\nm} laser.
+\end{frame}
+  \begin{frame}{Preformed plasma channel}{continued}
+    If the refractive peaks on the axis of a plasm channel, because of lower density, then we have a waveguide ---
+
+    focused laser radiation propagates along the channel.
+
+    Ideally, the radial density profile (RDP) is parabolic:
+     \begin{equation*}
+      N_e(r)=N_e(0)+\Delta N_e\left( \frac{r}{r_\text{ch}}\right)^2
+    \end{equation*}
+    \begin{center}
+      figure of rdp
+    \end{center}
+  \end{frame}
+  \begin{frame}{Mathcing conditions}
+    The matched radius of the guided beam is \cite{}
+   \begin{equation*}
+     w_m=\left( \frac{r_\text{ch}^2}{\pi r_e \Delta N_e}\right)^{1/4}
+   \end{equation*}
+   $\Delta N_\text{min}$ should be about \SI{2e16}{\per \cubic \cm}.
+  \end{frame}
+  \begin{frame}{Methods for creating a plasma channel}
+    Electrical discharge in an initially evacuated capillary.
+    \begin{description}
+      \item[Ablated capillary] Ablating and subsequently ionizing the wall material. Ablation leads to loss of wall material, and therefore a shorter capillary lifetime.
+      \item[Gas--filled capillary] Pre--filled with gas, such as hydrogen, at a pressure of several bars. Ionization of the gas -> longer device lifetime.
+    \end{description}
+  \end{frame}
+  %\begin{frame}{Why the channel forms}
+    %But why the plasma channel forms?
+
+    %What causes the density to be lower on the axis then away from it?
+    %\begin{figure}
+      %\includegraphics[width=0.4\textwidth]{figures/radial_density.pdf}
+    %\end{figure}
+  %\end{frame}
+  \begin{frame}{Why the channel forms}{Explanation}
+    Initial pressure variations are being wiped out rapidly because they travel at the plasma speed of sound, $$v_s=\sqrt{k_B T_e/M}\sim \SI{e6}{\cm\per\s}$$ for $T_e\sim\SI{1}{\electronvolt}.$ I.e., a characteristic time scale for a perturbation to propagate would be
+    $$\Delta T=\frac{L}{v_s}=\SI{25}{\ns}.$$
+    Under assumption of the ideal gas equation--of--state, $P=N_e k_B T$, this implies a uniform pressure.
+  \end{frame}
+  \begin{frame}{Why the channel forms}{Explanation, continued}
+      Heat transfer (or heat conduction) from the electrons to the wall cools the electrons there, causing the current density near the wall to decrease. 
+     \begin{figure}
+       \includegraphics[width=0.4\textwidth]{figures/why channel forms.png}
+     \end{figure}
+      The heating of the plasma is mostly Ohmic, and is balanced mainly by thermal conduction at the capillary wall. This results in current density increase near capillary axis, and, consequently, a higher temperature there.
+  \end{frame}
+  \begin{frame}{Multi--stage acceleration scheme}
+    As stated previously, there is also the dephasing length limitation:
+    
+    trapped electrons outrun or dephase the acclerating phase of the wakefield.
+    
+    The current paradigm is a multi--stage accelerator, composed of multiple stages.
+    
+    Optimization by matching the dephasing length to the depletion length of the laser pulse.
+
+    \begin{figure}
+      \includegraphics[width=0.6\textwidth]{figures/coupling_scheme.pdf}
+    \end{figure}
+  \end{frame}
 \end{document}
