@@ -358,3 +358,4 @@ MigrationBackup/
 *.synctex.gz
 *.toc
 *.synctex
+*.out
