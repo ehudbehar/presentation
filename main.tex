@@ -6,6 +6,7 @@
 \usepackage[mode=buildnew]{standalone}
 \usepackage{adjustbox} % for \adjincludegraphics for begin{columns}
 %Information to be included in the title page:
+% For tables:
 \title{Low jitter plasma channel in 3D printed gas filled capillary discharges}
 \subtitle{Thesis Presentation}
 \author{Ehud Behar}
@@ -180,7 +181,8 @@ Disadvantage: Radiation is collected only along the line of sight in the directi
 
 \begin{figure}
     \centering
-    \includegraphics[width=0.5\textwidth]{figures/radiativeTransfer.jpg}
+    %\includestandalone[width=0.4\textwidth]{figures/radiativeTransfer}
+    \input{figures/radiativeTransfer.tikz}
 \end{figure}
 
 \end{frame}
@@ -275,7 +277,7 @@ A perfectly sharp energy line is impossible, and thus there is a distribution of
   \end{enumerate}
   \end{column}
   \begin{column}{0.4\textwidth}
-\includegraphics[width=\columnwidth]{figures/electron-transitions.png}
+\includestandalone[width=1.2\textwidth]{figures/radiationTransition}
   \end{column}
   \end{columns}
 \end{frame}
@@ -284,7 +286,7 @@ A perfectly sharp energy line is impossible, and thus there is a distribution of
   
   The observed line shape function $f(\lambda)$ and its width $\Delta \lambda_{1/2}$ depend on the temperature and pressure of the emitting plasma.
 \begin{figure}{Line Broadening}
-  \includegraphics[width=100pt,height=100pt]{figures/lineshape.PNG}
+  \includestandalone[width=0.7\textwidth,height=0.3\textwidth]{figures/lineshape}
 \end{figure}
 The dominant cause of line Broadening in plasma is the inter--atomic Stark effect.
 \end{frame}
@@ -311,7 +313,7 @@ The dominant cause of line Broadening in plasma is the inter--atomic Stark effec
       I\left( \lambda \right)=\frac{A^2}{4\left( \left(\lambda-\lambda_0\right)^2+\Delta \lambda_{1/2}^2\right)}
     \end{equation*}
     \begin{figure}
-      \includegraphics[width=0.6\textwidth]{figures/lorentzian_lineshape.png}
+\includegraphics[width=100pt]{figures/lorentzian_lineshape.png}
     \end{figure}
     \resizebox{\textwidth}{!}{%
   \begin{tabular}{ c c }
@@ -320,6 +322,18 @@ The dominant cause of line Broadening in plasma is the inter--atomic Stark effec
     Weak dependence on temperature. In our experinemt we work with & $n_e\left[\SI{e18}{\per\cubic\cm}\right]=\left( \frac{\Delta\lambda_{1/2}\left[\si{\nm}\right]}{5.4}\right)^{3/2}.$
   \end{tabular}
     }
+\end{frame}
+\begin{frame}{Stark effect}
+  \begin{columns}
+    \column{0.4\textwidth}
+    \begin{figure}
+      \includegraphics[width=100pt]{figures/lorentzian_lineshape.png}
+    \end{figure}
+    \column{0.6\textwidth}
+    Relation between $N_e$ and $\Delta \lambda_{1/2}$ is tabulated: $$N_e=\left( \frac{\Delta\lambda_{1/2}}{\gamma\left(n_e,T_e\right)}\right)^{3/2}.$$
+    \\
+    Weak dependence on temperature, in our experiment: $$N_e\left[\SI{e18}{\per\cubic\cm}\right]=\left( \frac{\Delta\lambda_{1/2}\left[\si{\nm}\right]}{5.4}\right)^{3/2}.$$
+  \end{columns}
   \end{frame}
   \subsection{Plsama acceleration, laser wake--field acceleration}
   \begin{frame}{LWFA}
