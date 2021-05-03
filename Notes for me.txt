@@ -1,0 +1,3 @@
+﻿The electrical  breakdow nof  air  occurs  when  the  electric  field reaches a strength of about 3e6 V/m. In fields this strong, electronsare ripped from molecules in the air. They are then accelerated by thefield and collide with other molecules, knocking electrons out of these molecules,  and  so  on,  in  a  cascading  process.  The  result  is  a spark, because eventually the electrons will combine in a more friendly manner with molecules and drop down to a lower energy level, emitting the light that you see.
+
+Beyond a Debye shpere, the plasma remains effectively neutral. $\lambda_D$ is also a measure of the penetration depth of external electrostatic fields, i.e. of the thickness of the boundary sheath over which charge neutrality may not be maintained.

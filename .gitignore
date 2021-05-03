@@ -357,3 +357,4 @@ MigrationBackup/
 *.snm
 *.synctex.gz
 *.toc
+*.synctex
