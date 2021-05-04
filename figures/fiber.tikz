@@ -1,0 +1,47 @@
+\begin{tikzpicture}[scale=2,line cap=round,line join=round]
+\usetikzlibrary{calc}
+
+\newcommand{\cylinder}[5] % center, radius (y-axis), height (to the right), color, opacity
+{
+  \pgfmathsetmacro\r {0.5*#2}              % radius (x-axis)
+  \coordinate (C1)  at #1;                 % center, left ellipse
+  \coordinate (N1)  at ($(C1)+(0,#2)$);    % north, left ellipse  
+  \coordinate (NW1) at ($(C1)+(-\r,#2)$);  % north west, left ellipse
+  \coordinate (W1)  at ($(C1)-(\r,0)$);    % west, left ellipse  
+  \coordinate (S1)  at ($(C1)-(0,#2)$);    % south, left ellipse 
+  \coordinate (P1)  at ($(W1)!0.1!(NW1)$); % point for shading
+  \coordinate (Q1)  at ($(W1)!0.2!(NW1)$); % another point for shading
+  \coordinate (C2)  at ($(C1)+(#3,0)$);    % center, right ellipse
+  \coordinate (N2)  at ($(N1)+(#3,0)$);    % ...
+  \coordinate (S2)  at ($(S1)+(#3,0)$);
+  \coordinate (P2)  at ($(P1)+(#3,0)$);
+  \ifthenelse
+    {\equal{#3}{0}} % if height is 0
+    {} % then do nothing
+    {  % else...
+      \begin{scope}
+        \clip (N1) arc (90:270:\r cm and #2 cm) -- (S2) -- (S2) arc (270:90:\r cm and #2 cm) -- cycle;
+        \shade[top color=white, bottom color=#4!65,fill opacity=#5] (S2) rectangle (P1);
+        \shade[top color=#4!55, bottom color=white,fill opacity=#5] (N2) rectangle (Q1);
+        \fill[white, opacity=#5] (P2) rectangle (Q1);
+      \end{scope}
+      \draw[#4] (N2) -- (N1) arc (90:270:\r cm and #2 cm) -- (S2);
+    }
+  \draw[#4,fill=#4!12.5,opacity=#5] (C2) ellipse (\r cm and #2 cm);
+}
+
+\cylinder{(0,0)}{0.75}{2}{blue} {1};
+  \cylinder{(0,0)}{1}   {2}{black}{0.75};
+  \cylinder{(2,0)}{0.75}{1}{blue} {1};
+  \cylinder{(3,0)}{0.1} {0}{red}  {1};
+  \fill(3,0) circle (0.25pt);
+  \draw[very thin,dashed] (2,1) -- (3.5,1);
+  \draw[very thin,dashed] (3,0.75) -- (4,0.75);
+  \draw[very thin,dashed] (3,0.1) -- (3.6,0.1);
+  \draw[very thin,dashed] (3,0) -- (4,0);
+  \draw[-latex] (3.5,1) node [above right] {Refractive index} -- (6,1);
+  \draw[red!80!black] (3.7,1) |- (3.6,0.75) |- (4,0.1) -- (4,0);
+  \node at (4,0.875) [right] {Coating};
+  \node at (4,0.425) [right] {Cladding};
+  \node at (4,0.05)  [right] {Core}; 
+\end{tikzpicture}

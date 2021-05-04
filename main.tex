@@ -2,8 +2,14 @@
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage[english]{babel}
-\usepackage{tikz,graphicx,siunitx}
+\usepackage[babel]{csquotes}
+% Graphics related packages:
+\usepackage{tikz,pgfplots,graphicx,siunitx}
 \usepackage[mode=buildnew]{standalone}
+\usepackage{tikzscale}
+\usepackage{ifthen} % used in fiber.tikz
+\usetikzlibrary{calc} % used in fiber.tikz
+
 \usepackage{adjustbox} % for \adjincludegraphics for begin{columns}
 %Information to be included in the title page:
 % For tables:
@@ -285,9 +291,9 @@ A perfectly sharp energy line is impossible, and thus there is a distribution of
   All transitions emit spectral lines that have finite width.
   
   The observed line shape function $f(\lambda)$ and its width $\Delta \lambda_{1/2}$ depend on the temperature and pressure of the emitting plasma.
-\begin{figure}{Line Broadening}
-  \includestandalone[width=0.7\textwidth,height=0.3\textwidth]{figures/lineshape}
-\end{figure}
+%\begin{figure}
+%\includegraphics[width=0.7\textwidth]{figures/lineshape.tikz}
+%\end{figure}
 The dominant cause of line Broadening in plasma is the inter--atomic Stark effect.
 \end{frame}
 \begin{frame}{Stark effect}
@@ -304,7 +310,7 @@ The dominant cause of line Broadening in plasma is the inter--atomic Stark effec
   \begin{frame}{Stark effect}
     Since the distance of the perturber is continuously changing, the line shift also changes accordingly giving rise to what is called the Stark Broadening.
     \begin{figure}
-    \includestandalone[width=0.5\textwidth]{figures/starkBroadening}
+    \includegraphics[width=0.5\textwidth]{figures/starkBroadening.tikz}
     \end{figure}
   \end{frame}
   \begin{frame}{Stark effect}
@@ -387,9 +393,9 @@ The dominant cause of line Broadening in plasma is the inter--atomic Stark effec
     Solution: Use a waveguide.
   \end{frame}
   \begin{frame}{Waveguides}{Basic concept}
-   \begin{figure}
-     \includegraphics[width=0.3\textwidth]{figures/optical_fiber.png}
-   \end{figure}
+  %\begin{figure}
+     %\includegraphics[width=\textwidth]{figures/fiber.tikz}
+   %\end{figure}
    Total internal reflection resulting from axially--peaked refraction index.
 
    A transparent core in which light is confined and a cladding with a smaller refractive index.
