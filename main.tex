@@ -1,4 +1,4 @@
-\documentclass[draft]{beamer}
+\documentclass[]{beamer}
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage[english]{babel}
@@ -45,8 +45,34 @@
 
 \section{Background}
 \subsection{Theoretical Introduction}
+  \begin{frame}{Linear accelerators}
+  \begin{center}
+    The goal is to design a table--top particle accelerator.
+  \end{center}
+  \end{frame}
+  \begin{frame}{Linear accelerators}
+    At present, all high energy accelerators run into limits.
+    Requiring larger physical size and,
+
+    The acclerating electric fields must be less than \SI{100}{\mega \V}, to avoid material breakdown.
+
+    Each \si{\giga \eV} of energy requires $\sim$\SI{100}{\meter} of accleration length.
+    \begin{figure}
+      \includegraphics[width=200pt]{figures/lhc_cern_compressed.jpg}
+    \end{figure}
+  \end{frame}
+  \begin{frame}{LWFA}
+  The idea: to build a plasma--based chraged particles accelerator.
+
+  An intense short laser pulse generating a plasma wave wake as it propagates through the plasma.
+
+  Electron trapped in the plasma wave can gain significant energy from the electric field of the plasma.
+  \begin{figure}
+    \includegraphics[width=300pt]{figures/lwfa-schematic.PNG}
+  \end{figure}
+  \end{frame}
 \newcommand{\whatisplasma}{What plasma is?}
-\begin{frame}{\whatisplasma}
+\begin{frame}{Background to Electron acceleration}{Linear accelerators}
 Plasma is defined as an ionized gas of charged and neutral particles, which  satisfies  the quasi–-neutrality condition.
 \begin{figure}
     \centering
@@ -178,38 +204,28 @@ Disadvantage: Radiation is collected only along the line of sight in the directi
  Values of the transition probabily $A_{i\to j}$ for process (2) are tabulated\footnote[frame]{See \url{https://physics.nist.gov/PhysRefData/ASD/lines_form.html} for example.}.
 \end{frame}
 
-\newcommand{\opticaldepth}{Optical Depth}
-\begin{frame}{\opticaldepth}{Optically thin plasma}
-  The optical depth $\tau$ (dimensionless) is a measure of the opacity of the element:
+\begin{frame}{Optical Depth}{Optically thin plasma}
+  The optical depth $\tau$ (dimensionless) is a measure of the opacity of the medium:
   \begin{equation*}
     \tau=-\kappa z
   \end{equation*}
-  where $\kappa$ is the linear absorption coefficient (\si{\per\cm}).
+  $\kappa$ --- the linear absorption coefficient (\si{\per\cm}).
 
-  For a beam transferring through a plane medium (plasma in our case), $I_\text{out}$ and $I_\text{in}$ are related by
+  $I_\text{out}$ and $I_\text{in}$ are related by
   \begin{equation*}
-    I_\text{out} = I_\text{in}\mathrm{e}^{-\kappa z} %\tag{(Simplest)radiative transfer equation}
+    I_\text{out} = I_\text{in}\mathrm{e}^{-\tau} %\tag{(Simplest)radiative transfer equation}
   \end{equation*}
-
-\begin{figure}
-    \centering
-    %\includestandalone[width=0.4\textwidth]{figures/radiativeTransfer}
-    \input{figures/radiativeTransfer.tikz}
-\end{figure}
-
-\end{frame}
-\begin{frame}{\opticaldepth}{Optically thin plasma}
- \begin{center}
-\begin{tabular}{ c c c }
-  $\tau<1$ & $\longrightarrow$ & optically thin medium\\ 
-  $\tau>1$ & $\longrightarrow$ & optically thick medium
-\end{tabular}
-\end{center}
-By optically thin plasma we mean that the freely propagating radiation
-
-is not significantly attenuated by the plasma environment, 
-
-and reaches the detector without re--absorption.
+\begin{columns}
+  \column{0.4\textwidth}
+      \input{figures/radiativeTransfer.tikz}
+    \column{0.6\textwidth}
+  \begin{center}
+  \begin{tabular}{ c c c }
+    $\tau<1$ & $\longrightarrow$ & optically thin medium\\ 
+    $\tau>1$ & $\longrightarrow$ & optically thick medium
+  \end{tabular}
+  \end{center}
+\end{columns}
 \end{frame}
 \newcommand{\lte}{Local Thermodynamic Equilibrium(LTE)}
 \begin{frame}{\lte}
@@ -354,27 +370,6 @@ The dominant cause of line Broadening in plasma is the inter--atomic Stark effec
   on purpose for experiments on nuclear physics and the structure of matter.
   \begin{figure}
     \includegraphics[height=0.7\textheight]{figures/PhysRevLett.43.267.pdf}
-  \end{figure}
-  \end{frame}
-  \begin{frame}{Linear accelerators}
-    At present, all high energy accelerators run into limits.
-    Requiring larger physical size and,
-
-    The acclerating electric fields must be less than \SI{100}{\mega \V}, to avoid material breakdown.
-
-    Each \si{\giga \eV} of energy requires $\sim$\SI{100}{\meter} of accleration length.
-    \begin{figure}
-      \includegraphics[width=200pt]{figures/lhc_cern_compressed.jpg}
-    \end{figure}
-  \end{frame}
-  \begin{frame}{LWFA}
-  The idea: to build a plasma--based chraged particles accelerator.
-
-  An intense short laser pulse generating a plasma wave wake as it propagates through the plasma.
-
-  Electron trapped in the plasma wave can gain significant energy from the electric field of the plasma.
-  \begin{figure}
-    \includegraphics[width=300pt]{figures/lwfa-schematic.PNG}
   \end{figure}
   \end{frame}
   \begin{frame}{LWFA}{Limitations}
