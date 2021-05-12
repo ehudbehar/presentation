@@ -1,4 +1,4 @@
-\documentclass[final]{beamer}
+\documentclass[]{beamer}
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage[english]{babel}
@@ -6,11 +6,15 @@
 % Graphics related packages:
 \usepackage{tikz,pgfplots,graphicx,siunitx}
 \pgfplotsset{compat=newest}
+\DeclareSIUnit\torr{torr}
 \usepackage[mode=buildnew]{standalone}
 \usepackage{tikzscale}
 \usepackage{ifthen} % used in fiber.tikz
 \usetikzlibrary{calc} % used in fiber.tikz
 \usetikzlibrary{math} % used in starkBroadening.tikz
+%% To reduce compilation time
+%\usepgfplotslibrary{external}
+%\tikzexternalize
 
 \usepackage{adjustbox} % for \adjincludegraphics for begin{columns}
 %Information to be included in the title page:
@@ -41,12 +45,38 @@
 
 \section{Background}
 \subsection{Theoretical Introduction}
+  \begin{frame}{Linear accelerators}
+  \begin{center}
+    The goal is to design a table--top particle accelerator.
+  \end{center}
+  \end{frame}
+  \begin{frame}{Linear accelerators}
+    At present, all high energy accelerators run into limits.
+    Requiring larger physical size and,
+
+    The acclerating electric fields must be less than \SI{100}{\mega \V}, to avoid material breakdown.
+
+    Each \si{\giga \eV} of energy requires $\sim$\SI{100}{\meter} of accleration length.
+    \begin{figure}
+      \includegraphics[width=200pt]{figures/theory/lhc_cern_compressed.jpg}
+    \end{figure}
+  \end{frame}
+  \begin{frame}{LWFA}
+  The idea: to build a plasma--based chraged particles accelerator.
+
+  An intense short laser pulse generating a plasma wave wake as it propagates through the plasma.
+
+  Electron trapped in the plasma wave can gain significant energy from the electric field of the plasma.
+  \begin{figure}
+    \includegraphics[width=300pt]{figures/theory/lwfa-schematic.PNG}
+  \end{figure}
+  \end{frame}
 \newcommand{\whatisplasma}{What plasma is?}
-\begin{frame}{\whatisplasma}
+\begin{frame}{Background to Electron acceleration}{Linear accelerators}
 Plasma is defined as an ionized gas of charged and neutral particles, which  satisfies  the quasi–-neutrality condition.
 \begin{figure}
     \centering
-    \includegraphics[width=0.5\textwidth]{figures/temp_and_states.png}
+    %\includegraphics[width=0.5\textwidth]{figures/theory/temp_and_states.png}
 \end{figure}
 Molecules in the gas dissociate to form a gas of freely moving charged particles --- electrons and positive ions.
 \end{frame}
@@ -174,38 +204,28 @@ Disadvantage: Radiation is collected only along the line of sight in the directi
  Values of the transition probabily $A_{i\to j}$ for process (2) are tabulated\footnote[frame]{See \url{https://physics.nist.gov/PhysRefData/ASD/lines_form.html} for example.}.
 \end{frame}
 
-\newcommand{\opticaldepth}{Optical Depth}
-\begin{frame}{\opticaldepth}{Optically thin plasma}
-  The optical depth $\tau$ (dimensionless) is a measure of the opacity of the element:
+\begin{frame}{Optical Depth}{Optically thin plasma}
+  The optical depth $\tau$ (dimensionless) is a measure of the opacity of the medium:
   \begin{equation*}
     \tau=-\kappa z
   \end{equation*}
-  where $\kappa$ is the linear absorption coefficient (\si{\per\cm}).
+  $\kappa$ --- the linear absorption coefficient (\si{\per\cm}).
 
-  For a beam transferring through a plane medium (plasma in our case), $I_\text{out}$ and $I_\text{in}$ are related by
+  $I_\text{out}$ and $I_\text{in}$ are related by
   \begin{equation*}
-    I_\text{out} = I_\text{in}\mathrm{e}^{-\kappa z} %\tag{(Simplest)radiative transfer equation}
+    I_\text{out} = I_\text{in}\mathrm{e}^{-\tau} %\tag{(Simplest)radiative transfer equation}
   \end{equation*}
-
-\begin{figure}
-    \centering
-    %\includestandalone[width=0.4\textwidth]{figures/radiativeTransfer}
-    \input{figures/radiativeTransfer.tikz}
-\end{figure}
-
-\end{frame}
-\begin{frame}{\opticaldepth}{Optically thin plasma}
- \begin{center}
-\begin{tabular}{ c c c }
-  $\tau<1$ & $\longrightarrow$ & optically thin medium\\ 
-  $\tau>1$ & $\longrightarrow$ & optically thick medium
-\end{tabular}
-\end{center}
-By optically thin plasma we mean that the freely propagating radiation
-
-is not significantly attenuated by the plasma environment, 
-
-and reaches the detector without re--absorption.
+\begin{columns}
+  \column{0.4\textwidth}
+      \input{figures/radiativeTransfer.tikz}
+    \column{0.6\textwidth}
+  \begin{center}
+  \begin{tabular}{ c c c }
+    $\tau<1$ & $\longrightarrow$ & optically thin medium\\ 
+    $\tau>1$ & $\longrightarrow$ & optically thick medium
+  \end{tabular}
+  \end{center}
+\end{columns}
 \end{frame}
 \newcommand{\lte}{Local Thermodynamic Equilibrium(LTE)}
 \begin{frame}{\lte}
@@ -285,7 +305,7 @@ A perfectly sharp energy line is impossible, and thus there is a distribution of
   \end{enumerate}
   \end{column}
   \begin{column}{0.4\textwidth}
-\includestandalone[width=1.2\textwidth]{figures/radiationTransition}
+  \includegraphics[width=\textwidth]{figures/radiationTransition.tikz}
   \end{column}
   \end{columns}
 \end{frame}
@@ -293,9 +313,9 @@ A perfectly sharp energy line is impossible, and thus there is a distribution of
   All transitions emit spectral lines that have finite width.
   
   The observed line shape function $f(\lambda)$ and its width $\Delta \lambda_{1/2}$ depend on the temperature and pressure of the emitting plasma.
-%\begin{figure}
-%\includegraphics[width=0.7\textwidth]{figures/lineshape.tikz}
-%\end{figure}
+\begin{figure}
+\includegraphics[width=0.7\textwidth,height=0.3\textwidth]{figures/theory/lineshape.tikz}
+\end{figure}
 The dominant cause of line Broadening in plasma is the inter--atomic Stark effect.
 \end{frame}
 \begin{frame}{Stark effect}
@@ -321,7 +341,7 @@ The dominant cause of line Broadening in plasma is the inter--atomic Stark effec
       I\left( \lambda \right)=\frac{A^2}{4\left( \left(\lambda-\lambda_0\right)^2+\Delta \lambda_{1/2}^2\right)}
     \end{equation*}
     \begin{figure}
-\includegraphics[width=100pt]{figures/lorentzian_lineshape.png}
+\includegraphics[width=\textwidth,height=0.5\textwidth]{figures/lorentzian_lineshape.tikz}
     \end{figure}
     \resizebox{\textwidth}{!}{%
   \begin{tabular}{ c c }
@@ -335,7 +355,7 @@ The dominant cause of line Broadening in plasma is the inter--atomic Stark effec
   \begin{columns}
     \column{0.4\textwidth}
     \begin{figure}
-      \includegraphics[width=100pt]{figures/lorentzian_lineshape.png}
+      \includegraphics[width=\textwidth]{figures/lorentzian_lineshape.tikz}
     \end{figure}
     \column{0.6\textwidth}
     Relation between $N_e$ and $\Delta \lambda_{1/2}$ is tabulated: $$N_e=\left( \frac{\Delta\lambda_{1/2}}{\gamma\left(n_e,T_e\right)}\right)^{3/2}.$$
@@ -350,27 +370,6 @@ The dominant cause of line Broadening in plasma is the inter--atomic Stark effec
   on purpose for experiments on nuclear physics and the structure of matter.
   \begin{figure}
     \includegraphics[height=0.7\textheight]{figures/PhysRevLett.43.267.pdf}
-  \end{figure}
-  \end{frame}
-  \begin{frame}{Linear accelerators}
-    At present, all high energy accelerators run into limits.
-    Requiring larger physical size and,
-
-    The acclerating electric fields must be less than \SI{100}{\mega \V}, to avoid material breakdown.
-
-    Each \si{\giga \eV} of energy requires $\sim$\SI{100}{\meter} of accleration length.
-    \begin{figure}
-      \includegraphics[width=200pt]{figures/lhc_cern_compressed.jpg}
-    \end{figure}
-  \end{frame}
-  \begin{frame}{LWFA}
-  The idea: to build a plasma--based chraged particles accelerator.
-
-  An intense short laser pulse generating a plasma wave wake as it propagates through the plasma.
-
-  Electron trapped in the plasma wave can gain significant energy from the electric field of the plasma.
-  \begin{figure}
-    \includegraphics[width=300pt]{figures/lwfa-schematic.PNG}
   \end{figure}
   \end{frame}
   \begin{frame}{LWFA}{Limitations}
@@ -395,9 +394,9 @@ The dominant cause of line Broadening in plasma is the inter--atomic Stark effec
     Solution: Use a waveguide.
   \end{frame}
   \begin{frame}{Waveguides}{Basic concept}
-  %\begin{figure}
-     %\includegraphics[width=\textwidth]{figures/fiber.tikz}
-   %\end{figure}
+  \begin{figure}
+     \includegraphics[width=\textwidth]{figures/fiber.tikz}
+   \end{figure}
    Total internal reflection resulting from axially--peaked refraction index.
 
    A transparent core in which light is confined and a cladding with a smaller refractive index.
@@ -458,7 +457,7 @@ The dominant cause of line Broadening in plasma is the inter--atomic Stark effec
       \item[Gas--filled capillary] Pre--filled with gas, such as hydrogen, at a pressure of several bars. %Ionization of the gas -> longer device lifetime.
     \end{description}
     \begin{tabular}{cc}
-    \includegraphics[width=0.5\textwidth]{figures/ablated.png} & \includegraphics[width=0.5\textwidth]{figures/gasfilled.png}
+    \includegraphics[width=0.5\textwidth]{figures/theory/ablated.png} & \includegraphics[width=0.5\textwidth]{figures/theory/gasfilled.png}
     \end{tabular}
     %% Mathematica code to render these stl files:
     % Import["figures\\5-\ 500-S.STL", "Graphics3D", ImageSize -> imageSize, ViewAngle -> All, Lighting -> Automatic, ViewVertical -> {0, 1, 0}, BaseStyle -> RGBColor[0.7, 0.8, 0.86], ViewPoint -> {1.5, 0.9, 2.3}]
@@ -479,7 +478,7 @@ The dominant cause of line Broadening in plasma is the inter--atomic Stark effec
   \begin{frame}{Why the channel forms}{Explanation, continued}
       Heat transfer (or heat conduction) from the electrons to the wall cools the electrons there, causing the current density near the wall to decrease. 
      \begin{figure}
-       \includegraphics[width=0.4\textwidth]{figures/why channel forms.png}
+       \includegraphics[width=0.4\textwidth]{figures/theory/why channel forms.png}
      \end{figure}
       The heating of the plasma is mostly Ohmic, and is balanced mainly by thermal conduction at the capillary wall. This results in current density increase near capillary axis, and, consequently, a higher temperature there.
   \end{frame}
@@ -495,5 +494,216 @@ The dominant cause of line Broadening in plasma is the inter--atomic Stark effec
     \begin{figure}
       \includegraphics[width=0.6\textwidth]{figures/coupling_scheme.pdf}
     \end{figure}
+  \end{frame}
+  \section{Goals}
+  \begin{frame}{Thesis Goals}
+    \begin{enumerate}
+      \item Study of discharge evolution, low jitter of discharge ignition.
+      \item Demonstration of optical guiding.
+      \item Spectroscopy analysis, utilizing Stark broadening.
+      \item Development of multi stage capillary --- fish bone approach.
+    \end{enumerate}
+  \end{frame}
+  \begin{frame}{Experiment Scheme}
+    \begin{figure}
+      \includegraphics[width=\textwidth]{figures/methods/Laser-based ignition scheme.png}
+    \end{figure}
+    Capillary inside a vacuum chamber, maintained at \SI{e-4}{\torr}
+  \end{frame}
+  \begin{frame}{Experiment Scheme}{continued}
+    \begin{figure}
+      \includegraphics[width=\textwidth]{figures/methods/system_picture.jpg}
+    \end{figure}
+  \end{frame}
+  \begin{frame}{Experimental Results}{Low Jitter}
+    A typical plasma discharge. Damped oscillatory current profile.
+    \begin{figure}
+      \includegraphics[]{figures/results/typical.png}
+    \end{figure}
+    Requirement for a ready--to--use guiding media --- low jitter.
+  \end{frame}
+  \begin{frame}{Experimental Results}{Low Jitter}
+    12 cosecutive capillary discharges. Demonstrating low ignition jitter.
+    \begin{figure}
+      \includegraphics[width=0.4\textwidth]{figures/results/low_jitter.png}
+    \end{figure}
+    $$\tau_\text{jitter}\approx 1\pm 0.36 \si{\ns}$$
+  \end{frame}
+  \begin{frame}{Experimental Results}{Low Jitter}
+    Without the igniting laser pulse - much less stable regime.
+    \begin{figure}
+      \includegraphics[width=0.4\textwidth]{figures/results/high_jitter.png}
+    \end{figure}
+    $$\text{jitter}\approx \SI{80}{\us}$$
+  \end{frame}
+  \begin{frame}{Experimental Results}{Low Jitter}
+    These results conributed to two publications:
+    Thses results apply to two types of plasmas created in capillaries:
+    \begin{enumerate}
+      \item For PLWA: Biagioni Angelo and Behar Ehud et al. \emph{"Gas filled capillary dis-charge stabilization for plasma based accelerators by means of alaser pulse"}. In: \emph{Optical Letters.} Accepted for publication.
+      \item For LWFA: Raz Yoav and Behar Ehud et al. \emph{Low jitter parabolic profile low density plasma channel in 3D printed gas filled capillary}. In: Plasma research express. Accepted for publication.
+    \end{enumerate}
+    Different plasma characteristics, but need for low jitter system is common.
+  \end{frame}
+  \begin{frame}{Duration of the parabolic density profile}{System setup}
+    System setup as before, but now adding an oscillator laser.
+    \begin{figure}
+     \includegraphics[width=\textwidth]{figures/results/oscillator/oscillator_system_setup.png} 
+    \end{figure}
+    Beam aligned throught the capillary, to a fast photo--diode.
+  \end{frame}
+  \begin{frame}{Duration of the parabolic density profile}{System setup}
+    Oscillator laser, \SI{800}{\nm}, pulses at a \SI{84}{\MHz} rate.
+    \begin{figure}
+      \includegraphics[width=0.7\textwidth]{figures/results/oscillator/single.PNG}
+    \end{figure}
+  \end{frame}
+  \begin{frame}{Duration of the parabolic density profile}
+    Upon plasma discharge, we look for an increase in the detected amplitude --- optical guiding.
+    \begin{equation*}
+      \text{transmission ratio} = \frac{A_{t<0}}{A_\text{max}}
+    \end{equation*}
+    \begin{figure}
+      \includegraphics[width=\textwidth]{figures/results/oscillator/results01.PNG}
+    \end{figure}
+  \end{frame}
+  \begin{frame}
+    Another frame witht results02.png
+  \end{frame}
+  \begin{frame}{Duration of the parabolic density profile}{Explanation}
+    If an inverted radial density profile is created, a plasma lens forms and the radiation is focused and trapped by the plasma.
+    \begin{figure}
+      \includegraphics[width=0.7\textwidth]{figures/results/oscillator/chen4_31.png}
+    \end{figure}
+    Note: The radiation is blocked in the later stage of the discharge, until the plasma is diffused.
+    \begin{figure}
+      \includegraphics[width=0.4\textwidth]{figures/results/oscillator/not_opaque.PNG}
+    \end{figure}
+  \end{frame}
+  \begin{frame}{Duration of the parabolic density profile}{Explanation}
+    Correlation between applied voltage and the transmission ratio:
+    \begin{figure}
+      \includegraphics[width=0.4\textwidth]{figures/results/oscillator/voltage vs guiding.png}
+    \end{figure}
+    Duration of the plasma channel:
+    \begin{equation*}
+      \Delta t_\text{channel}=50 -100\ \si{\ns}.
+    \end{equation*}
+  \end{frame}
+  \begin{frame}{Spectroscopy measurements}
+    Quantitative estimation of the depth of the plasma channel and the plasma density.
+
+    A measurement with a spectrometer and a fast camera.
+    \begin{columns}
+      \column{0.5\textwidth}
+          \includegraphics[width=0.5\textwidth]{figures/results/spectro/spectrometer.png}
+      \column{0.5\textwidth}
+      drawing of the ccd output?
+    \end{columns}
+    Both radial and longitudinal density profile.
+  \end{frame}
+  \begin{frame}{Spectroscopy measurements}{System setup}
+Radial density profile
+\begin{figure}
+  \includegraphics[width=0.8\textwidth]{figures/results/spectro/radial_system.png}
+\end{figure}
+Imaging system --- $\times 5$ magnification.
+
+CCD camera $\SI{40}{\ns}$ gate--on time. 
+
+Width of the spectrometer slit --- \SI{150}{\um}.
+  \end{frame}
+  \begin{frame}{Spectroscopy measurements}{Analysis}
+    \begin{figure}
+      \includegraphics[width=0.8\textwidth]{figures/results/spectro/spectra_analysis.png}
+    \end{figure}
+    pixel size = $\SI{26}{\um} \times \SI{26}{\um}$
+  \end{frame}
+  \begin{frame}{Spectroscopy measurements}
+    Fit a Lorentzian to each row of the data.
+    \begin{figure}
+      \includegraphics[width=0.8\textwidth]{figures/results/spectro/sample-lorentzian.png}
+    \end{figure}
+    Stark Broadening on the order of \SI{3}{\nm}.
+  \end{frame}
+  \begin{frame}{Spectroscopy measurements}{Radial density profile}
+    Density minimum on the axis of the capillary.
+    \begin{equation*}
+      \Delta N_e \sim \SI{0.4e18}{\per \cubic \cm}
+    \end{equation*}
+    with
+    \begin{equation*}
+      r_\text{ch}\approx \SI{50}{\um} \text{ and } N_e\left(0\right)\approx \SI{0.4e18}{\per\cubic\cm}.
+    \end{equation*}
+    \begin{figure}
+      \includegraphics[width=0.8\textwidth]{figures/results/spectro/parabolic_profile.png}
+    \end{figure}
+    These conditions provide an optimal plasma channel that can be used for guiding an intense laser pulse for LWFA accelerators.
+  \end{frame}
+  \begin{frame}{Longitudinal density profile}
+    Verify longitudinal homogeneity of the plasma density.
+    \begin{figure}
+      \includegraphics[width=0.8\textwidth]{figures/results/spectro/longitudinal_system.png}
+    \end{figure}
+    The entire capillary length was imaged.
+    CCD camera \SI{1}{\us} gate--on time.
+  \end{frame}
+  \begin{frame}{Longitudinal density profile}{Results}
+    Measurement result: Mean plasma density $\bar{N}_e$ of
+    \begin{equation*}
+        \bar{N}_e \sim \SI{3e17}{\per\cubic\cm}.
+    \end{equation*}
+    \begin{figure}
+      \includegraphics[width=0.9\textwidth]{figures/results/spectro/longitudinal_profile.png}
+    \end{figure}
+  \end{frame}
+  \begin{frame}{Two stage capillary}
+    As said in the introduction, a "fish--bone" capillary may overcome the dephasing length limitation.
+     \begin{figure}
+     \includegraphics[width=0.2\textwidth]{figures/coupling_scheme.pdf}
+     \end{figure}
+     \begin{figure}
+     \includegraphics[width=0.8\textwidth]{figures/results/2stageCapillary/doublecapillary_cad.png}
+     \end{figure}
+     A 2 stage, Y--shape capillary.
+  \end{frame}
+  \begin{frame}{Two stage capillary}
+    Split the oscillator pulse--train to two beams, one for each capillary channel.
+    
+    Introduce a delay line to distinguish between each beam.
+    \begin{figure}
+      \includegraphics[width=0.6\textwidth]{figures/results/2stageCapillary/double.png}
+    \end{figure}
+  \end{frame}
+  \begin{frame}{Two stage capillary}{System setup}
+    \begin{figure}
+      \includegraphics[width=0.6\textwidth]{figures/results/2stageCapillary/double.png}
+    \end{figure}
+    \begin{figure}
+      \includegraphics[width=0.3\textwidth]{figures/results/2stageCapillary/line-of-sight.png}
+    \end{figure}
+    No line--of--sight for the curved capillary. Relying on refractions from the plastic walls.
+  \end{frame}
+  \begin{frame}{Results}
+    First check, jitter controlled system.
+    \begin{figure}
+      \includegraphics[width=0.8\textwidth]{figures/results/2stageCapillary/low_jitter_curved_capillary.png}
+    \end{figure}
+    Jitter--controlled ignition when the Nd:Yag pulse is delivered to the \textbf{positive} electrode.
+
+    Jitter on the same scale as in the straight capillary - $\tau_\text{jitter}\approx 1\pm \SI{0.5}{\ns}$.
+  \end{frame}
+  \begin{frame}{Results}
+    \begin{figure}
+      \includegraphics[width=0.8\textwidth]{figures/results/2stageCapillary/curved-pulsetrain-merged.png}
+    \end{figure}
+    \begin{columns}
+      \column{0.8\textwidth}
+        Note the "bump" of the signal recorded by the photo--diode.
+
+        To minimize this, use a screen to block as much unwanted light.
+    \column{0.2\textwidth}
+      \includegraphics[width=1\textwidth]{figures/results/2stageCapillary/opaquescreen.png}
+    \end{columns}
   \end{frame}
 \end{document}

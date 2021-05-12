@@ -1,0 +1,59 @@
+\begin{tikzpicture}
+
+\begin{axis}[
+    grid=major,
+    change x base,
+    x SI prefix=micro,
+    xlabel={Time [\si{\us}]},
+    ylabel={Current [\si{\A}]},
+    xtick={0.01148,0.01152,0.01156,0.01160},
+    xticklabels={11.48,11.52,11.56,11.60},
+    ytick={2,4,7,-5},
+    yticklabels={45,90,160,-115,
+    xmin=0.0114693, xmax=0.011624,
+    }
+]
+% List of Plots
+\addplot [NavyBlue] table [x=t1,y=d01,col sep=comma] {figures/results/jitter/multiple.csv};
+\addplot [BurntOrange] table [x=t1,y=d02,col sep=comma] {figures/results/jitter/multiple.csv};
+\addplot [LimeGreen] table [x=t1,y=d03,col sep=comma] {figures/results/jitter/multiple.csv};
+\addplot [Red] table [x=t1,y=d04,col sep=comma] {figures/results/jitter/multiple.csv};
+\addplot [Mulberry] table [x=t1,y=d05,col sep=comma] {figures/results/jitter/multiple.csv};
+\addplot [RawSienna] table [x=t1,y=d06,col sep=comma] {figures/results/jitter/multiple.csv};
+\addplot [Magenta] table [x=t1,y=d07,col sep=comma] {figures/results/jitter/multiple.csv};
+\addplot [Goldenrod] table [x=t1,y=d08,col sep=comma] {figures/results/jitter/multiple.csv};
+\addplot [Purple] table [x=t1,y=d09,col sep=comma] {figures/results/jitter/multiple.csv};
+\addplot [OliveGreen] table [x=t1,y=d10,col sep=comma] {figures/results/jitter/multiple.csv};
+
+
+\draw[dashed,thin] (axis cs:1.1557e-2,7) coordinate (bl1) rectangle (axis cs:1.1566e-2,-5.5) coordinate (tr1);
+\end{axis}
+
+\begin{scope}[xshift=15.4em,yshift=3em,scale=0.7]
+\begin{axis}[
+    grid=major,
+    name=axis B,
+    change x base,
+    x SI prefix=micro,
+    xlabel={Time [\si{\us}]},
+    ylabel={Current [\si{\A}]},
+    %xtick={0.0115568,0.01156,0.0115632},
+    %xticklabels={11.56,11.5632,11.5664},
+    ytick={2,4,7,-5,-2},
+    yticklabels={45,90,160,-115,-45}
+]
+% Waveforms
+
+\addplot [Magenta] table [x=t2,y=d2,col sep=comma] {figures/results/jitter/multiple.csv};
+
+%\draw[dashed] (axis cs:0.0115568,8.2) coordinate (bl2) rectangle (axis cs:0.01156,-6) coordinate (tr2);
+
+% Rectangle of the lower plot
+%\draw[cyan] (-2.5,-6) coordinate (bl2) rectangle (-0.2,-1) coordinate (tr2);
+\end{axis}
+\end{scope}
+\draw[densely dashed] (tr1) -- (axis B.south east)
+(bl1) -- (axis B.north west);
+% The joining lines
+%\draw[blue,line cap=round] (tr1) -- (tr2) (bl1) -- (bl2);
+\end{tikzpicture}

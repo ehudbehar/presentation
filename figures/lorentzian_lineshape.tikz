@@ -1,0 +1,18 @@
+﻿\begin{tikzpicture}
+\usetikzlibrary{arrows.meta}
+\begin{axis}[
+axis lines=center, ytick=\empty,
+xlabel={$\lambda$ [nm]},
+ylabel={Intensity},
+xmin=0,xmax=1090,ymax=2.3,
+xmajorgrids=false,
+clip=false,
+inner axis line style={-latex,very thick},
+scale only axis=true,
+]
+\addplot[line width=1pt,samples=400,domain=100:800]
+{1000/((x-430)^2+25^2)};
+\draw[latex-] (axis cs:455,0.8) -- node[right]{$\ \Delta \lambda_{1/2}$} +(axis cs:50,0);
+\draw[latex-] (axis cs:405,0.8) -- +(axis cs:-50,0);
+\end{axis}
+\end{tikzpicture}

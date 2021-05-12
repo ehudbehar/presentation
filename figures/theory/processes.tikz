@@ -1,0 +1,78 @@
+\tikzset{
+LL/.style={decorate,
+  decoration={snake, segment length=4, amplitude=2,post length=1.5}
+  }
+}  
+\begin{tikzpicture}[every node/.style={scale=0.9}]
+
+\usetikzlibrary{math}
+\tikzmath{
+\x1 = 0; \y1 =2;
+\xelec=0.5; \yelec=0; % electron position
+}
+\usetikzlibrary{positioning,decorations.pathmorphing}
+
+\tikzset{
+LL/.style={decorate,
+  decoration={snake, segment length=4, amplitude=2,post length=1.5}
+  }
+}  
+\node at (\x1,0) [left] (lowerLevel) {$i$};
+\node at (\x1,\y1) [left] (upperLevel) {$j$};
+\node at (0.5,\y1) [] (upperLevelArrow) {};
+\draw[] (\x1,0) -- (1,0);
+\draw[] (\x1,\y1) -- (1,\y1);
+\node at (\xelec,\yelec) (elecLow) {};
+\draw[fill] (elecLow) circle [radius=2pt];
+\draw[-latex] (elecLow) -- (upperLevelArrow);
+\draw[->] (-1.5,\y1/2)  node[above] {$e^-$} -- (-0.8,\y1/2);
+\begin{scope}[xshift=4cm]
+\draw[] (\x1,0) -- (1,0);
+\draw[] (\x1,\y1) -- (1,\y1);
+\node at (\xelec,\yelec+\y1) (elecHigh) {};
+\draw[fill] (elecHigh) circle [radius=2pt];
+\draw[->] (-1.5,\y1/2)  node[above] {$e^-$} -- (-0.8,\y1/2);
+\node at (0.5,0) [] (lowerLevelArrow) {};
+\draw[-latex] (elecHigh) -- (lowerLevelArrow);
+\node at (\x1,0) [left] () {$i$};
+\node at (\x1,\y1) [left] () {$j$};
+\end{scope}
+\begin{scope}[style=gray]
+\begin{scope}[yshift=-3cm,xshift=-2cm]
+\node at (\x1,0) [left] (lowerLevel) {$i$};
+\node at (\x1,\y1) [left] (upperLevel) {$j$};
+\node at (0.5,\y1) [] (upperLevelArrow) {};
+\draw[] (\x1,0) -- (1,0);
+\draw[] (\x1,\y1) -- (1,\y1);
+\node at (\xelec,\yelec) (elecLow) {};
+\draw[fill] (elecLow) circle [radius=2pt];
+\draw[-latex] (elecLow) -- (upperLevelArrow);
+\draw[LL,->] (-1.5,\y1/2)  node[above] {$h\nu$} -- (-0.8,\y1/2);
+\end{scope}
+\begin{scope}[yshift=-3cm,xshift=2cm]
+\node at (\x1,0) [left] (lowerLevel) {$i$};
+\node at (\x1,\y1) [left] (upperLevel) {$j$};
+\node at (\x1+0.5,0) [] (lowerPosition) {};
+\draw[] (\x1,0) -- (1,0);
+\draw[] (\x1,\y1) -- (1,\y1);
+\node at (\xelec,\yelec+\y1) (elecHigh) {};
+\draw[fill] (elecHigh) circle [radius=2pt];
+\draw[-latex] (elecHigh) -- (lowerPosition);
+\draw[LL,->] (-1.5,\y1/2)  node[above] {$h\nu$} -- (-0.8,\y1/2);
+\draw[LL,->] (1.5,\y1/2+0.4)  node[above] {$h\nu$} -- +(0.8,0);
+\draw[LL,->] (1.5,\y1/2-0.4)  node[above] {$h\nu$} -- +(0.8,0);
+\end{scope}
+
+\begin{scope}[yshift=-3cm,xshift=6cm]
+\node at (\x1,0) [left] (lowerLevel) {$i$};
+\node at (\x1,\y1) [left] (upperLevel) {$j$};
+\node at (\x1+0.5,0) [] (lowerPosition) {};
+\draw[] (\x1,0) -- (1,0);
+\draw[] (\x1,\y1) -- (1,\y1);
+\node at (\xelec,\yelec+\y1) (elecHigh) {};
+\draw[fill] (elecHigh) circle [radius=2pt];
+\draw[-latex] (elecHigh) -- (lowerPosition);
+\draw[LL,->] (1.5,\y1/2)  node[above] {$h\nu$} -- +(0.8,0);
+\end{scope}
+\end{scope}
+\end{tikzpicture}
