@@ -17,9 +17,9 @@ yticklabels={-50,0,50,100,150},
 %xtick={0,0.5e-6,1e-6,1.5e-6},
 %xticklabels={0,0.5,1,1.5}
 ]
-%\addplot [blue, line width = 1] 
-%table[x=t,y=ch1,col sep=comma]{figures/results/discharge_sample.csv};
-%\addplot [ForestGreen, line width = 1] 
-%table[x=t,y=ch2,col sep=comma]{figures/results/discharge_sample.csv};
+\addplot [blue, line width = 1] 
+table[x=t,y=ch1,col sep=comma]{figures/results/discharge_sample.csv};
+\addplot [ForestGreen, line width = 1] 
+table[x=t,y=ch2,col sep=comma]{figures/results/discharge_sample.csv};
 \end{axis} 
 \end{tikzpicture}

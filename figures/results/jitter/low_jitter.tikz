@@ -19,10 +19,10 @@
 \addplot [RawSienna] table[x=t,y=d06,col sep=comma]{figures/results/jitter/low_jitter_wide_window.csv};
 \addplot [Cyan] table[x=t,y=d07,col sep=comma]{figures/results/jitter/low_jitter_wide_window.csv};
 \addplot [Goldenrod] table[x=t,y=d08,col sep=comma]{figures/results/jitter/low_jitter_wide_window.csv};
-\addplot [Purple] table[x=t,y=d09,col sep=comma]{figures/results/jitter/low_jitter_wide_window.csv};
-\addplot [SpringGreen] table[x=t,y=d10,col sep=comma]{figures/results/jitter/low_jitter_wide_window.csv};
-\addplot [OrangeRed] table[x=t,y=d11,col sep=comma]{figures/results/jitter/low_jitter_wide_window.csv};
-\addplot [SkyBlue] table[x=t,y=d12,col sep=comma]{figures/results/jitter/low_jitter_wide_window.csv};
+%\addplot [Purple] table[x=t,y=d09,col sep=comma]{figures/results/jitter/low_jitter_wide_window.csv};
+%\addplot [SpringGreen] table[x=t,y=d10,col sep=comma]{figures/results/jitter/low_jitter_wide_window.csv};
+%\addplot [OrangeRed] table[x=t,y=d11,col sep=comma]{figures/results/jitter/low_jitter_wide_window.csv};
+%\addplot [SkyBlue] table[x=t,y=d12,col sep=comma]{figures/results/jitter/low_jitter_wide_window.csv};
 \draw[dashed] (axis cs:-3.98e-8,-0.5) coordinate (bl1) rectangle (axis cs:1.66e-7,1.84) coordinate (tr1);
 \end{axis}
 
@@ -47,10 +47,10 @@
 \addplot [RawSienna] table[x=t,y=d06,col sep=comma]{figures/results/jitter/low_jitter_narrow_window.csv};
 \addplot [Cyan] table[x=t,y=d07,col sep=comma]{figures/results/jitter/low_jitter_narrow_window.csv};
 \addplot [Goldenrod] table[x=t,y=d08,col sep=comma]{figures/results/jitter/low_jitter_narrow_window.csv};
-\addplot [Purple] table[x=t,y=d09,col sep=comma]{figures/results/jitter/low_jitter_narrow_window.csv};
-\addplot [SpringGreen] table[x=t,y=d10,col sep=comma]{figures/results/jitter/low_jitter_narrow_window.csv};
-\addplot [OrangeRed] table[x=t,y=d11,col sep=comma]{figures/results/jitter/low_jitter_narrow_window.csv};
-\addplot [SkyBlue] table[x=t,y=d12,col sep=comma]{figures/results/jitter/low_jitter_narrow_window.csv};
+%\addplot [Purple] table[x=t,y=d09,col sep=comma]{figures/results/jitter/low_jitter_narrow_window.csv};
+%\addplot [SpringGreen] table[x=t,y=d10,col sep=comma]{figures/results/jitter/low_jitter_narrow_window.csv};
+%\addplot [OrangeRed] table[x=t,y=d11,col sep=comma]{figures/results/jitter/low_jitter_narrow_window.csv};
+%\addplot [SkyBlue] table[x=t,y=d12,col sep=comma]{figures/results/jitter/low_jitter_narrow_window.csv};
 
 \end{axis}
 \end{scope}
