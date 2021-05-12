@@ -1,6 +1,6 @@
 \begin{tikzpicture}
 
-\draw[blue,line width=1pt]  plot[smooth,domain=-2.5:2.5] (\x, {3+0.5*(\x)^2});
+\draw[blue,line width=1pt]  plot[smooth,domain=-2.3:2.3] (\x, {3+0.5*(\x)^2});
 \draw[-latex] (-3.5,0) -- (3.5,0);
 \draw[-latex] (0,-0.5) -- (0,6);
 %\node at (

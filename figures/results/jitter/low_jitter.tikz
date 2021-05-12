@@ -1,0 +1,60 @@
+﻿\begin{tikzpicture}[every node/.style={scale=0.9}]
+
+\begin{axis}[
+    grid=major,
+    change x base,
+    x SI prefix=micro,
+    xlabel={Time [\si{\us}]},
+    ylabel={Current [\si{\A}]},
+    ytick={0,1,2,3,4},
+    yticklabels={0,40,80,120,160}
+]
+% List of Plots
+\addplot [ForestGreen] table[x=t,y=ndyag,col sep=comma]{figures/results/jitter/low_jitter_wide_window.csv};
+\addplot [NavyBlue] table[x=t,y=d01,col sep=comma]{figures/results/jitter/low_jitter_wide_window.csv};
+\addplot [BurntOrange] table[x=t,y=d02,col sep=comma]{figures/results/jitter/low_jitter_wide_window.csv};
+\addplot [LimeGreen] table[x=t,y=d03,col sep=comma]{figures/results/jitter/low_jitter_wide_window.csv};
+\addplot [Red] table[x=t,y=d04,col sep=comma]{figures/results/jitter/low_jitter_wide_window.csv};
+\addplot [Mulberry] table[x=t,y=d05,col sep=comma]{figures/results/jitter/low_jitter_wide_window.csv};
+\addplot [RawSienna] table[x=t,y=d06,col sep=comma]{figures/results/jitter/low_jitter_wide_window.csv};
+\addplot [Cyan] table[x=t,y=d07,col sep=comma]{figures/results/jitter/low_jitter_wide_window.csv};
+\addplot [Goldenrod] table[x=t,y=d08,col sep=comma]{figures/results/jitter/low_jitter_wide_window.csv};
+\addplot [Purple] table[x=t,y=d09,col sep=comma]{figures/results/jitter/low_jitter_wide_window.csv};
+\addplot [SpringGreen] table[x=t,y=d10,col sep=comma]{figures/results/jitter/low_jitter_wide_window.csv};
+\addplot [OrangeRed] table[x=t,y=d11,col sep=comma]{figures/results/jitter/low_jitter_wide_window.csv};
+\addplot [SkyBlue] table[x=t,y=d12,col sep=comma]{figures/results/jitter/low_jitter_wide_window.csv};
+\draw[dashed] (axis cs:-3.98e-8,-0.5) coordinate (bl1) rectangle (axis cs:1.66e-7,1.84) coordinate (tr1);
+\end{axis}
+
+\begin{scope}[xshift=16em,yshift=2em,scale=0.7]
+\begin{axis}[
+    grid=major,
+    change x base,
+    x SI prefix=nano,
+    xlabel={Time [\si{\ns}]},
+    xtick={0,5e-8,10e-8,15e-8},
+    name=axis B,
+    ylabel={Current [\si{\A}]},
+    ytick={0,2,4,6},
+    yticklabels={0,20,40,60}
+]
+% Waveforms
+\addplot [NavyBlue] table[x=t,y=d01,col sep=comma]{figures/results/jitter/low_jitter_narrow_window.csv};
+\addplot [BurntOrange] table[x=t,y=d02,col sep=comma]{figures/results/jitter/low_jitter_narrow_window.csv};
+\addplot [LimeGreen] table[x=t,y=d03,col sep=comma]{figures/results/jitter/low_jitter_narrow_window.csv};
+\addplot [Red] table[x=t,y=d04,col sep=comma]{figures/results/jitter/low_jitter_narrow_window.csv};
+\addplot [Mulberry] table[x=t,y=d05,col sep=comma]{figures/results/jitter/low_jitter_narrow_window.csv};
+\addplot [RawSienna] table[x=t,y=d06,col sep=comma]{figures/results/jitter/low_jitter_narrow_window.csv};
+\addplot [Cyan] table[x=t,y=d07,col sep=comma]{figures/results/jitter/low_jitter_narrow_window.csv};
+\addplot [Goldenrod] table[x=t,y=d08,col sep=comma]{figures/results/jitter/low_jitter_narrow_window.csv};
+\addplot [Purple] table[x=t,y=d09,col sep=comma]{figures/results/jitter/low_jitter_narrow_window.csv};
+\addplot [SpringGreen] table[x=t,y=d10,col sep=comma]{figures/results/jitter/low_jitter_narrow_window.csv};
+\addplot [OrangeRed] table[x=t,y=d11,col sep=comma]{figures/results/jitter/low_jitter_narrow_window.csv};
+\addplot [SkyBlue] table[x=t,y=d12,col sep=comma]{figures/results/jitter/low_jitter_narrow_window.csv};
+
+\end{axis}
+\end{scope}
+\draw[densely dashed] (tr1) -- (axis B.north west)
+(bl1) -- (axis B.south east);
+
+\end{tikzpicture}

@@ -1,0 +1,1 @@
+$latex = 'pdftex -shell-escape main.tex %O %S';
