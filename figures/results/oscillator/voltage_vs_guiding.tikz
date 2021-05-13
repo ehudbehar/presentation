@@ -1,0 +1,17 @@
+\begin{tikzpicture}[every node/.style={scale=0.8}]
+\begin{axis}[
+%height=0.6\columnwidth,
+	xlabel={Applied Voltage [\si{\kV}]},
+	ylabel style={align=center},
+	ylabel={Transmission Ratio\\$[$Normalized$]$},
+	grid=major,
+ymin=0,
+ymax=8.5,
+]
+\addplot[
+	mark=*,
+	only marks,
+]
+coordinates {(6,2) (7,5.2) (8,6.9) (10,7.5) (11,8)};
+\end{axis}
+\end{tikzpicture}
