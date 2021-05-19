@@ -1,0 +1,53 @@
+\begin{tikzpicture}[
+    every node/.style={scale=0.8}
+]
+\pgfplotsset{
+ymin=-5,
+ymax=15,
+xmin=-9.5e-7,
+xmax=4.05e-6,
+ytick distance=5,
+    }
+\begin{axis}[
+scale only axis,
+change x base,
+x SI prefix=micro,
+axis y line*=left,
+axis x line*=top,
+axis x line*=bottom,
+xlabel={Time [\si{\us}]},
+ylabel={Current [\si{\A}]},
+grid=major
+]
+% \addplot [ForestGreen, line width = 1] 
+% table[x=t,y expr=\thisrow{ch1}*3,col sep=comma]{figures/results/oscillator/guiding01.csv};
+\addplot [blue, line width = 0.5] 
+table[x=t,y=ch2,col sep=comma]{figures/results/oscillator/guiding01.csv};
+\end{axis}
+%% 3rd waveform
+\begin{axis}[
+    scale only axis,
+    % change x base,
+    % x SI prefix=micro,
+    axis y line*=right,
+    axis x line*=top,
+    axis x line*=bottom,
+    xtick=\empty,
+    ylabel={Voltage (Normalised)},
+ytick={3.075,6.395}, % equal to {10*Max[ch3[[;; 200]]], 10*Max[ch3]}
+yticklabels={1,2.1},
+extra y ticks={3.075,6.395},
+        extra y tick labels={},
+        extra y tick style={
+        grid=major,
+        major grid style={black,dashed,line width=1pt},
+},
+]
+\addplot [red, line width = 0.5]
+table[x=t,y expr=\thisrow{ch3}*10.5,col sep=comma]{figures/results/oscillator/guiding01.csv}
+coordinate[pos=0.85] (rising);
+\path (axis cs:2.0e-6,12) node[right=4mm, align=center] (L) {Pulse train\\re--appears};
+\draw[-latex] (L) -- (rising);
+\end{axis}
+   
+\end{tikzpicture}

@@ -1,0 +1,21 @@
+\begin{tikzpicture}
+\begin{axis}[
+    grid=major,
+    change y base,
+    y SI prefix=deci,
+    ymin=0,
+    xmin=0,xmax=821,
+    xlabel={Length [\si{\mm}]},
+    ylabel style={align=center},
+    ylabel={Electron Density\\$[$\SI{e17}{\per\cubic\cm}]},
+    xtick= { 0, 821/10, 821/5, 2463/10, 1642/5, 821/2, 2463/5, 5747/10, 3284/5, 7389/10, 821 },
+    xticklabels={0,5,10,15,20,25,30,35,40,45,50},
+    extra y ticks=0.3338,
+    extra y tick labels={},
+    extra y tick style={
+    major grid style={red, line width=2pt, densely dashed},
+        },
+    ]
+    \addplot [blue] table[x=x,y=N_e,col sep=comma] {figures/results/spectro/longitudinal.csv};
+\end{axis}
+\end{tikzpicture}

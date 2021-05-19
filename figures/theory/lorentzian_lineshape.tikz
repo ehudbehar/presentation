@@ -1,7 +1,9 @@
-﻿\begin{tikzpicture}
+\begin{tikzpicture}
 \usetikzlibrary{arrows.meta}
 \begin{axis}[
 axis lines=center, ytick=\empty,
+xtick={430},
+xticklabels={656.28},
 xlabel={$\lambda$ [nm]},
 ylabel={Intensity},
 xmin=0,xmax=1090,ymax=2.3,

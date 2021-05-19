@@ -26,7 +26,7 @@
 \draw[dashed] (axis cs:-3.98e-8,-0.5) coordinate (bl1) rectangle (axis cs:1.66e-7,1.84) coordinate (tr1);
 \end{axis}
 
-\begin{scope}[xshift=16em,yshift=2em,scale=0.7]
+\begin{scope}[xshift=18em,yshift=2em,scale=0.7]
 \begin{axis}[
     grid=major,
     change x base,

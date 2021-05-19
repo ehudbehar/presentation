@@ -1,0 +1,53 @@
+\begin{tikzpicture}[
+% spy using outlines={rectangle, magnification=1.4,connect spies}
+]
+\pgfplotsset{
+ymin=-12,
+ymax=25,
+xmin=-2.5e-7,
+xmax=3.9e-6,
+ytick distance=5,
+    }
+\begin{axis}[
+scale only axis,
+change x base,
+x SI prefix=micro,
+axis y line*=left,
+axis x line*=top,
+axis x line*=bottom,
+xlabel={Time [\si{\us}]},
+ylabel={Current [\si{\A}]},
+grid=major
+]
+\addplot [ForestGreen, line width = 1] 
+table[x=t,y expr=\thisrow{ch1}*3,col sep=comma]{figures/results/oscillator/guiding02.csv};
+\addplot [blue, line width = 0.5] 
+table[x=t,y=ch2,col sep=comma]{figures/results/oscillator/guiding02.csv};
+% \coordinate (spypoint) at (axis cs:0.24e-6,9);
+% \coordinate (spyviewer) at (axis cs:3e-6,20);
+% \spy[width=2.6cm,height=3.4cm] on (spypoint) in node [fill=white] at (spyviewer);
+\end{axis}
+%% 3rd waveform
+\begin{axis}[
+    scale only axis,
+    % change x base,
+    % x SI prefix=micro,
+    axis y line*=right,
+    axis x line*=top,
+    axis x line*=bottom,
+    xtick=\empty,
+    ylabel={Voltage (Normalised)},
+ytick={2.855,19.258}, % equal to {0.228458*12.8 , 1.54071*12.8}
+yticklabels={1,8},
+extra y ticks={2.855,19.258},
+        extra y tick labels={},
+        extra y tick style={
+        grid=major,
+        major grid style={black,dashed,line width=1pt},
+},
+]
+\addplot [red, line width = 0.5]
+table[x=t,y expr=\thisrow{ch3}*12.5,col sep=comma]{figures/results/oscillator/guiding02.csv};
+\end{axis}
+   
+\end{tikzpicture}

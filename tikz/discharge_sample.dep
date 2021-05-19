@@ -1,0 +1,2 @@
+tikz/discharge_sample.pdf: figures/results/discharge_sample.csv
+tikz/discharge_sample.pdf: figures/results/discharge_sample.csv

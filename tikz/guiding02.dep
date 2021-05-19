@@ -1,0 +1,3 @@
+tikz/guiding02.pdf: figures/results/oscillator/guiding02.csv
+tikz/guiding02.pdf: figures/results/oscillator/guiding02.csv
+tikz/guiding02.pdf: figures/results/oscillator/guiding02.csv

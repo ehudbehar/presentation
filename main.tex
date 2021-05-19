@@ -21,8 +21,9 @@
 \tikzexternalize[prefix=tikz/,optimize command away=\pdfpages]
 \usepackage{pdfpages} % To include pdf pages
 \usepackage{adjustbox} % for \adjincludegraphics for begin{columns}
+\setbeamertemplate{caption}{\raggedleft\insertcaption\par} % To remove figure caption prefix “figure”
+
 %Information to be included in the title page:
-% For tables:
 \title{Low jitter plasma channel in 3D printed gas filled capillary discharges}
 \subtitle{Thesis Presentation}
 \author{Ehud Behar}
@@ -36,11 +37,11 @@
     \tableofcontents[currentsection]
   \end{frame}
 } % put the table of contents at the beginning of each section and highlight the title of the current section
-\AtBeginSubsection[] {
-    \begin{frame}<beamer>{Table of Contents}
-    \tableofcontents[currentsection,currentsubsection]
-    \end{frame}
-}
+% \AtBeginSubsection[] {
+%     \begin{frame}<beamer>{Table of Contents}
+%     \tableofcontents[currentsection,currentsubsection]
+%     \end{frame}
+% }
 % from https://tex.stackexchange.com/a/415653/180429
 \setbeamertemplate{frametitle continuation}{\insertcontinuationcount}
 \begin{document}
@@ -68,7 +69,7 @@
 \begin{frame}{Linear accelerators}
 At present, all high energy accelerators run into limits.
 \begin{itemize}
-\item[\textbullet] The acclerating electric fields must be less than \SI{100}{\mega \V}, to avoid material breakdown.
+\item[\textbullet] The acclerating electric fields must be less than \SI{100}{\mega \V \per\meter}, to avoid material breakdown.
 \item[\textbullet] Each \si{\giga \eV} of energy requires $\sim$\SI{100}{\meter} of accleration length.
 \end{itemize}
 \begin{figure}
@@ -79,6 +80,7 @@ At present, all high energy accelerators run into limits.
 Electrical breakdown is part of the design.
 
 The power source is not microwave radiation, but either a laser beam or a charged particle beam.
+\tikzsetnextfilename{lwfa-schematic}
 \begin{figure}
 \includegraphics[width=300pt,height=150pt]{figures/theory/lwfa-schematic.tikz}
 \end{figure}
@@ -87,125 +89,159 @@ The power source is not microwave radiation, but either a laser beam or a charge
 \begin{frame}{LWFA}{Limitations}
 \begin{columns}  
 \column<1,3>{0.5\textwidth}
-   Laser defocusing
+Laser defocusing
+\tikzsetnextfilename{defocusing}
 \begin{figure}
 \includegraphics[width=\textwidth]{figures/theory/defocusing.tikz}
 \end{figure}
 \column<2,3>{0.5\textwidth}
-     Electron dephasing
+Electron dephasing
+\tikzsetnextfilename{dephasing}
 \begin{figure}
 \includegraphics[width=\textwidth]{figures/theory/dephasing.tikz}
-   \end{figure}
-   \end{columns}
+\end{figure}
+\end{columns}
 \end{frame}
- \begin{frame}{Beam divergence}
-   The divergence of a laser beam is usually neglected.
+\begin{frame}{Beam divergence}
+The divergence of a laser beam is usually neglected.
 
-   In LWFA, acceleration is achieved only when the laser beam is focused to $\sim$ tens of \si{\um} in diameter.
-   \begin{center}
-     \includegraphics[width=\textwidth]{figures/theory/laser_lens_rayleigh.pdf}
-   \end{center}
-   Solution: Use a waveguide.
- \end{frame}
- \begin{frame}{Waveguide}{Basic concept}
+In LWFA, acceleration is achieved only when the laser beam is focused to $\sim$ tens of \si{\um} in diameter.
+\begin{center}
+  \includegraphics[width=\textwidth]{figures/theory/laser_lens_rayleigh.pdf}
+\end{center}
+Solution: Use a waveguide.
+\end{frame}
+\begin{frame}{Waveguide}{Basic concept}
+ \tikzsetnextfilename{fiber}
  \begin{figure}
-    \includegraphics[width=0.8\textwidth]{figures/theory/fiber.tikz}
+ \includegraphics[width=0.8\textwidth]{figures/theory/fiber.tikz}
   \end{figure}
   Light confined in core, cladding with a smaller refractive index.
- \end{frame}
- \begin{frame}{Construct a plasma waveguide}{Capillary Discharge Waveguide}
-   The plasma channel
-   \begin{itemize}
-     \item[\textbullet] forms dynamically,
-     \item[\textbullet] continuous radial decrease of $\tilde n$,
-     \item[\textbullet] results from the increase of plasma density
-   \end{itemize}
- \end{frame}
- \begin{frame}{Dephasing length}
-   To overcome the dephasing length limitation, a multi--stage accelerator, composed of multiple stages.
-   \begin{columns}
-     \column{0.5\textwidth}
-     \includegraphics[width=\textwidth]{figures/theory/coupling_scheme.pdf}
-     \column{0.5\textwidth}
-     \includegraphics[width=\textwidth]{figures/theory/double_capillary_cad.png}
-   \end{columns}
- \end{frame}
- \subsection{Background to plasma}
- \begin{frame}{Characteristic quantities}
-   \begin{tabular}{l c r}
-   \onslide<1-> Debye length & $\lambda_D=\sqrt{\frac{\varepsilon_0 k_B T_e}{N_e e^2}}$ &  \includegraphics[height=50pt]{figures/theory/white_background.png}\\ 
-   \onslide<2-> Plasma Frequency & $ \omega_p=\sqrt{\frac{N_e e^2}{m_e \varepsilon_0}}\si[per-mode=fraction]{\radian\per\sec} $ & \includegraphics[height=50pt]{figures/theory/white_background.png}\\
-   \onslide<3-> Plasma parameter & $ \Lambda=4\pi N_e \lambda_D ^3 $ & \includegraphics[height=50pt]{figures/theory/white_background.png} \\
-   \end{tabular}
- \end{frame}
- \begin{frame}{}
-     \begin{table}[]
-   \begin{tabular}{l | c}
-     & T$\sim$\SI{1}{\electronvolt},$N_e\sim\SI{e17}{\per\cubic\cm}$ \\ \hline 
-     $\lambda_D$     & \SI{33}{\nm}     \\
-     $\omega_p$      & $\SI[per-mode=fraction]{e13}{\radian\per\sec}$   \\
-     $\Lambda$ & 40
-   \end{tabular}
-     \end{table}
- Plasmas in LWFA environments require
-   \begin{enumerate}
-     \item[\textbullet] overall quasi-neutrality
-     \item[\textbullet] hot plasma, yet not too dense --- $\Lambda \gg 1$
-   \end{enumerate}
- \end{frame}
-\subsection{Plasma spectroscopy}
-\begin{frame}{Plasma spectroscopy}{Electron density measurement}
-Study of the emitted spectra gives information on the plasma.
-\vskip 2em
+\end{frame}
+\begin{frame}{Construct a plasma waveguide}{Capillary Discharge}
+Generate a plasma channel by means of electrical discharge.
 \begin{columns}
 \column{0.5\textwidth}
-\includegraphics[width=\textwidth,height=120pt]{figures/theory/lineshape.tikz}
+\begin{figure}
+    \centering
+    \includegraphics[height=130pt]{figures/theory/ablated.png}
+    \caption{Ablated capillary}
+\end{figure}
 \column{0.5\textwidth}
-\includegraphics[width=\textwidth]{figures/theory/purple_plasma.png}
+\begin{figure}
+\centering
+\includegraphics[height=130pt]{figures/theory/gasfilled_with_barb.png}
+\caption{Gas–-filled capillary}
+\end{figure}
 \end{columns}
-\begin{center}
- \vskip 1em
-plasma diagnostic under a theoretical model --- the LTE model.
-\end{center}
+Apply voltage ($\sim$\si{\kV}) on the capillary ends to start a discharge.
+% high-mobility electrons pick up energy from the applied electric field and then transfer part of this  energy to  the heavy particles through elastic collisions. page 4 in Boulos
 \end{frame}
-\begin{frame}{Optical Depth}{Optically thin plasma}
- Optical depth $\tau$ \small{(dimensionless)} --- a measure of the opacity of the medium:
- \begin{equation*}
-   \tau=-\kappa z
- \end{equation*}
- $\kappa$ --- the linear absorption coefficient (\si{\per\cm}).
+% \begin{frame}{Dephasing length}
+%   To overcome the dephasing length limitation, a multi--stage accelerator, composed of multiple stages.
+%   \begin{columns}
+%     \column{0.5\textwidth}
+%     \includegraphics[width=\textwidth]{figures/theory/coupling_scheme.pdf}
+%     \column{0.5\textwidth}
+%     \includegraphics[width=\textwidth]{figures/theory/double_capillary_cad.png}
+%   \end{columns}
+% \end{frame}
+\subsection{Background to plasma}
+\begin{frame}{The Plasma state}
+Ionised gas, electrically neutral.
 
- $I_\text{out}$ and $I_\text{in}$ are related by
- \begin{equation*}
-   I_\text{out} = I_\text{in}\mathrm{e}^{-\kappa z} %\tag{(Simplest)radiative transfer equation}
- \end{equation*}
+Defined by $N_e$ and $T_e$.
+
+Characteristic quantities
+  \begin{tabular}{l c r}
+  Debye length & $\lambda_D=\sqrt{\frac{\varepsilon_0 k_B T_e}{N_e e^2}}$ &  \includegraphics[height=50pt]{figures/theory/white_background.png}\\ 
+  Plasma Frequency & $ \omega_p=\sqrt{\frac{N_e e^2}{m_e \varepsilon_0}}\si[per-mode=fraction]{\radian\per\sec} $ & \includegraphics[height=50pt]{figures/theory/white_background.png}\\
+  % \onslide<3-> Plasma parameter & $ \Lambda=4\pi N_e \lambda_D ^3 $ & \includegraphics[height=50pt]{figures/theory/white_background.png} \\
+  \end{tabular}
+\end{frame}
+% \begin{frame}{}
+%   \begin{table}[]
+% \begin{tabular}{l | c}
+%   & T$\sim$\SI{1}{\electronvolt},$N_e\sim\SI{e17}{\per\cubic\cm}$ \\ \hline 
+%   $\lambda_D$     & \SI{33}{\nm}     \\
+%   $\omega_p$      & $\SI[per-mode=fraction]{e13}{\radian\per\sec}$   \\
+%   $\Lambda$ & 40
+% \end{tabular}
+%   \end{table}
+%  Plasmas in LWFA environments require
+% \begin{enumerate}
+%   \item[\textbullet] overall quasi-neutrality
+%   \item[\textbullet] hot plasma, yet not too dense --- $\Lambda \gg 1$
+% \end{enumerate}
+% \end{frame}
+\subsection{Characterisation of the plasma}
+\begin{frame}{Characterisation of the plasma}{Hydrogen Spectrum}
+Hot plasma emits light.
+
+The emitted spectra can give information about $N_e$ and $T_e$.
 \begin{columns}
  \column{0.4\textwidth}
-     \input{figures/theory/radiativeTransfer.tikz}
-   \column{0.6\textwidth}
- \begin{center}
- \begin{tabular}{ c c c }
-   $\tau<1$ & $\longrightarrow$ & optically thin medium\\ 
-   $\tau>1$ & $\longrightarrow$ & optically thick medium
- \end{tabular}
- \end{center}
+ \tikzsetnextfilename{hydrogenEnergyLevels}
+ \includegraphics[width=\textwidth,height=95pt]{figures/theory/hydrogenEnergyLevels.tikz}
+ \column{0.5\textwidth}
 \end{columns}
+$$H_{\alpha}:\ \lambda=\SI{656.28}{\nm}
+$$
 \end{frame}
-\begin{frame}{Local Thermodynamic Equilibrium (LTE) Model}
- Particle collision processes dominate over radiative processes.
- \begin{columns}
-  \column{0.7\textwidth}
-   \includegraphics[width=\textwidth]{figures/theory/processes.tikz}
-  \column{0.3\textwidth}
-  $\left<\sigma v_e \right> N_e > A_{ij}$
- \end{columns}
-%Population densities of the electrons is determined by particle collision processes (and not by radiative process).
-
-% Thorne figure 13.6. Hutchinson page 224 lists the electron processes.
-
-Instantaneous respnse to any change in plasma conditions (detailed balance)
-% The electron distribution responds instantaneously to any change in plasma conditions (detailed balance).
-\end{frame}
+% \begin{frame}{Plasma spectroscopy}{Electron density measurement}
+% Study of the emitted spectra gives information on the plasma.
+% \vskip 2em
+% \begin{columns}
+% \column{0.5\textwidth}
+% 
+% \column{0.5\textwidth}
+% \includegraphics[width=\textwidth]{figures/theory/purple_plasma.png}
+% \end{columns}
+% \begin{center}
+%  \vskip 1em
+% plasma diagnostic under a theoretical model --- the LTE model.
+% \end{center}
+% \end{frame}
+% \begin{frame}{Optical Depth}{Optically thin plasma}
+%  Optical depth $\tau$ \small{(dimensionless)} --- a measure of the opacity of the medium:
+%  \begin{equation*}
+% \tau=-\kappa z
+%  \end{equation*}
+%  $\kappa$ --- the linear absorption coefficient (\si{\per\cm}).
+% 
+%  $I_\text{out}$ and $I_\text{in}$ are related by
+%  \begin{equation*}
+% I_\text{out} = I_\text{in}\mathrm{e}^{-\kappa z}
+%  \end{equation*}
+% \begin{columns}
+%  \column{0.4\textwidth}
+%  \tikzsetnextfilename{radiativeTransfer}
+%   \input{figures/theory/radiativeTransfer.tikz}
+% \column{0.6\textwidth}
+%  \begin{center}
+%  \begin{tabular}{ c c c }
+% $\tau<1$ & $\longrightarrow$ & optically thin medium\\ 
+% $\tau>1$ & $\longrightarrow$ & optically thick medium
+%  \end{tabular}
+%  \end{center}
+% \end{columns}
+% \end{frame}
+% \begin{frame}{Local Thermodynamic Equilibrium (LTE) Model}
+%  Particle collision processes dominate over radiative processes.
+%  \begin{columns}
+%   \column{0.7\textwidth}
+%   \tikzsetnextfilename{processes}
+% \includegraphics[width=\textwidth]{figures/theory/processes.tikz}
+%   \column{0.3\textwidth}
+%   $\left<\sigma v_e \right> N_e > A_{ij}$
+%  \end{columns}
+% %Population densities of the electrons is determined by particle collision processes (and not by radiative process).
+% 
+% % Thorne figure 13.6. Hutchinson page 224 lists the electron processes.
+% 
+% Instantaneous response to any change in plasma conditions (detailed balance)
+% % The electron distribution responds instantaneously to any change in plasma conditions (detailed balance).
+% \end{frame}
 
 \begin{frame}{Stark Broadening}
  Plasma is a charged medium.
@@ -214,163 +250,107 @@ Instantaneous respnse to any change in plasma conditions (detailed balance)
 
  Averaging over different neighbours converts the Stark splitting to Stark broadening.
 \begin{figure}
+\tikzsetnextfilename{starkBroadening}
  \includegraphics[width=0.5\textwidth]{figures/theory/starkBroadening.tikz}
 \end{figure}
 \end{frame}
 \begin{frame}{Stark Broadening}
-Lorentzian line shape %--- $I\left( \lambda \right)=\dfrac{A^2}{4\left( \left(\lambda-\lambda_0\right)^2+\Delta \lambda_{1/2}^2\right)}$
+Line shape --- a Lorentzian %--- $I\left( \lambda \right)=\dfrac{A^2}{4\left( \left(\lambda-\lambda_0\right)^2+\Delta \lambda_{1/2}^2\right)}$
 \vskip 1.5em
  \begin{columns}
-   \column{0.4\textwidth}
-   \begin{figure}
-     \includegraphics[width=\textwidth,height=0.7\textwidth]{figures/theory/lorentzian_lineshape.tikz}
-   \end{figure}
-   \column{0.6\textwidth}
-   Relation between $N_e$ and $\Delta \lambda_{1/2}$ is tabulated: $$N_e=\left( \frac{\Delta\lambda_{1/2}}{\gamma\left(n_e,T_e\right)}\right)^{3/2}.$$
-   \\
-   Weak dependence on temperature, in our experiment: $$N_e\left[\SI{e18}{\per\cubic\cm}\right]=\left( \frac{\Delta\lambda_{1/2}\left[\si{\nm}\right]}{5.4}\right)^{3/2}.$$
+\column{0.4\textwidth}
+\tikzsetnextfilename{lorentzian_lineshape}
+\begin{figure}
+  \includegraphics[width=\textwidth,height=0.7\textwidth]{figures/theory/lorentzian_lineshape.tikz}
+\end{figure}
+\column{0.6\textwidth}
+Relation between $N_e$ and $\Delta \lambda_{1/2}$ is tabulated: $$N_e=\left( \frac{\Delta\lambda_{1/2}}{\gamma\left(N_e,T_e\right)}\right)^{3/2}.$$
+\\
+Weak dependence on temperature, in our experiment: $$N_e\left[\SI{e18}{\per\cubic\cm}\right]=\left( \frac{\Delta\lambda_{1/2}\left[\si{\nm}\right]}{5.4}\right)^{3/2}.$$
  \end{columns}
 \end{frame}
 \subsection{Preformed Plasma channel}
 \begin{frame}{Parabolic density profile}
  Plasma dispersion relation:
  \begin{equation*}
-   \omega^2=\omega_p^2+c^2k^2
+\omega^2=\omega_p^2+c^2k^2
  \end{equation*}
  The index of refraction $\tilde n$ is
  \begin{equation*}
-   \tilde{n}=\frac{c k}{\omega}=\sqrt{1-\frac{\omega_p^2}{\omega_L^2}}\approx1-\frac{\omega_p^2}{2\omega_L^2}=1-\frac{N_e}{2N_\text{cr}}
+\tilde{n}=\frac{c k}{\omega}=\sqrt{1-\frac{\omega_p^2}{\omega_L^2}}\approx1-\frac{\omega_p^2}{2\omega_L^2}=1-\frac{N_e}{2N_\text{cr}}
  \end{equation*}
  {\small where
-   \begin{equation*}
-       N_\text{cr}=\frac{\omega_L^2\varepsilon_0 m_e}{e^2}
-   \end{equation*}
-   is the critical plasma density.}
+\begin{equation*}
+    N_\text{cr}=\frac{\omega_L^2\varepsilon_0 m_e}{e^2}
+\end{equation*}
+is the critical plasma density.}
 \end{frame}
 \begin{frame}{Parabolic density profile}
  To achieve guiding, we need variation in $\tilde{n}$.
 
  Ideally, the radial density profile (RDP) is parabolic:
-   \begin{equation*}
-   N_e(r)=N_e(0)+\Delta N_e\left( \frac{r}{r_\text{ch}}\right)^2
+\begin{equation*}
+N_e(r)=N_e(0)+\Delta N_e\left( \frac{r}{r_\text{ch}}\right)^2
  \end{equation*}
  \begin{columns}
+  \column{0.5\textwidth}
+  \tikzsetnextfilename{rdp}
+\includegraphics[height=120pt]{figures/theory/rdp.tikz}
   \column{0.5\textwidth} 
-   \includegraphics[height=120pt]{figures/theory/rdp.tikz}
-  \column{0.5\textwidth} 
-   \includegraphics[height=120pt]{figures/theory/why channel forms.png}
+\includegraphics[height=120pt]{figures/theory/why channel forms.png}
  \end{columns}
 \end{frame}
-\begin{frame}{Creating a plasma channel}
-   \begin{itemize}
-     \item Ablated capillary
-     \item Gas--filled capillary
-   \end{itemize}
-   \begin{columns}
-    \column{0.5\textwidth}
-    \includegraphics[width=\textwidth]{figures/theory/ablated.png}
-    \column{0.5\textwidth}
-    \includegraphics[width=\textwidth]{figures/theory/gasfilled.png}
-    \end{columns}
-   \end{frame}
+
 \section{Thesis Goals}
 \begin{frame}{Thesis Goals}
  \begin{enumerate}
-   \item Study of discharge evolution, low jitter of discharge ignition.
-   \item Demonstration of optical guiding.
-   \item Spectroscopy analysis, utilizing Stark broadening.
-   \item Development of multi stage capillary --- fish bone approach.
+\item Study of discharge evolution, low jitter of discharge ignition.
+\item Characterisation of the discharge, utilizing Stark broadening.
+\item Demonstration of optical guiding.
+% \item Development of multi stage capillary --- fish bone approach.
  \end{enumerate}
 \end{frame}
-\section{Experiment Schemee}
+\section{Experiment Scheme}
 \begin{frame}{Experiment Scheme}
 \begin{figure}
-    \includegraphics[width=\textwidth]{figures/methods/Laser-based ignition scheme.png}
+ \includegraphics[width=\textwidth]{figures/methods/Laser-based ignition scheme.png}
 \end{figure}
 Capillary inside a vacuum chamber, maintained at \SI{e-4}{\torr}
 \end{frame}
 \begin{frame}{Experiment Scheme}{continued}
 \begin{figure}
-    \includegraphics[width=\textwidth]{figures/methods/system_picture.jpg}
+ \includegraphics[width=\textwidth]{figures/methods/system_picture.jpg}
 \end{figure}
 \end{frame}
 \section{Experimental Results}
 \subsection{Low Jitter}
 \begin{frame}{Experimental Results}{Low Jitter}
-A typical plasma discharge. Damped oscillatory current profile.
-\begin{figure}
-    \includegraphics[width=0.8\textwidth,height=150pt]{figures/results/discharge_sample.tikz}
-\end{figure}
-\fcolorbox{black}{ForestGreen}{\hspace{2mm}} --- Nd:Yag laser pulse
-
-\fcolorbox{black}{blue}{\hspace{2mm}} --- Rogowsky coil reading
-%% Requirement for a ready--to--use guiding media --- low jitter.
-\end{frame}
-\begin{frame}{Experimental Results}{Low Jitter}
-\small{12 consecutive capillary discharges. Demonstrating low ignition jitter.}
-\begin{figure}
-\includegraphics[width=\textwidth,height=142pt]{figures/results/jitter/low_jitter.tikz}
-\end{figure}
-$$\tau_\text{jitter}\approx 1\pm 0.36 \si{\ns}$$
-\end{frame}
-\begin{frame}{Experimental Results}{Low Jitter}
-Without the igniting laser pulse --- much less stable regime.
+Plasma is generated, but not in a stable regime.
+\tikzsetnextfilename{high_jitter}
 \begin{figure}
  \includegraphics[width=\textwidth,height=142pt]{figures/results/jitter/high_jitter.tikz}
 \end{figure}
 $$\text{jitter}\approx \SI{80}{\us}$$
 \end{frame}
-\subsection{Optical Guiding}
- \begin{frame}{Optical guiding}{System setup}
-   System setup as before, but now adding an oscillator laser.
-   \begin{figure}
-    \includegraphics[height=150pt]{figures/results/oscillator/oscillator_system_setup.png} 
-   \end{figure}
-   Beam aligned throught the capillary, to a fast photo--diode.
- \end{frame}
- \begin{frame}{Oscillator laser}{Temporal profile}
-   Oscillator laser, \SI{800}{\nm}, pulses at a \SI{84}{\MHz} rate.
-   \begin{figure}
-     \includegraphics[width=0.4\textwidth]{figures/results/oscillator/single.PNG}
-   \end{figure}
- \end{frame}
- \begin{frame}{Optical Guiding}
-   Upon plasma discharge, we look for an increase in the detected amplitude --- optical guiding.
-   \begin{equation*}
-     \text{transmission ratio} = \frac{A_{t<0}}{A_\text{max}}
-   \end{equation*}
-   \begin{figure}
-     \includegraphics[width=\textwidth]{figures/results/oscillator/guiding1.pdf}
-   \end{figure}
- \end{frame}
- \begin{frame}{Optical Guiding}
-   \begin{figure}
-     \includegraphics[height=160pt]{figures/results/oscillator/guiding2.pdf}
-   \end{figure}
-   \begin{equation*}
-     \text{transmission ratio} = \frac{A_{t<0}}{A_\text{max}} \approx 8
-   \end{equation*}
- \end{frame}
-\begin{frame}{Optical guiding}{Explanation}
-  {\footnotesize A plasma lens forms, the radiation is focused and trapped by the plasma.}
-  \begin{center}
-    \includegraphics[width=0.3\textwidth]{figures/results/oscillator/chen_4_31.pdf}
-  \end{center}
-  {\footnotesize Note: The radiation is blocked in the later stage of the discharge, until the plasma diffuses to the chamber.}
-  \begin{figure}
-    \includegraphics[width=0.65\textwidth]{figures/results/oscillator/guiding_gray.pdf}
-  \end{figure}
-\end{frame}
-\begin{frame}{Duration of the plasma channel}
-Correlation between applied voltage and the transmission ratio:
+\begin{frame}{Experimental Results}{Low Jitter}
+Adding the igniting Nd:Yag laser
+\tikzsetnextfilename{discharge_sample}
 \begin{figure}
-\includegraphics[width=0.5\textwidth,height=100pt]{figures/results/oscillator/voltage_vs_guiding.tikz}
+ \includegraphics[width=0.8\textwidth,height=150pt]{figures/results/discharge_sample.tikz}
 \end{figure}
-Duration of the plasma channel:
- \begin{equation*}
-  \Delta t_\text{channel}=50 -100\ \si{\ns}.
- \end{equation*}
+\fcolorbox{black}{ForestGreen}{\hspace{2mm}} --- Nd:Yag laser pulse
+
+\fcolorbox{black}{blue}{\hspace{2mm}} --- Rogowsky coil reading
 \end{frame}
+\begin{frame}{Experimental Results}{Low Jitter}
+\small{12 consecutive capillary discharges. Demonstrating low ignition jitter.}
+\tikzsetnextfilename{low_jitter}
+\begin{figure}
+\includegraphics[width=\textwidth,height=142pt]{figures/results/jitter/low_jitter.tikz}
+\end{figure}
+$$\tau_\text{jitter}\approx 1\pm 0.36 \si{\ns}$$
+\end{frame}
+
 \subsection{Spectroscopy measurement}
 \begin{frame}{Spectroscopy measurements}
  \begin{itemize}
@@ -384,7 +364,7 @@ Duration of the plasma channel:
 \end{frame}
 \begin{frame}{Radial density profile}
  \begin{figure}
-   \includegraphics[width=0.8\textwidth]{figures/results/spectro/radial_system.png}
+\includegraphics[width=0.8\textwidth]{figures/results/spectro/radial_system.png}
  \end{figure}
 Imaging system --- $\times 5$ magnification.
 
@@ -394,112 +374,169 @@ Width of the spectrometer slit --- \SI{150}{\um}.
 \end{frame}
 \begin{frame}{Spectroscopy Analysis}
 \begin{figure}
-   \includegraphics[width=0.8\textwidth]{figures/results/spectro/spectra_analysis.png}
+\includegraphics[width=0.8\textwidth]{figures/results/spectro/spectra_analysis.png}
  \end{figure}
  pixel size = $\SI{26}{\um} \times \SI{26}{\um}$
 \end{frame}
 \begin{frame}{Spectroscopy Analysis}{cont.}
-   Fit a Lorentzian to each row of the data.
-   \begin{figure}
-     \includegraphics[width=0.8\textwidth,height=160pt]{figures/results/spectro/sample_lorentzian.tikz}
-   \end{figure}
-   Stark Broadening on the order of \SI{3}{\nm}.
+Fit a Lorentzian to each row of the data.
+\tikzsetnextfilename{sample_lorentzian}
+\begin{figure}
+  \includegraphics[width=0.8\textwidth,height=160pt]{figures/results/spectro/sample_lorentzian.tikz}
+\end{figure}
+Stark Broadening on the order of \SI{3}{\nm}.
 \end{frame}
 \begin{frame}{Spectroscopy measurements}{Radial density profile}
  {\small Density minimum on the axis of the capillary.}
  \begin{equation*}
-   \Delta N_e \sim \SI{0.4e18}{\per \cubic \cm}
+\Delta N_e \sim \SI{0.4e18}{\per \cubic \cm}
  \end{equation*}
 \begin{center}
-    with $r_\text{ch}\approx \SI{50}{\um} \text{ and } N_e\left(0\right)\approx \SI{0.4e18}{\per\cubic\cm}.$
+ with $r_\text{ch}\approx \SI{50}{\um} \text{ and } N_e\left(0\right)\approx \SI{0.4e18}{\per\cubic\cm}.$
 \end{center}
 \begin{figure}
-   \includegraphics[width=270pt,height=144pt]{figures/results/spectro/parabolic_profile.tikz}
+\includegraphics[width=270pt,height=144pt]{figures/results/spectro/parabolic_profile.tikz}
 \end{figure}
 \end{frame}
 \begin{frame}{Longitudinal density profile}{System setup}
  {\small Verify longitudinal homogeneity of the plasma density.}
  \begin{figure}
-   \includegraphics[height=130pt]{figures/results/spectro/longitudinal_system.png}
+\includegraphics[height=130pt]{figures/results/spectro/longitudinal_system.png}
  \end{figure}
  The entire capillary length was imaged.
  CCD camera \SI{1}{\us} gate--on time.
 \end{frame}
 \begin{frame}{Longitudinal density profile}{Result}
  Mean plasma density $\bar{N}_e$ of
+\vskip -1em
+$$ \bar{N}_e \sim \SI{3e17}{\per\cubic\cm}. $$
+\vskip -2em
+\tikzsetnextfilename{longitudinal}
+\begin{figure}
+\includegraphics[height=170pt,width=\textwidth]{figures/results/spectro/longitudinal.tikz}
+\end{figure}
+\end{frame}
+
+
+\subsection{Optical Guiding}
+ \begin{frame}{Optical guiding}{System setup}
+System setup as before, but now adding an oscillator laser.
+\begin{figure}
+ \includegraphics[height=150pt]{figures/results/oscillator/oscillator_system_setup.png} 
+\end{figure}
+Beam aligned throught the capillary, to a fast photo--diode.
+ \end{frame}
+ \begin{frame}{Oscillator laser}{Temporal profile}
+Oscillator laser, \SI{800}{\nm}, pulses at a \SI{84}{\MHz} rate.
+\begin{figure}
+  \includegraphics[width=0.4\textwidth]{figures/results/oscillator/single.PNG}
+\end{figure}
+ \end{frame}
+ \begin{frame}{Optical Guiding}
+Upon plasma discharge, we look for an increase in the detected amplitude --- optical guiding.
+\begin{equation*}
+  \text{transmission ratio} = \frac{A_{t<0}}{A_\text{max}}
+\end{equation*}
+\vskip -1em
+\tikzsetnextfilename{guiding01}
+\begin{figure}
+      \includegraphics[width=\textwidth,height=157pt]{figures/results/oscillator/guiding01.tikz}
+\end{figure}
+ \end{frame}
+\begin{frame}{Optical Guiding}
+\tikzsetnextfilename{guiding02}
+\begin{figure}
+  \includegraphics[width=\textwidth,height=157pt]{figures/results/oscillator/guiding02.tikz}
+\end{figure}
+\begin{equation*}
+\text{transmission ratio} = \frac{A_{t<0}}{A_\text{max}} \approx 8
+\end{equation*}
+\end{frame}
+\begin{frame}{Optical guiding}{Explanation}
+{\footnotesize A plasma lens forms, the radiation is focused and trapped by the plasma.}
+\begin{center}
+ \includegraphics[width=0.3\textwidth]{figures/results/oscillator/chen_4_31.pdf}
+\end{center}
+  \vskip -1em
+  {\footnotesize Note: The radiation is blocked in the later stage of the discharge, until the plasma diffuses to the chamber.}
+\tikzsetnextfilename{guiding03}
+\begin{figure}
+ \includegraphics[width=\textwidth,height=120pt]{figures/results/oscillator/guiding03.tikz}
+\end{figure}
+\end{frame}
+\begin{frame}{Duration of the plasma channel}
+Correlation between applied voltage and the transmission ratio:
+\tikzsetnextfilename{voltage_vs_guiding}
+\begin{figure}
+\includegraphics[width=0.5\textwidth,height=100pt]{figures/results/oscillator/voltage_vs_guiding.tikz}
+\end{figure}
+Duration of the plasma channel:
  \begin{equation*}
-     \bar{N}_e \sim \SI{3e17}{\per\cubic\cm}.
+  \Delta t_\text{channel}=50 -100\ \si{\ns}.
  \end{equation*}
-\begin{figure}
-   \includegraphics[height=110pt]{figures/results/spectro/longitudinal_profile.png}
-\end{figure}
-
- $\Rightarrow$ Plasma channel that can be used for guiding an intense laser pulse for LWFA accelerators.
 \end{frame}
-\subsection{Two stage capillary}
-\begin{frame}{Two stage capillary}
- As said in the introduction, a "fish--bone" capillary may overcome the dephasing length limitation.
-   \begin{figure}
-     \includegraphics[width=0.2\textwidth]{figures/theory/coupling_scheme.pdf}
-   \end{figure}
-   \begin{figure}
-     \includegraphics[width=0.8\textwidth]{figures/results/2stageCapillary/doublecapillary_cad.png}
-   \end{figure}
-   2 stage, Y--shape capillary.
-\end{frame}
-\begin{frame}{Two stage capillary}{System setup}
-\begin{figure}
-    \includegraphics[width=\textwidth]{figures/results/2stageCapillary/setup.pdf}
-\end{figure}
-\end{frame}
-\begin{frame}{Two stage capillary}
-Split the oscillator pulse-–train to two beams, one for each capillary
-channel.
-Introduce a delay line to distinguish between each beam.
-\begin{figure}
-    \includegraphics[width=0.5\textwidth]{figures/results/2stageCapillary/double.png}
-\end{figure}
-\end{frame}
-\begin{frame}{Results}
-\begin{figure}
-\includegraphics[width=0.8\textwidth]{figures/results/2stageCapillary/curved-pulsetrain-merged.png}
-\end{figure}
-\begin{columns}
-\column{0.8\textwidth}
-Note the "bump" of the signal recorded by the photo--diode.
-
-To minimize this, use a screen to block as much unwanted light.
-\column{0.2\textwidth}
-\includegraphics[width=1\textwidth]{figures/results/2stageCapillary/opaquescreen.png}
-\end{columns}
-\end{frame}
+% \subsection{Two stage capillary}
+% \begin{frame}{Two stage capillary}
+%  As said in the introduction, a "fish--bone" capillary may overcome the dephasing length limitation.
+%    \begin{figure}
+%      \includegraphics[width=0.2\textwidth]{figures/theory/coupling_scheme.pdf}
+%    \end{figure}
+%    \begin{figure}
+%      \includegraphics[width=0.8\textwidth]{figures/results/2stageCapillary/doublecapillary_cad.png}
+%    \end{figure}
+%    2 stage, Y--shape capillary.
+% \end{frame}
+% \begin{frame}{Two stage capillary}{System setup}
+% \begin{figure}
+%     \includegraphics[width=\textwidth]{figures/results/2stageCapillary/setup.pdf}
+% \end{figure}
+% \end{frame}
+% \begin{frame}{Two stage capillary}
+% Split the oscillator pulse-–train to two beams, one for each capillary
+% channel.
+% Introduce a delay line to distinguish between each beam.
+% \begin{figure}
+%     \includegraphics[width=0.5\textwidth]{figures/results/2stageCapillary/double.png}
+% \end{figure}
+% \end{frame}
+% \begin{frame}{Results}
+% \begin{figure}
+% \includegraphics[width=0.8\textwidth]{figures/results/2stageCapillary/curved-pulsetrain-merged.png}
+% \end{figure}
+% \begin{columns}
+% \column{0.8\textwidth}
+% Note the "bump" of the signal recorded by the photo--diode.
+% 
+% To minimize this, use a screen to block as much unwanted light.
+% \column{0.2\textwidth}
+% \includegraphics[width=1\textwidth]{figures/results/2stageCapillary/opaquescreen.png}
+% \end{columns}
+% \end{frame}
 \section{Summary}
 \begin{frame}{Summary}
-Study pf plasma channels generated in gas filled--capillaries.
+Study of plasma channels generated in gas filled--capillaries.
 
-Demonstration of a working valid for LWFA scheme.
 \begin{itemize}
 \item Low jitter of discharge ignition
-\item Demonstration of optical guide
-\item Verification of plasma conditions through spectroscopy means
-\item First study of multi--stage capillary
+\item Verification of plasma conditions by spectroscopy means
+\item Demonstration of optical guiding
 \end{itemize}
-Future experiments:
+Future experiments: First study of multi--stage capillary ---
 \begin{itemize}
 \item Check for guiding conditions of the curved gas filled capillaries.
 \item Incorporating these capillaries in a LWFA scheme.
 \end{itemize}
 
 \end{frame}
-\begin{frame}{Reserve}
-    
-\end{frame}
-\begin{frame}{Wake waves}
-\begin{columns}  
-\column{0.5\textwidth}
-\includegraphics[width=\textwidth]{figures/theory/boat_ski.jpg}
-\column{0.5\textwidth}
-\includegraphics[width=\textwidth]{figures/theory/boat_wake.jpg}
-\end{columns}
-\end{frame}
+% \begin{frame}{Reserve}
+%     
+% \end{frame}
+% \begin{frame}{Wake waves}
+% \begin{columns}  
+% \column{0.5\textwidth}
+% \includegraphics[width=\textwidth]{figures/theory/boat_ski.jpg}
+% \column{0.5\textwidth}
+% \includegraphics[width=\textwidth]{figures/theory/boat_wake.jpg}
+% \end{columns}
+% \end{frame}
 \end{document}
