@@ -87,30 +87,34 @@ The power source is not microwave radiation, but either a laser beam or a charge
 \end{frame}
 
 \begin{frame}{LWFA}{Limitations}
-\begin{columns}  
-\column<1,3>{0.5\textwidth}
+% \begin{columns}  
+% \column{0.5\textwidth}
 Laser defocusing
 \tikzsetnextfilename{defocusing}
 \begin{figure}
-\includegraphics[width=\textwidth]{figures/theory/defocusing.tikz}
+\centering
+\includegraphics[width=220pt,height=160pt]{figures/theory/defocusing.tikz}
 \end{figure}
-\column<2,3>{0.5\textwidth}
-Electron dephasing
-\tikzsetnextfilename{dephasing}
-\begin{figure}
-\includegraphics[width=\textwidth]{figures/theory/dephasing.tikz}
-\end{figure}
-\end{columns}
-\end{frame}
-\begin{frame}{Beam divergence}
-The divergence of a laser beam is usually neglected.
+Acceleration is achieved only when the laser beam is focused to $\sim$ tens of \si{\um} in diameter.
 
-In LWFA, acceleration is achieved only when the laser beam is focused to $\sim$ tens of \si{\um} in diameter.
-\begin{center}
-  \includegraphics[width=\textwidth]{figures/theory/laser_lens_rayleigh.pdf}
-\end{center}
-Solution: Use a waveguide.
+Solution: Use a wave--guide.
+% \column{0.5\textwidth}
+% Electron dephasing
+% \tikzsetnextfilename{dephasing}
+% \begin{figure}
+% \includegraphics[width=\textwidth]{figures/theory/dephasing.tikz}
+% \end{figure}
+% \end{columns}
 \end{frame}
+% \begin{frame}{Beam divergence}
+% The divergence of a laser beam is usually neglected.
+% 
+% In LWFA, acceleration is achieved only when the laser beam is focused to $\sim$ tens of \si{\um} in diameter.
+% \begin{center}
+%   \includegraphics[width=\textwidth]{figures/theory/laser_lens_rayleigh.pdf}
+% \end{center}
+% Solution: Use a waveguide.
+% \end{frame}
 \begin{frame}{Waveguide}{Basic concept}
  \tikzsetnextfilename{fiber}
  \begin{figure}
@@ -180,10 +184,11 @@ Hot plasma emits light.
 
 The emitted spectra can give information about $N_e$ and $T_e$.
 \begin{columns}
- \column{0.4\textwidth}
+\column{0.4\textwidth}
  \tikzsetnextfilename{hydrogenEnergyLevels}
  \includegraphics[width=\textwidth,height=95pt]{figures/theory/hydrogenEnergyLevels.tikz}
- \column{0.5\textwidth}
+\column{0.5\textwidth}
+ \includegraphics[width=\textwidth]{figures/theory/purple_plasma.png}
 \end{columns}
 $$H_{\alpha}:\ \lambda=\SI{656.28}{\nm}
 $$
