@@ -14,6 +14,7 @@
 \usetikzlibrary{calc} % used in fiber.tikz
 \usetikzlibrary{math} % used in starkBroadening.tikz
 \usepgfplotslibrary{units}
+\usepgfplotslibrary{fillbetween} % used in sample_lorentzian.tikz
 \pgfplotsset{every axis/.append style={line join=round, line cap=round}}
 
 %% To reduce compilation time
@@ -43,20 +44,20 @@
 %     \end{frame}
 % }
 % from https://tex.stackexchange.com/a/415653/180429
-\setbeamertemplate{frametitle continuation}{\insertcontinuationcount}
+%\setbeamertemplate{frametitle continuation}{\insertcontinuationcount}
 \begin{document}
 
 \frame{\titlepage}
-\begin{frame}
-\frametitle{Table of Contents}
-\tableofcontents
-\end{frame}
+% \begin{frame}
+% \frametitle{Table of Contents}
+% \tableofcontents
+% \end{frame}
 
 \section{Background}
 \subsection{Introduction}
   \begin{frame}{Introduction}
   \begin{center}
-    The goal --- design a table--top particle accelerator.
+    The goal --- design a low--jitter plasma channel for a table--top particle accelerator.
   \end{center}
     Applications:
     \begin{itemize}
@@ -69,7 +70,7 @@
 \begin{frame}{Linear accelerators}
 At present, all high energy accelerators run into limits.
 \begin{itemize}
-\item[\textbullet] The acclerating electric fields must be less than \SI{100}{\mega \V \per\meter}, to avoid material breakdown.
+\item[\textbullet] The acclerating electric fields must be less than \SI[per-mode=symbol]{100}{\mega \V \per\meter}, to avoid material breakdown.
 \item[\textbullet] Each \si{\giga \eV} of energy requires $\sim$\SI{100}{\meter} of accleration length.
 \end{itemize}
 \begin{figure}
@@ -93,9 +94,11 @@ Laser defocusing
 \tikzsetnextfilename{defocusing}
 \begin{figure}
 \centering
-\includegraphics[width=220pt,height=160pt]{figures/theory/defocusing.tikz}
+\includegraphics[width=180pt,height=110pt]{figures/theory/defocusing.tikz}
 \end{figure}
-Acceleration is achieved only when the laser beam is focused to $\sim$ tens of \si{\um} in diameter.
+Acceleration is achieved only when the laser beam is focused
+
+to $\sim$ tens of \si{\um} in diameter.
 
 Solution: Use a wave--guide.
 % \column{0.5\textwidth}
@@ -156,7 +159,7 @@ Ionised gas, electrically neutral.
 
 Defined by $N_e$ and $T_e$.
 
-Characteristic quantities
+Characteristic quantities:
   \begin{tabular}{l c r}
   Debye length & $\lambda_D=\sqrt{\frac{\varepsilon_0 k_B T_e}{N_e e^2}}$ &  \includegraphics[height=50pt]{figures/theory/white_background.png}\\ 
   Plasma Frequency & $ \omega_p=\sqrt{\frac{N_e e^2}{m_e \varepsilon_0}}\si[per-mode=fraction]{\radian\per\sec} $ & \includegraphics[height=50pt]{figures/theory/white_background.png}\\
@@ -178,6 +181,38 @@ Characteristic quantities
 %   \item[\textbullet] hot plasma, yet not too dense --- $\Lambda \gg 1$
 % \end{enumerate}
 % \end{frame}
+\subsection{Preformed Plasma channel}
+\begin{frame}{Parabolic density profile}
+ Plasma dispersion relation:
+ \begin{equation*}
+\omega^2=\omega_p^2+c^2k^2
+ \end{equation*}
+ The index of refraction $\tilde n$ is
+ \begin{equation*}
+\tilde{n}=\frac{c k}{\omega}=\sqrt{1-\frac{\omega_p^2}{\omega_L^2}}\approx1-\frac{\omega_p^2}{2\omega_L^2}=1-\frac{N_e}{2N_\text{cr}}
+ \end{equation*}
+ {\small where
+\begin{equation*}
+    N_\text{cr}=\frac{\omega_L^2\varepsilon_0 m_e}{e^2}
+\end{equation*}
+is the critical plasma density.}
+\end{frame}
+\begin{frame}{Parabolic density profile}
+ To achieve guiding, we need variation in $\tilde{n}$.
+
+ Ideally, the radial density profile (RDP) is parabolic:
+\begin{equation*}
+N_e(r)=N_e(0)+\Delta N_e\left( \frac{r}{r_\text{ch}}\right)^2
+ \end{equation*}
+ \begin{columns}
+  \column{0.5\textwidth}
+  \tikzsetnextfilename{rdp}
+\includegraphics[height=120pt]{figures/theory/rdp.tikz}
+  \column{0.5\textwidth} 
+\includegraphics[height=120pt]{figures/theory/why channel forms.png}
+ \end{columns}
+\end{frame}
+
 \subsection{Characterisation of the plasma}
 \begin{frame}{Characterisation of the plasma}{Hydrogen Spectrum}
 Hot plasma emits light.
@@ -274,37 +309,7 @@ Relation between $N_e$ and $\Delta \lambda_{1/2}$ is tabulated: $$N_e=\left( \fr
 Weak dependence on temperature, in our experiment: $$N_e\left[\SI{e18}{\per\cubic\cm}\right]=\left( \frac{\Delta\lambda_{1/2}\left[\si{\nm}\right]}{5.4}\right)^{3/2}.$$
  \end{columns}
 \end{frame}
-\subsection{Preformed Plasma channel}
-\begin{frame}{Parabolic density profile}
- Plasma dispersion relation:
- \begin{equation*}
-\omega^2=\omega_p^2+c^2k^2
- \end{equation*}
- The index of refraction $\tilde n$ is
- \begin{equation*}
-\tilde{n}=\frac{c k}{\omega}=\sqrt{1-\frac{\omega_p^2}{\omega_L^2}}\approx1-\frac{\omega_p^2}{2\omega_L^2}=1-\frac{N_e}{2N_\text{cr}}
- \end{equation*}
- {\small where
-\begin{equation*}
-    N_\text{cr}=\frac{\omega_L^2\varepsilon_0 m_e}{e^2}
-\end{equation*}
-is the critical plasma density.}
-\end{frame}
-\begin{frame}{Parabolic density profile}
- To achieve guiding, we need variation in $\tilde{n}$.
 
- Ideally, the radial density profile (RDP) is parabolic:
-\begin{equation*}
-N_e(r)=N_e(0)+\Delta N_e\left( \frac{r}{r_\text{ch}}\right)^2
- \end{equation*}
- \begin{columns}
-  \column{0.5\textwidth}
-  \tikzsetnextfilename{rdp}
-\includegraphics[height=120pt]{figures/theory/rdp.tikz}
-  \column{0.5\textwidth} 
-\includegraphics[height=120pt]{figures/theory/why channel forms.png}
- \end{columns}
-\end{frame}
 
 \section{Thesis Goals}
 \begin{frame}{Thesis Goals}
@@ -315,16 +320,15 @@ N_e(r)=N_e(0)+\Delta N_e\left( \frac{r}{r_\text{ch}}\right)^2
 % \item Development of multi stage capillary --- fish bone approach.
  \end{enumerate}
 \end{frame}
-\section{Experiment Scheme}
 \begin{frame}{Experiment Scheme}
 \begin{figure}
- \includegraphics[width=\textwidth]{figures/methods/Laser-based ignition scheme.png}
+ \includegraphics[width=\textwidth]{figures/results/jitter/discharge_scheme.pdf}
 \end{figure}
 Capillary inside a vacuum chamber, maintained at \SI{e-4}{\torr}
 \end{frame}
 \begin{frame}{Experiment Scheme}{continued}
 \begin{figure}
- \includegraphics[width=\textwidth]{figures/methods/system_picture.jpg}
+ \includegraphics[width=\textwidth]{figures/results/jitter/system_picture.jpg}
 \end{figure}
 \end{frame}
 \section{Experimental Results}
@@ -336,6 +340,13 @@ Plasma is generated, but not in a stable regime.
  \includegraphics[width=\textwidth,height=142pt]{figures/results/jitter/high_jitter.tikz}
 \end{figure}
 $$\text{jitter}\approx \SI{80}{\us}$$
+\end{frame}
+\begin{frame}{Use a laser pulse to ignite}
+    Nd:Yag laser pulse ionizes matter and detaches electrons.
+\begin{figure}
+    \centering
+    \includegraphics[width=\textwidth]{figures/results/jitter/Laser_based_ignition_scheme.pdf}
+\end{figure}
 \end{frame}
 \begin{frame}{Experimental Results}{Low Jitter}
 Adding the igniting Nd:Yag laser
@@ -363,17 +374,17 @@ $$\tau_\text{jitter}\approx 1\pm 0.36 \si{\ns}$$
   \item Both radial and longitudinal density profile
   \item Method: A spectrometer and a fast camera
  \end{itemize}
- \begin{figure}
-  \includegraphics[height=140pt]{figures/results/spectro/spectrometer.png}
- \end{figure}
+% \begin{figure}
+%  \includegraphics[height=140pt]{figures/results/spectro/spectrometer.png}
+% \end{figure}
 \end{frame}
 \begin{frame}{Radial density profile}
  \begin{figure}
-\includegraphics[width=0.8\textwidth]{figures/results/spectro/radial_system.png}
+\includegraphics[width=0.8\textwidth]{figures/results/spectro/radial_system.pdf}
  \end{figure}
 Imaging system --- $\times 5$ magnification.
 
-CCD camera $\SI{40}{\ns}$ gate--on time. 
+iCCD camera $\SI{40}{\ns}$ gate--on time. 
 
 Width of the spectrometer slit --- \SI{150}{\um}.
 \end{frame}
@@ -406,10 +417,10 @@ Stark Broadening on the order of \SI{3}{\nm}.
 \begin{frame}{Longitudinal density profile}{System setup}
  {\small Verify longitudinal homogeneity of the plasma density.}
  \begin{figure}
-\includegraphics[height=130pt]{figures/results/spectro/longitudinal_system.png}
+\includegraphics[height=130pt]{figures/results/spectro/longitudinal_system.pdf}
  \end{figure}
  The entire capillary length was imaged.
- CCD camera \SI{1}{\us} gate--on time.
+ iCCD camera \SI{1}{\us} gate--on time.
 \end{frame}
 \begin{frame}{Longitudinal density profile}{Result}
  Mean plasma density $\bar{N}_e$ of
@@ -427,7 +438,7 @@ $$ \bar{N}_e \sim \SI{3e17}{\per\cubic\cm}. $$
  \begin{frame}{Optical guiding}{System setup}
 System setup as before, but now adding an oscillator laser.
 \begin{figure}
- \includegraphics[height=150pt]{figures/results/oscillator/oscillator_system_setup.png} 
+ \includegraphics[height=150pt]{figures/results/oscillator/oscillator_system_setup.pdf} 
 \end{figure}
 Beam aligned throught the capillary, to a fast photo--diode.
  \end{frame}
