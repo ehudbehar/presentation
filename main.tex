@@ -77,10 +77,10 @@ At present, all high energy accelerators run into limits.
 \includegraphics[width=200pt]{figures/theory/lhc_cern_compressed.jpg}
 \end{figure}
 \end{frame}
-\begin{frame}{LWFA}{A plasma--based chraged particles accelerator}
+\begin{frame}{Laser Wake--Field Acceleration --- LWFA}{A plasma--based chraged particles accelerator}
 Electrical breakdown is part of the design.
 
-The power source is not microwave radiation, but either a laser beam or a charged particle beam.
+The power source is a laser beam or a charged particle beam.
 \tikzsetnextfilename{lwfa-schematic}
 \begin{figure}
 \includegraphics[width=300pt,height=150pt]{figures/theory/lwfa-schematic.tikz}
@@ -324,7 +324,7 @@ Weak dependence on temperature, in our experiment: $$N_e\left[\SI{e18}{\per\cubi
 \begin{figure}
  \includegraphics[width=\textwidth]{figures/results/jitter/discharge_scheme.pdf}
 \end{figure}
-Capillary inside a vacuum chamber, maintained at \SI{e-4}{\torr}
+Capillary inside a vacuum chamber, maintained at \SI{e-4}{\torr}.
 \end{frame}
 \begin{frame}{Experiment Scheme}{continued}
 \begin{figure}
@@ -342,14 +342,14 @@ Plasma is generated, but not in a stable regime.
 $$\text{jitter}\approx \SI{80}{\us}$$
 \end{frame}
 \begin{frame}{Use a laser pulse to ignite}
-    Nd:Yag laser pulse ionizes matter and detaches electrons.
+    The Nd:Yag laser pulse ionizes matter and detaches electrons.
 \begin{figure}
     \centering
     \includegraphics[width=\textwidth]{figures/results/jitter/Laser_based_ignition_scheme.pdf}
 \end{figure}
 \end{frame}
 \begin{frame}{Experimental Results}{Low Jitter}
-Adding the igniting Nd:Yag laser
+Adding the igniting Nd:Yag laser:
 \tikzsetnextfilename{discharge_sample}
 \begin{figure}
  \includegraphics[width=0.8\textwidth,height=150pt]{figures/results/discharge_sample.tikz}
@@ -401,14 +401,15 @@ Fit a Lorentzian to each row of the data.
   \includegraphics[width=0.8\textwidth,height=160pt]{figures/results/spectro/sample_lorentzian.tikz}
 \end{figure}
 Stark Broadening on the order of \SI{3}{\nm}.
+%% R square goodness of fit sim 0.813
 \end{frame}
 \begin{frame}{Spectroscopy measurements}{Radial density profile}
  {\small Density minimum on the axis of the capillary.}
  \begin{equation*}
-\Delta N_e \sim \SI{0.4e18}{\per \cubic \cm}
+\Delta N_e \sim \SI{4e17}{\per \cubic \cm}
  \end{equation*}
 \begin{center}
- with $r_\text{ch}\approx \SI{50}{\um} \text{ and } N_e\left(0\right)\approx \SI{0.4e18}{\per\cubic\cm}.$
+ with $r_\text{ch}\approx \SI{50}{\um} \text{ and } N_e\left(0\right)\approx \SI{4e17}{\per\cubic\cm}.$
 \end{center}
 \begin{figure}
 \includegraphics[width=270pt,height=144pt]{figures/results/spectro/parabolic_profile.tikz}
@@ -417,7 +418,7 @@ Stark Broadening on the order of \SI{3}{\nm}.
 \begin{frame}{Longitudinal density profile}{System setup}
  {\small Verify longitudinal homogeneity of the plasma density.}
  \begin{figure}
-\includegraphics[height=130pt]{figures/results/spectro/longitudinal_system.pdf}
+\includegraphics[width=0.7\textwidth]{figures/results/spectro/longitudinal_system.pdf}
  \end{figure}
  The entire capillary length was imaged.
  iCCD camera \SI{1}{\us} gate--on time.
@@ -425,12 +426,13 @@ Stark Broadening on the order of \SI{3}{\nm}.
 \begin{frame}{Longitudinal density profile}{Result}
  Mean plasma density $\bar{N}_e$ of
 \vskip -1em
-$$ \bar{N}_e \sim \SI{3e17}{\per\cubic\cm}. $$
+$$ \bar{N}_e \sim \SI{3.3e17}{\per\cubic\cm}. $$
 \vskip -2em
 \tikzsetnextfilename{longitudinal}
 \begin{figure}
 \includegraphics[height=170pt,width=\textwidth]{figures/results/spectro/longitudinal.tikz}
 \end{figure}
+%% Doing the error analysis, I got N_e=3.3e17 plusminus 0.33e17 electrons per cubic cm.
 \end{frame}
 
 
@@ -438,14 +440,15 @@ $$ \bar{N}_e \sim \SI{3e17}{\per\cubic\cm}. $$
  \begin{frame}{Optical guiding}{System setup}
 System setup as before, but now adding an oscillator laser.
 \begin{figure}
- \includegraphics[height=150pt]{figures/results/oscillator/oscillator_system_setup.pdf} 
+ \includegraphics[width=0.8\textwidth]{figures/results/oscillator/oscillator_system_setup.pdf} 
 \end{figure}
-Beam aligned throught the capillary, to a fast photo--diode.
+Beam aligned through the capillary, to a fast photo--diode.
  \end{frame}
  \begin{frame}{Oscillator laser}{Temporal profile}
 Oscillator laser, \SI{800}{\nm}, pulses at a \SI{84}{\MHz} rate.
+\tikzsetnextfilename{oscillator_waveform}
 \begin{figure}
-  \includegraphics[width=0.4\textwidth]{figures/results/oscillator/single.PNG}
+  \includegraphics[width=0.7\textwidth,height=175pt]{figures/results/oscillator/oscillator_waveform.tikz}
 \end{figure}
  \end{frame}
  \begin{frame}{Optical Guiding}

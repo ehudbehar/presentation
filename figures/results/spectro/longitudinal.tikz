@@ -10,6 +10,7 @@
     ylabel={Electron Density\\$[$\SI{e17}{\per\cubic\cm}]},
     xtick= { 0, 821/10, 821/5, 2463/10, 1642/5, 821/2, 2463/5, 5747/10, 3284/5, 7389/10, 821 },
     xticklabels={0,5,10,15,20,25,30,35,40,45,50},
+    ytick={0.1,0.2,0.3,0.4,0.5},
     extra y ticks=0.3338,
     extra y tick labels={},
     extra y tick style={

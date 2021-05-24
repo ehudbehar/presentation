@@ -1,0 +1,14 @@
+\begin{tikzpicture}
+\begin{axis}[
+    grid=minor,
+    change x base,
+    x SI prefix=nano,
+    ytick=\empty,
+    xtick={-12.5e-9,0,12.5e-9,25e-9,37.5e-9,50e-9},
+    xmin=-20e-9,xmax=55e-9,
+    xlabel={Time [\si{\ns}]},
+    ylabel={Amplitude [\si{\volt}]},
+    ]
+    \addplot [red,line width=1pt] table[x=t,y=single,col sep=comma] {figures/results/oscillator/oscillator_waveform.csv};
+\end{axis}
+\end{tikzpicture}

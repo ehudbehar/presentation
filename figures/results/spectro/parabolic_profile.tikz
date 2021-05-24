@@ -1,8 +1,10 @@
 \begin{tikzpicture}[every node/.style={scale=0.9}]
 \begin{axis}
 [
+change y base,
+y SI prefix=deci,
 xlabel={$r$ [\si{\um}]},
-ylabel={$n_e$ [\SI{e18}{\per\cubic\cm}]},
+ylabel={$N_e$ [\SI{e17}{\per\cubic\cm}]},
 minor tick num=1,
 xmin=-252,xmax=254,
 ymin=0, ymax=1.2,
