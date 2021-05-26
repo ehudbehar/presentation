@@ -7,10 +7,11 @@ xlabel={$r$ [\si{\um}]},
 ylabel={$N_e$ [\SI{e17}{\per\cubic\cm}]},
 minor tick num=1,
 xmin=-252,xmax=254,
-ymin=0, ymax=1.2,
+ymin=0, ymax=1.1,
 ymajorgrids=true,
 xmajorgrids=true,
 xtick={-250,-200,...,250},
+ytick={.2,.4,.6,.8,1},
 ]
 \addplot+ [only marks, mark size=1.5pt, mark options={red}, error bars/.cd,
 x dir=both, x explicit,
@@ -64,6 +65,13 @@ x   y   error
 240.4	0.632809552	0.099033621
 251.6	0.652301252	0.112506656
 };
-\addplot[line width=1pt,samples=500,domain=-52:69]{0.4325 -0.002145*x+0.0001261*x^2};
+\addplot[line width=1pt,samples=100,domain=-52:69]{0.433 - 0.002241*x + 0.0001235*x^2};
+\addplot[name path=A,opacity=0,domain=-52:64,samples=100]{0.433 - 0.002241*x + 0.0001235*x^2 + sqrt(0.00466489 + 3.06639e-6*x^2]};
+\addplot[name path=B,opacity=0,domain=-52:64,samples=100]{0.433 - 0.002241*x + 0.0001235*x^2 - sqrt(0.00466489 + 3.06639e-6*x^2]};
+\addplot[gray!30] fill between[of=A and B];
+\draw[line width=1pt] (axis cs:69,0.8664) ..controls (axis cs:75,0.9596) and (axis cs:176,0.9)..(axis cs:235,0.7);
+
+\draw[line width=1pt] (axis cs:-52,0.8835) ..controls (axis cs:-58,0.9784) and (axis cs:-127.6,0.923)..(axis cs:-235,0.7);
+
 \end{axis}
 \end{tikzpicture}

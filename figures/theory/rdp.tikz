@@ -10,4 +10,5 @@
 \draw[dashed] (-2,5) -- (0,5);
 \node [above] at (0,6) {$N_e\left(r\right)$};
 \node [right] at (3.5,0) {$r$};
+\draw[dashed] (2,0) node [below] {$r_\mathrm{ch}$} -- (2,5);
 \end{tikzpicture}

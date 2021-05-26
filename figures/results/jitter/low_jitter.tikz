@@ -1,4 +1,4 @@
-﻿\begin{tikzpicture}[every node/.style={scale=0.9}]
+\begin{tikzpicture}[every node/.style={scale=0.9}]
 
 \begin{axis}[
     grid=major,

@@ -1,4 +1,0 @@
-\begin{tikzpicture}
-    \draw[green!10!orange!90!] (0,0) -- (1,1);
-    \draw[RubineRed!70!] (-1,1) -- (1,-1) node[below]{$X$};
-\end{tikzpicture}
