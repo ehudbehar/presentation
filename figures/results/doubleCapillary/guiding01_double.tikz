@@ -1,0 +1,44 @@
+\begin{tikzpicture}
+\begin{axis}[
+name=axis A,
+grid=major,
+change x base,
+x SI prefix=micro,
+xlabel={Time [\si{\us}]},
+change y base,
+y SI prefix=deci,
+ylabel={Current [\si{\A}]},
+ytick={-5,0,5,10,15,20},
+scale only axis,
+height=140pt,
+xmin=-9e-8,xmax=8.5e-7,
+]
+\addplot [ForestGreen] table[x=t,y expr=\thisrow{ndyag}*3,col sep=comma]{./figures/results/doubleCapillary/guiding_curved_01.csv} coordinate[pos=0.10] (u1);
+\addplot [blue] table[x=t,y =rogowsky,col sep=comma]{./figures/results/doubleCapillary/guiding_curved_01.csv};
+\end{axis}
+\begin{axis}[
+name=axis B,at={(axis A.south)},anchor=north,yshift=-4em,
+grid=major,
+change x base,
+x SI prefix=micro,
+xlabel={Time [\si{\us}]},
+scale only axis,
+height=140pt,
+change y base,
+y SI prefix=milli,
+ylabel style={align=center},
+ylabel={Voltage \\(Normalised)},
+ytick={0.003399,0.02513},
+yticklabels={1,7.4},
+xmin=-9e-8,xmax=8.5e-7,
+]
+
+\addplot [red] table[x=t,y =oscillator,col sep=comma]{./figures/results/doubleCapillary/guiding_curved_01.csv} coordinate[pos=0.11] (l2) coordinate[pos=0.85] (l3) coordinate[pos=0.4] (l4);
+\end{axis}
+\path (axis B.158) node[left=1mm,align=center,fill=white] (L) {Nd:Yag\\shot};
+\path (axis B.20) node[left=0.5mm,align=center,fill=white] (T) {Transmission\\decays};
+\draw[-latex,line width=1pt] (L)--(u1);
+\draw[-latex,line width=1pt] (L)--(l2);
+\draw[-latex,line width=1pt] (T)--(l3);
+\draw[-latex,line width=1pt] (T)--(l4);
+\end{tikzpicture}

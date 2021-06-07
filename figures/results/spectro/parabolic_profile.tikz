@@ -69,7 +69,7 @@ x   y   error
 \addplot[name path=A,opacity=0,domain=-52:64,samples=100]{0.433 - 0.002241*x + 0.0001235*x^2 + sqrt(0.00466489 + 3.06639e-6*x^2]};
 \addplot[name path=B,opacity=0,domain=-52:64,samples=100]{0.433 - 0.002241*x + 0.0001235*x^2 - sqrt(0.00466489 + 3.06639e-6*x^2]};
 \addplot[gray!30] fill between[of=A and B];
-\draw[line width=1pt] (axis cs:69,0.8664) ..controls (axis cs:75,0.9596) and (axis cs:176,0.9)..(axis cs:235,0.7);
+\draw[line width=1pt] (axis cs:69,0.8664) ..controls (axis cs:70,0.90) and (axis cs:150,0.7)..(axis cs:235,0.7);
 
 \draw[line width=1pt] (axis cs:-52,0.8835) ..controls (axis cs:-58,0.9784) and (axis cs:-127.6,0.923)..(axis cs:-235,0.7);
 

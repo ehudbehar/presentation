@@ -1,0 +1,26 @@
+\begin{tikzpicture}% [every node/.style={scale=0.9}]
+
+\begin{axis}[
+    grid=major,
+    change x base,
+    x SI prefix=micro,
+    xlabel={Time [\si{\us}]},
+    ylabel={Current [\si{\A}]},
+    xmin=-1.2e-7,xmax=1.08e-6,
+    change y base,
+    y SI prefix=deci,
+    ytick={0,5,10,15}
+]
+% List of Plots
+\addplot [ForestGreen] table[x=t,y expr=\thisrow{ndyag}*3,col sep=comma]{figures/results/doubleCapillary/data.csv};
+\addplot [NavyBlue] table[x=t,y=d01,col sep=comma]{figures/results/doubleCapillary/data.csv};
+\addplot [BurntOrange] table[x=t,y=d02,col sep=comma]{figures/results/doubleCapillary/data.csv};
+\addplot [LimeGreen] table[x=t,y=d03,col sep=comma]{figures/results/doubleCapillary/data.csv};
+\addplot [Red] table[x=t,y=d04,col sep=comma]{figures/results/doubleCapillary/data.csv};
+\addplot [Mulberry] table[x=t,y=d05,col sep=comma]{figures/results/doubleCapillary/data.csv};
+\addplot [RawSienna] table[x=t,y=d06,col sep=comma]{figures/results/doubleCapillary/data.csv};
+\addplot [Cyan] table[x=t,y=d07,col sep=comma]{figures/results/doubleCapillary/data.csv};
+\addplot [Goldenrod] table[x=t,y=d08,col sep=comma]{figures/results/doubleCapillary/data.csv};
+\addplot [blue] table[x=t,y=d09,col sep=comma]{figures/results/doubleCapillary/data.csv};
+\end{axis}
+\end{tikzpicture}
