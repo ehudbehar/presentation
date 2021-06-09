@@ -1,5 +1,5 @@
 \documentclass[dvipsnames]{beamer}
-
+\setbeamertemplate{navigation symbols}{} % suppresses all navigation symbols
 \usepackage{sidebarStyle}
 \linespread{1.3} % line spacing of 1.5
 \usepackage[T1]{fontenc}
@@ -160,22 +160,22 @@ Characteristic quantities:
 \end{equation*}
 is the critical plasma density.}
 \end{frame}
-\begin{frame}{Parabolic density profile}
- To achieve guiding, we need variation in $\tilde{n}$.
-
- Ideally, the radial density profile (RDP) is parabolic:
-\begin{equation*}
-N_e(r)=N_e(0)+\Delta N_e\left( \frac{r}{r_\text{ch}}\right)^2
- \end{equation*}
- \begin{columns}
-  \column{0.5\textwidth}
-  \tikzsetnextfilename{rdp}
-\includegraphics[height=100pt]{figures/theory/rdp.tikz}
-  \column{0.5\textwidth}
-  \tikzsetnextfilename{density_vs_r}
-\includegraphics[height=100pt]{figures/theory/density_vs_r.tikz}
- \end{columns}
-\end{frame}
+%\begin{frame}{Parabolic density profile}
+% To achieve guiding, we need variation in $\tilde{n}$.
+%
+% Ideally, the radial density profile (RDP) is parabolic:
+%\begin{equation*}
+%N_e(r)=N_e(0)+\Delta N_e\left( \frac{r}{r_\text{ch}}\right)^2
+% \end{equation*}
+% \begin{columns}
+%  \column{0.5\textwidth}
+%  \tikzsetnextfilename{rdp}
+%\includegraphics[height=100pt]{figures/theory/rdp.tikz}
+%  \column{0.5\textwidth}
+%  \tikzsetnextfilename{density_vs_r}
+%\includegraphics[height=100pt]{figures/theory/density_vs_r.tikz}
+% \end{columns}
+%\end{frame}
 
 \subsection{Characterisation of the plasma}
 \begin{frame}{Characterisation of the plasma}{Hydrogen Spectrum}
@@ -303,13 +303,15 @@ Plasma is generated, but not in a stable regime.
 \begin{figure}
  \includegraphics[width=\textwidth,height=142pt]{figures/results/jitter/high_jitter.tikz}
 \end{figure}
-$$\text{jitter}\approx \SI{80}{\us}$$
+\tikzset{external/export next=false}
+\raisebox{8pt}{\tikz \draw[scale=0.7,domain=0:0.2,smooth,thick,variable=\x,blue] plot ({\x},{0*\x});}\hskip -1pt \tikz \draw[scale=0.7,domain=0:2,smooth,thick,variable=\x,blue] plot ({\x}, 
+ {exp(-2*\x)*sin(10*deg(\x))}); \raisebox{5pt}{--- Rogowsky coil reading \hskip 4em $\text{jitter} \approx \SI{80}{\us}$}
 \end{frame}
 \begin{frame}{Use a laser pulse to ignite}
  The Nd:Yag laser pulse ionizes matter and detaches electrons.
 \begin{figure}
  \centering
- \includegraphics[width=\textwidth]{figures/results/jitter/Laser_based_ignition_scheme.pdf}
+ \includegraphics[height=190pt]{figures/results/jitter/Laser_based_ignition_scheme.pdf}
 \end{figure}
 \end{frame}
 % \begin{frame}{Experimental Results}{Low Jitter}
@@ -318,97 +320,111 @@ $$\text{jitter}\approx \SI{80}{\us}$$
 % \begin{figure}
 %  \includegraphics[width=0.8\textwidth,height=150pt]{figures/results/discharge_sample.tikz}
 % \end{figure}
-% \fcolorbox{black}{ForestGreen}{\hspace{2mm}} --- Nd:Yag laser pulse
+% \raisebox{8pt}{\fcolorbox{black}{ForestGreen}{\hspace{2mm}} --- Nd:Yag laser pulse}
 % 
 % \fcolorbox{black}{blue}{\hspace{2mm}} --- Rogowsky coil reading
 % \end{frame}
-% \begin{frame}{Experimental Results}{Low Jitter}
-% \small{12 consecutive capillary discharges. Demonstrating low ignition jitter.}
-% \tikzsetnextfilename{low_jitter}
-% \begin{figure}
-% \includegraphics[width=\textwidth,height=142pt]{figures/results/jitter/low_jitter.tikz}
-% \end{figure}
-% $$\tau_\text{jitter}\approx 1\pm 0.36 \si{\ns}$$
-% \end{frame}
-% 
-% \subsection{Spectroscopy measurement}
-% \begin{frame}{Spectroscopy measurements}
-%  \begin{itemize}
-%   \item Quantitative estimation of the plasma channel depth and the plasma density
-%   \item Both radial and longitudinal density profile
-%   \item Method: A spectrometer and a fast camera
-%  \end{itemize}
-% % \begin{figure}
-% %  \includegraphics[height=140pt]{figures/results/spectro/spectrometer.png}
-% % \end{figure}
-% \end{frame}
-% \begin{frame}{Radial density profile}
-%  \begin{figure}
-% \includegraphics[width=0.8\textwidth]{figures/results/spectro/radial_system.pdf}
-%  \end{figure}
-% Imaging system --- $\times 5$ magnification.
-% 
-% iCCD camera $\SI{40}{\ns}$ gate--on time. 
-% 
-% Width of the spectrometer slit --- \SI{150}{\um}.
-% \end{frame}
-% \begin{frame}{Spectroscopy Analysis}
-% \begin{figure}
-% \includegraphics[width=0.8\textwidth]{figures/results/spectro/spectra_analysis.png}
-%  \end{figure}
-%  pixel size = $\SI{26}{\um} \times \SI{26}{\um}$
-% \end{frame}
-% \begin{frame}{Spectroscopy Analysis}{cont.}
-% Fit a Lorentzian to each row of the data.
-% \tikzsetnextfilename{sample_lorentzian}
-% \begin{figure}
-%   \includegraphics[width=0.8\textwidth,height=160pt]{figures/results/spectro/sample_lorentzian.tikz}
-% \end{figure}
-% Stark Broadening on the order of \SI{3}{\nm}.
-% %% R square goodness of fit sim 0.813
-% \end{frame}
-% \begin{frame}{Spectroscopy measurements}{Radial density profile}
-%  {\small Density minimum on the axis of the capillary.}
-%  \begin{equation*}
-% \Delta N_e \sim \SI{4e17}{\per \cubic \cm}
-%  \end{equation*}
-% \begin{center}
-%  with $r_\text{ch}\approx \SI{50}{\um} \text{ and } N_e\left(0\right)\approx \SI{4e17}{\per\cubic\cm}.$
-% \end{center}
-% \tikzsetnextfilename{parabolic_profile}
-% \begin{figure}
-% \includegraphics[width=270pt,height=144pt]{figures/results/spectro/parabolic_profile.tikz}
-% \end{figure}
-% \end{frame}
-% \begin{frame}{Longitudinal density profile}{System setup}
-%  {\small Verify longitudinal homogeneity of the plasma density.}
-%  \begin{figure}
-% \includegraphics[width=0.7\textwidth]{figures/results/spectro/longitudinal_system.pdf}
-%  \end{figure}
-%  The entire capillary length was imaged.
-%  iCCD camera \SI{1}{\us} gate--on time.
-% \end{frame}
-% \begin{frame}{Longitudinal density profile}{Result}
-%  Mean plasma density $\bar{N}_e$ of
-% \vskip -1em
-% $$ \bar{N}_e \sim \SI{3.3e17}{\per\cubic\cm}. $$
-% \vskip -2em
-% \tikzsetnextfilename{longitudinal}
-% \begin{figure}
-% \includegraphics[height=170pt,width=\textwidth]{figures/results/spectro/longitudinal.tikz}
-% \end{figure}
-% %% Doing the error analysis, I got N_e=3.3e17 plusminus 0.33e17 electrons per cubic cm.
-% \end{frame}
-% 
-% 
-% \subsection{Optical Guiding}
-%  \begin{frame}{Optical guiding}{System setup}
-% System setup as before, but now adding an oscillator laser.
-% \begin{figure}
-%  \includegraphics[width=0.8\textwidth]{figures/results/oscillator/oscillator_system_setup.pdf} 
-% \end{figure}
-% Beam aligned through the capillary, to a fast photo--diode.
-%  \end{frame}
+\begin{frame}{Experimental Results}{Low Jitter}
+\small{12 consecutive capillary discharges. Demonstrating low ignition jitter.}
+\tikzsetnextfilename{low_jitter}
+\begin{figure}
+\includegraphics[width=\textwidth,height=142pt]{figures/results/jitter/low_jitter.tikz}
+\end{figure}
+\vskip -1em
+\fcolorbox{black}{ForestGreen}{\hspace{2mm}}\raisebox{-3pt}{ --- Nd:Yag laser pulse}
+
+{\setlength\fboxsep{0pt}%
+\fbox{%
+\textcolor{purple}{\rule{3pt}{2mm}}%
+\textcolor{blue}{\rule{3pt}{2mm}}%
+\textcolor{orange}{\rule{3pt}{2mm}}%
+\textcolor{violet}{\rule{3pt}{2mm}}%
+\textcolor{yellow}{\rule{3pt}{2mm}}%
+\textcolor{cyan}{\rule{3pt}{2mm}}%
+}}\raisebox{-0pt}{ --- Rogowsky coil reading}
+\hskip 4em $\text{jitter}\approx 1\pm 0.36 \si{\ns}$
+\end{frame}
+ 
+ \subsection{Spectroscopy measurement}
+ \begin{frame}{Spectroscopy measurements}
+  \begin{itemize}
+   \item Quantitative estimation of the plasma channel depth and the plasma density
+   \item Both radial and longitudinal density profile
+   \item Method: A spectrometer and a fast camera
+  \end{itemize}
+ % \begin{figure}
+ %  \includegraphics[height=140pt]{figures/results/spectro/spectrometer.png}
+ % \end{figure}
+ \end{frame}
+\begin{frame}{Radial density profile}
+ \begin{figure}
+\includegraphics[height=152pt]{figures/results/spectro/radial_system.pdf}
+ \end{figure}
+Imaging system --- $\times 5$ magnification.
+
+iCCD camera $\SI{40}{\ns}$ gate--on time. 
+
+Width of the spectrometer slit --- \SI{150}{\um}.
+\end{frame}
+\begin{frame}{Spectroscopy Analysis}
+\begin{figure}
+\includegraphics[width=0.8\textwidth]{figures/results/spectro/spectra_analysis.png}
+ \end{figure}
+ pixel size = $\SI{26}{\um} \times \SI{26}{\um}$
+\end{frame}
+\begin{frame}{Spectroscopy Analysis}{cont.}
+Fit a Lorentzian to each row of the data.
+\tikzsetnextfilename{sample_lorentzian}
+\begin{figure}
+  \includegraphics[width=0.8\textwidth,height=160pt]{figures/results/spectro/sample_lorentzian.tikz}
+\end{figure}
+\vskip -1em
+Stark Broadening on the order of \SI{3}{\nm}.
+%% R square goodness of fit sim 0.813
+\end{frame}
+\begin{frame}{Spectroscopy measurements}{Radial density profile}
+ {\small Density minimum on the axis of the capillary.}
+ \begin{equation*}
+\Delta N_e \sim \SI{4e17}{\per \cubic \cm}
+ \end{equation*}
+\begin{center}
+ with $r_\text{ch}\approx \SI{50}{\um} \text{ and } N_e\left(0\right)\approx \SI{4e17}{\per\cubic\cm}.$
+\end{center}
+\tikzsetnextfilename{parabolic_profile}
+\begin{figure}
+\includegraphics[width=270pt,height=142pt]{figures/results/spectro/parabolic_profile.tikz}
+\end{figure}
+\end{frame}
+\begin{frame}{Longitudinal density profile}{System setup}
+\vskip -0.6em
+{\small Verify longitudinal homogeneity of the plasma density.}
+\begin{figure}
+\includegraphics[height=160pt]{figures/results/spectro/longitudinal_system.pdf}
+\end{figure}
+The entire capillary length was imaged.
+
+iCCD camera \SI{1}{\us} gate--on time.
+\end{frame}
+\begin{frame}{Longitudinal density profile}{Result}
+Mean plasma density $\bar{N}_e$ of
+\vskip -1em
+$$ \bar{N}_e \sim \SI{3.3e17}{\per\cubic\cm}. $$
+\vskip -2em
+\tikzsetnextfilename{longitudinal}
+\begin{figure}
+\includegraphics[height=170pt,width=\textwidth]{figures/results/spectro/longitudinal.tikz}
+\end{figure}
+%% Doing the error analysis, I got N_e=3.3e17 plusminus 0.33e17 electrons per cubic cm.
+\end{frame}
+ 
+\subsection{Optical Guiding}
+ \begin{frame}{Optical guiding}{System setup}
+System setup as before, but now adding an oscillator laser.
+\begin{figure}
+ \includegraphics[width=0.8\textwidth]{figures/results/oscillator/oscillator_system_setup.pdf} 
+\end{figure}
+Beam aligned through the capillary, to a fast photo--diode.
+ \end{frame}
 %  \begin{frame}{Oscillator laser}{Temporal profile}
 % Oscillator laser, \SI{800}{\nm}, pulses at a \SI{84}{\MHz} rate.
 % \tikzsetnextfilename{oscillator_waveform}
