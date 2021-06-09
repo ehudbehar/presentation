@@ -1,0 +1,49 @@
+%% Add a sidebar, color theme and theme, and widen the page so that the original figures and tables still match to the previous version.
+\usepackage{geometry,xcolor}    
+
+\geometry{paperwidth=148mm,paperheight=96mm}
+\useoutertheme[width=20mm,hideallsubsections]{sidebar} %
+%\usetheme{Berkeley}
+\usecolortheme{beaver}
+
+\addtobeamertemplate{navigation symbols}{}{%
+    \usebeamerfont{footline}%
+    \usebeamercolor[fg]{footline}%
+    \hspace{1em}%
+    \insertframenumber/\inserttotalframenumber
+}
+\setbeamercolor{footline}{fg=black}
+\setbeamerfont{footline}{series=\small}
+% From https://tex.stackexchange.com/a/137028/180429
+
+%% ************************* added
+\makeatletter
+
+\setbeamertemplate{subsection in sidebar}
+{%
+    \beamer@sidebarformat{5pt}{subsection in sidebar}{\color{darkred!80!gray}\footnotesize\insertsubsectionhead}% color and font size subsection << <<
+}
+
+\setbeamertemplate{subsection in sidebar shaded}
+{%
+    \beamer@sidebarformat{5pt}{subsection in sidebar shaded}{\color{black!60}\footnotesize\insertsubsectionhead}%  color and fontsize <<<
+}
+
+\setbeamertemplate{section in sidebar}% color and font size section << <<<
+{%
+\vbox{%
+    \vskip1ex%
+    \beamer@sidebarformat{3pt}{section in sidebar}{\color{darkred!80!gray}\footnotesize\insertsectionhead}%
+}%
+}
+
+\setbeamertemplate{section in sidebar shaded}% color and font size section << <<<
+{%
+\vbox{%
+    \vskip1ex%
+    \beamer@sidebarformat{3pt}{section in sidebar shaded}{\color{black!60}\footnotesize\insertsectionhead}%
+}%
+}
+
+\makeatother
+%% *************************

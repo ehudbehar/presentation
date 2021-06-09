@@ -3,10 +3,10 @@
 \begin{axis}[
 axis lines=center, ytick=\empty,
 xtick={430},
-xticklabels={656.28},
+xticklabels={$H_\alpha$},
 xlabel={$\lambda$ [nm]},
 ylabel={Intensity},
-xmin=0,xmax=1090,ymax=2.3,
+xmin=-2,xmax=1090,ymax=2.3,
 xmajorgrids=false,
 clip=false,
 inner axis line style={-latex,very thick},
