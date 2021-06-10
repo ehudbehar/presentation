@@ -418,63 +418,91 @@ $$ \bar{N}_e \sim \SI{3.3e17}{\per\cubic\cm}. $$
 \end{frame}
  
 \subsection{Optical Guiding}
- \begin{frame}{Optical guiding}{System setup}
-System setup as before, but now adding an oscillator laser.
+% \begin{frame}{Optical guiding}{System setup}
+% System setup as before, but now adding an oscillator laser.
+% 
+% Pulses at a \SI{84}{\MHz} rate.
+% \tikzset{external/export next=false}
+% \begin{figure}
+% \begin{tikzpicture}
+%     \node[anchor=south west,inner sep=0] (image) at (0,0) {\includegraphics[height=140pt]{./figures/results/oscillator/oscillator_system_setup.pdf}};
+%     \begin{scope}[xshift=230pt,yshift=76pt,scale=0.4]
+% \begin{axis}[
+%     width=260pt,
+%     height=200pt,
+%     grid=minor,
+%     change x base,
+%     x SI prefix=nano,
+%     ytick=\empty,
+%     xtick={-12.5e-9,0,12.5e-9,25e-9,37.5e-9,50e-9},
+%     xmin=-20e-9,xmax=55e-9,
+%     xlabel={Time [\si{\ns}]},
+%     ylabel={Amplitude [\si{\volt}]},
+%     label style={font=\Huge},
+%     tick label style={font=\huge} 
+%     ]
+%     \addplot [red,line width=1pt] table[x=t,y=single,col sep=comma] {figures/results/oscillator/oscillator_waveform.csv};
+% \end{axis}
+%     \end{scope}
+% \end{tikzpicture}
+% \end{figure}
+% Beam aligned through the capillary, to a fast photo--diode.
+% \end{frame}
+ 
+\begin{frame}{Optical Guiding}
+Upon plasma discharge, we look for an increase in the
+
+detected amplitude --- optical guiding.
+\begin{equation*}
+\text{transmission ratio} = \frac{A_{t<0}}{A_\text{max}}
+\end{equation*}
+The explanation:
+
+A plasma lens forms, the radiation is focused and trapped by the plasma.
+\begin{center}
+ \includegraphics[width=0.6\textwidth]{figures/results/oscillator/chen_4_31.pdf}
+\end{center}
+
+\end{frame}
+
+\begin{frame}{Optical guiding}{Results}
+\tikzsetnextfilename{guiding01}
+\vskip -2em
 \begin{figure}
- \includegraphics[width=0.8\textwidth]{figures/results/oscillator/oscillator_system_setup.pdf} 
+ \includegraphics[width=\textwidth,height=160pt]{figures/results/oscillator/guiding01.tikz}
 \end{figure}
-Beam aligned through the capillary, to a fast photo--diode.
- \end{frame}
-%  \begin{frame}{Oscillator laser}{Temporal profile}
-% Oscillator laser, \SI{800}{\nm}, pulses at a \SI{84}{\MHz} rate.
-% \tikzsetnextfilename{oscillator_waveform}
-% \begin{figure}
-%   \includegraphics[width=0.7\textwidth,height=175pt]{figures/results/oscillator/oscillator_waveform.tikz}
-% \end{figure}
-%  \end{frame}
-%  \begin{frame}{Optical Guiding}
-% Upon plasma discharge, we look for an increase in the detected amplitude --- optical guiding.
-% \begin{equation*}
-%   \text{transmission ratio} = \frac{A_{t<0}}{A_\text{max}}
-% \end{equation*}
-% \vskip -1em
-% \tikzsetnextfilename{guiding01}
-% \begin{figure}
-%       \includegraphics[width=\textwidth,height=157pt]{figures/results/oscillator/guiding01.tikz}
-% \end{figure}
-%  \end{frame}
-% \begin{frame}{Optical Guiding}
-% \tikzsetnextfilename{guiding02}
-% \begin{figure}
-%   \includegraphics[width=\textwidth,height=157pt]{figures/results/oscillator/guiding02.tikz}
-% \end{figure}
-% \begin{equation*}
-% \text{transmission ratio} = \frac{A_{t<0}}{A_\text{max}} \approx 8
-% \end{equation*}
-% \end{frame}
-% \begin{frame}{Optical guiding}{Explanation}
-% {\footnotesize A plasma lens forms, the radiation is focused and trapped by the plasma.}
-% \begin{center}
-%  \includegraphics[width=0.3\textwidth]{figures/results/oscillator/chen_4_31.pdf}
-% \end{center}
-%   \vskip -1em
-%   {\footnotesize Note: The radiation is blocked in the later stage of the discharge, until the plasma diffuses to the chamber.}
-% \tikzsetnextfilename{guiding03}
-% \begin{figure}
-%  \includegraphics[width=\textwidth,height=120pt]{figures/results/oscillator/guiding03.tikz}
-% \end{figure}
-% \end{frame}
-% \begin{frame}{Duration of the plasma channel}
-% Correlation between applied voltage and the transmission ratio:
-% \tikzsetnextfilename{voltage_vs_guiding}
-% \begin{figure}
-% \includegraphics[width=0.5\textwidth,height=100pt]{figures/results/oscillator/voltage_vs_guiding.tikz}
-% \end{figure}
-% Duration of the plasma channel:
-%  \begin{equation*}
-%   \Delta t_\text{channel}=50 -100\ \si{\ns}.
-%  \end{equation*}
-% \end{frame}
+
+\vskip -1em
+\fcolorbox{black}{ForestGreen}{\hspace{2mm}}\raisebox{-3pt}{ --- Nd:Yag laser pulse}
+
+\fcolorbox{black}{blue}{\hspace{2mm}}\raisebox{-3pt}{ --- Rogowsky coil reading} \hskip 4em $\text{transmission ratio} \approx 2.1$
+
+\fcolorbox{black}{red}{\hspace{2mm}}\raisebox{-3pt}{ --- detected oscillator signal}
+\end{frame}
+
+\begin{frame}{Optical Guiding}{results}
+\tikzsetnextfilename{guiding02}
+\begin{figure}
+  \includegraphics[width=\textwidth,height=157pt]{figures/results/oscillator/guiding02.tikz}
+\end{figure}
+\vskip -1em
+\fcolorbox{black}{ForestGreen}{\hspace{2mm}}\raisebox{-3pt}{ --- Nd:Yag laser pulse}
+
+\fcolorbox{black}{blue}{\hspace{2mm}}\raisebox{-3pt}{ --- Rogowsky coil reading} \hskip 4em $\text{transmission ratio}= \frac{A_{t<0}}{A_\text{max}} \approx 8$
+
+\fcolorbox{black}{red}{\hspace{2mm}}\raisebox{-3pt}{ --- detected oscillator signal}
+\end{frame}
+\begin{frame}{Duration of the plasma channel}
+Correlation between applied voltage and the transmission ratio:
+\tikzsetnextfilename{voltage_vs_guiding}
+\begin{figure}
+\includegraphics[width=0.5\textwidth,height=100pt]{figures/results/oscillator/voltage_vs_guiding.tikz}
+\end{figure}
+Duration of the plasma channel:
+ \begin{equation*}
+  \Delta t_\text{channel}=50 -100\ \si{\ns}.
+ \end{equation*}
+\end{frame}
 % % \subsection{Two stage capillary}
 % % \begin{frame}{Two stage capillary}
 % %  As said in the introduction, a "fish--bone" capillary may overcome the dephasing length limitation.
@@ -512,20 +540,20 @@ Beam aligned through the capillary, to a fast photo--diode.
 % % \includegraphics[width=1\textwidth]{figures/results/2stageCapillary/opaquescreen.png}
 % % \end{columns}
 % % \end{frame}
-% \section{Summary}
-% \begin{frame}{Summary}
-% Study of plasma channels generated in gas filled--capillaries.
-% 
-% \begin{itemize}
-% \item Low jitter of discharge ignition
-% \item Verification of plasma conditions by spectroscopy means
-% \item Demonstration of optical guiding
-% \end{itemize}
-% Future experiments ---
-% 
-% Incorporating these capillaries in a LWFA scheme.
-% 
-% \end{frame}
+\section{Summary}
+\begin{frame}{Summary}
+Study of plasma channels generated in gas filled--capillaries.
+
+\begin{itemize}
+\item Low jitter of discharge ignition
+\item Verification of plasma conditions by spectroscopy means
+\item Demonstration of optical guiding
+\end{itemize}
+Future experiments ---
+
+Incorporating these capillaries in a LWFA scheme.
+
+\end{frame}
 % 
 % % \begin{frame}{Double Capillary}{Results}
 % % \tikzsetnextfilename{low_jitter_curved}

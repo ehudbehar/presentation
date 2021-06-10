@@ -43,7 +43,16 @@ extra y ticks={3.075,6.395},
 },
 ]
 \addplot [red, line width = 0.5]
-table[x=t,y expr=\thisrow{ch3}*10.5,col sep=comma]{figures/results/oscillator/guiding01.csv};
+table[x=t,y expr=\thisrow{ch3}*10.5,col sep=comma]{figures/results/oscillator/guiding01.csv}
+coordinate[pos=0.85] (rising) coordinate[pos=0.47] (highamp);
+\path (axis cs:2.6e-6,12) node[align=center] (L1) {Pulse train\\re--appears};
+\path (axis cs:1.5e-6,-4) node[align=center] (L2) {Peak Amplitude};
+\path (axis cs:-5.0e-7,-3) node[align=center,font=\footnotesize] (L3) {Before\\discharge};
+\path (axis cs:-5.0e-7,0.2) node[align=center] (before) {};
+\draw[-latex] (L1) -- (rising);
+\draw[-latex] (L2) --(highamp);
+\draw[-latex] (L3) --(before);
+
 \end{axis}
    
 \end{tikzpicture}
