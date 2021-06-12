@@ -11,12 +11,16 @@
     xtick= { 0, 821/10, 821/5, 2463/10, 1642/5, 821/2, 2463/5, 5747/10, 3284/5, 7389/10, 821 },
     xticklabels={0,5,10,15,20,25,30,35,40,45,50},
     ytick={0.1,0.2,0.3,0.4,0.5},
-    extra y ticks=0.3338,
-    extra y tick labels={},
-    extra y tick style={
-    major grid style={red, line width=2pt, densely dashed},
-        },
+%    extra y ticks=0.3338,
+%    extra y tick labels={},
+%    extra y tick style={
+%    major grid style={red, line width=2pt, densely dashed},
+%        },
     ]
     \addplot [blue] table[x=x,y=N_e,col sep=comma] {figures/results/spectro/longitudinal.csv};
+    \addplot[name path=A,opacity=0,domain=0.6:820.4,samples=10]{0.373};
+    \addplot[name path=B,opacity=0,domain=0.6:820.4,samples=10]{0.294};
+    \addplot[gray!40] fill between[of=A and B];
+    \addplot[red,line width=2pt,domain=0:821,samples=10]{0.338};
 \end{axis}
 \end{tikzpicture}

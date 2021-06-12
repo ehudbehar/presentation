@@ -1,1 +1,1 @@
-tikz/longitudinal.pdf: figures/results/spectro/longitudinal.csv
+amend-figure0.pdf: figures/results/spectro/longitudinal.csv
