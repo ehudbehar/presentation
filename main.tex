@@ -27,11 +27,14 @@
 \setbeamertemplate{caption}{\raggedleft\insertcaption\par} % To remove figure caption prefix “figure”
 
 %Information to be included in the title page:
-\title[]{Low jitter plasma channel in 3D printed gas filled capillary discharges}
-\subtitle{Thesis Presentation}
-\author[]{Ehud Behar}
-\institute{Hebrew University of Jerusalem}
-\date{2021}
+\title[]{Creating low itter plasma channel in 3D--printed capillary, filled with gas}
+\subtitle{Towards a Plasma Particle Accelerator}
+\author[]{{Ehud Behar} \\
+{\and} \\
+{\textit{Supervisors}} \\
+{Dr. Amir Capua} \\ {Prof. Arie Zigler}}
+\institute{The Hebrew University of Jerusalem}
+% \date{2021}
 \logo{\includegraphics[width=10mm]{figures/logo}}
 
 \AtBeginSection[]
@@ -56,31 +59,30 @@
 % \tableofcontents
 % \end{frame}
 
-\section{Background}
-\subsection{Introduction}
+\section{Introduction}
+\subsection{Today's Particle Accelerators}
   \begin{frame}{Introduction}
   \begin{center}
-    The goal --- design a low--jitter plasma channel for a table--top particle accelerator.
+    The goal: design a low--jitter plasma channel for a meter--scale particle accelerator.
   \end{center}
     Applications:
     \begin{itemize}
-        \item[\textbullet] Experiments on the structure of matter
-        \item[\textbullet] Creating radiation sources
-        \item[\textbullet] Treatment of cancer
+        \item[\textbullet] Experiments on the behaviour of nuclear matter
+        \item[\textbullet] Creating radiation sources for medical use
     \end{itemize}
   \end{frame}
 
 \begin{frame}{Linear accelerators}
 At present, all high energy accelerators run into limits.
 \begin{itemize}
-\item[\textbullet] The acclerating electric fields must be less than \SI[per-mode=symbol]{100}{\mega \V \per\meter}, to avoid material breakdown.
-\item[\textbullet] Each \si{\giga \eV} of energy requires $\sim$\SI{100}{\meter} of accleration length.
+\item[\textbullet] The accelerating electric fields must be less than \SI[per-mode=symbol]{100}{\mega \V \per\meter}, to avoid material breakdown.
+\item[\textbullet] Each \si{\giga \eV} of energy requires $\sim$\SI{100}{\meter} of acceleration length.
 \end{itemize}
 \begin{figure}
 \includegraphics[width=200pt]{figures/theory/lhc_cern_compressed.jpg}
 \end{figure}
 \end{frame}
-\begin{frame}{Laser Wake--Field Acceleration --- LWFA}{A plasma--based chraged particles accelerator}
+\begin{frame}{Laser Wake--Field Acceleration (LWFA)}{A plasma--based charged particles accelerator}
 Electrical breakdown is part of the design.
 
 The power source is a laser beam or a charged particle beam.
@@ -88,19 +90,16 @@ The power source is a laser beam or a charged particle beam.
 \begin{figure}
 \includegraphics[width=300pt,height=150pt]{figures/theory/lwfa-schematic.tikz}
 \end{figure}
+Same as CERN, but in smaller scale.
 \end{frame}
 
-\begin{frame}{LWFA}{Limitations}
-Laser defocusing
+\begin{frame}{Limitations of LWFA}{Laser defocusing}
+Acceleration is achieved only when the laser beam is focused to $\sim$ tens of \si{\um} in diameter.
 \tikzsetnextfilename{defocusing}
 \begin{figure}
 \centering
-\includegraphics[width=180pt,height=110pt]{figures/theory/defocusing.tikz}
+\includegraphics[width=300pt,height=150pt]{figures/theory/defocusing.tikz}
 \end{figure}
-Acceleration is achieved only when the laser beam is focused
-
-to $\sim$ tens of \si{\um} in diameter.
-
 Solution: Use a wave--guide.
 \end{frame}
 
@@ -275,8 +274,8 @@ Weak dependence on temperature, in our experiment: $$N_e\left[\SI{e18}{\per\cubi
 \end{frame}
 
 
-\section{Thesis Goals}
-\begin{frame}{Thesis Goals}
+\section{Research Goals}
+\begin{frame}{Research Goals}
  \begin{enumerate}
 \item Study of discharge evolution, low jitter of discharge ignition.
 \item Characterisation of the discharge, utilizing Stark broadening.
@@ -295,9 +294,9 @@ Capillary inside a vacuum chamber, maintained at \SI{e-4}{\torr}.
  \includegraphics[width=\textwidth]{figures/results/jitter/system_picture.jpg}
 \end{figure}
 \end{frame}
-\section{Experimental Results}
+\section{Results}
 \subsection{Low Jitter}
-\begin{frame}{Experimental Results}{Low Jitter}
+\begin{frame}{Results}{Low Jitter}
 Plasma is generated, but not in a stable regime.
 \tikzsetnextfilename{high_jitter}
 \begin{figure}
@@ -342,20 +341,17 @@ Plasma is generated, but not in a stable regime.
 \textcolor{yellow}{\rule{3pt}{2mm}}%
 \textcolor{cyan}{\rule{3pt}{2mm}}%
 }}\raisebox{-0pt}{ --- Rogowsky coil reading}
-\hskip 4em $\text{jitter}\approx 1\pm 0.36 \si{\ns}$
+\hskip 4em $\boxed{\text{jitter}\approx 1\pm 0.36 \si{\ns}}$
 \end{frame}
  
- \subsection{Spectroscopy measurement}
- \begin{frame}{Spectroscopy measurements}
-  \begin{itemize}
-   \item Quantitative estimation of the plasma channel depth and the plasma density
-   \item Both radial and longitudinal density profile
-   \item Method: A spectrometer and a fast camera
-  \end{itemize}
- % \begin{figure}
- %  \includegraphics[height=140pt]{figures/results/spectro/spectrometer.png}
- % \end{figure}
- \end{frame}
+\subsection{Spectroscopy measurement}
+\begin{frame}{Spectroscopy measurements}
+ \begin{itemize}
+  \item Plasma channel depth and density measurement
+  \item Radial and longitudinal density profile
+  \item Means: A spectrometer and a fast camera
+ \end{itemize}
+\end{frame}
 \begin{frame}{Radial density profile}
  \begin{figure}
 \includegraphics[height=152pt]{figures/results/spectro/radial_system.pdf}
@@ -480,7 +476,7 @@ A plasma lens forms, the radiation is focused and trapped by the plasma.
 \fcolorbox{black}{red}{\hspace{2mm}}\raisebox{-3pt}{ --- detected oscillator signal}
 \end{frame}
 
-\begin{frame}{Optical Guiding}{results}
+\begin{frame}{Optical Guiding}{Higher voltage difference}
 
 \tikzsetnextfilename{guiding02}
 \begin{figure}

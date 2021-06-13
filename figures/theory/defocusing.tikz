@@ -1,10 +1,9 @@
-\begin{tikzpicture}[every node/.style={scale=0.7}
-]
+\begin{tikzpicture}[every node/.style={scale=0.7}]
 
 \begin{axis}[
     scale only axis=false,
 xmin=-4,
-ymax=1.65,ymin=-1.65,
+ymax=3.5,ymin=-3.5,
 axis line style={draw=none},tick style={draw=none},ticks=none
 ]
 \addplot [domain=1:3.0, samples=50,line join=round,line cap=round]
@@ -23,24 +22,24 @@ axis line style={draw=none},tick style={draw=none},ticks=none
 }
 %\draw[-latex] (axis cs:3.2,0) -- node[below] {$\xi=z-ct$} (axis cs:4.2,0);
 % The electron on the left
-\node (elec1) at (axis cs:-1,0) {};
+\node (elec1) at (axis cs:-2,0) {};
 \draw[] (elec1) circle (2pt) ;
 % The electron on the tail of the pulse
-%\node (elec2) at (axis cs:1,0) {};
-%\draw[] (elec2) circle (3pt) ;
+% \node (elec2) at (axis cs:1,0) {};
+% \draw[] (elec2) circle (3pt) ;
 %\draw[-latex] (axis cs:-2,+0.2) -- node[right] {$E_r$}(axis cs:-2,+0.5);
 %\draw[-latex] (axis cs:-2,-0.2) -- node[right] {$E_r$} (axis cs:-2,-0.5);
 %\draw[-latex] (axis cs:-2.2,0) -- node[below] {$E_z$} (axis cs:-2.5,0);
 %\path (axis cs:-1,2.4) node[align=center] (T1) {accelerating\\ electron bunches};
-%\path (axis cs:3.4,2.7) node[align=center] (T2) {Plasma electrons\\flow around pulse};
+\path (axis cs:3.4,2.7) node[align=center,white] (T2) {Plasma electrons\\flow around pulse};
 %\path (axis cs:1.5,-2) node[align=center] (T3) {Laser\\Pulse};
 %\path (axis cs:-0.5,-2.4) node[align=center] (T4) {Negative\\Charge};
-%\path (axis cs:-3.2,-2.5) node[align=center] (T5) {Positive\\Charge\\Region};
-%\draw[-latex,gray] (T2) -- (axis cs:0.6,1.4);
+\path (axis cs:-3.2,-2.5) node[align=center,white] (T5) {Positive\\Charge\\Region};
+\draw[-latex,white] (T2) -- (axis cs:0.6,1.4);
 %\draw[-latex,gray] (T1) -- (elec2);
 %\draw[-latex,gray] (T1) .. controls (axis cs:-1,1) and (axis cs:-1,0.4).. (elec1);
 %\draw[-latex,gray] (T3) -- (axis cs:1.5,-0.8);
 %\draw[-latex,gray] (T4) -- (axis cs:-0.5,-0.5);
-%\draw[-latex,gray] (T5) -- (axis cs:-1.5,-0.9);
+\draw[-latex,white] (T5) -- (axis cs:-1.5,-0.9);
 \end{axis}
 \end{tikzpicture}
