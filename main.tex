@@ -60,7 +60,7 @@
 % \end{frame}
 
 \section{Introduction}
-\subsection{Today's Particle Accelerators}
+\subsection[]{Today's Particle Accelerators}
   \begin{frame}{Introduction}
   \begin{center}
     The goal: design a low--jitter plasma channel for a meter--scale particle accelerator.
@@ -129,7 +129,7 @@ Generate a plasma channel by means of electrical discharge.
 Apply voltage ($\sim$\si{\kV}) on the capillary ends to start a discharge.
 % high-mobility electrons pick up energy from the applied electric field and then transfer part of this  energy to  the heavy particles through elastic collisions. page 4 in Boulos
 \end{frame}
-\subsection{Background to plasma}
+\subsection[]{Background to plasma}
 \begin{frame}{The Plasma state}
 Ionised gas, electrically neutral.
 
@@ -143,7 +143,7 @@ Characteristic quantities:
   \end{tabular}
 \end{frame}
 
-\subsection{Preformed Plasma channel}
+\subsection[]{Preformed Plasma channel}
 \begin{frame}{Parabolic density profile}
  Plasma dispersion relation:
  \begin{equation*}
@@ -159,24 +159,24 @@ Characteristic quantities:
 \end{equation*}
 is the critical plasma density.}
 \end{frame}
-%\begin{frame}{Parabolic density profile}
-% To achieve guiding, we need variation in $\tilde{n}$.
-%
-% Ideally, the radial density profile (RDP) is parabolic:
-%\begin{equation*}
-%N_e(r)=N_e(0)+\Delta N_e\left( \frac{r}{r_\text{ch}}\right)^2
-% \end{equation*}
-% \begin{columns}
-%  \column{0.5\textwidth}
-%  \tikzsetnextfilename{rdp}
-%\includegraphics[height=100pt]{figures/theory/rdp.tikz}
-%  \column{0.5\textwidth}
-%  \tikzsetnextfilename{density_vs_r}
-%\includegraphics[height=100pt]{figures/theory/density_vs_r.tikz}
-% \end{columns}
-%\end{frame}
+\begin{frame}{Parabolic density profile}
+ To achieve guiding, we need variation in $\tilde{n}$.
 
-\subsection{Characterisation of the plasma}
+ Ideally, the radial density profile (RDP) is parabolic:
+\begin{equation*}
+N_e(r)=N_e(0)+\Delta N_e\left( \frac{r}{r_\text{ch}}\right)^2
+ \end{equation*}
+ \begin{columns}
+  \column{0.5\textwidth}
+  \tikzsetnextfilename{rdp}
+\includegraphics[height=100pt]{figures/theory/rdp.tikz}
+  \column{0.5\textwidth}
+  \tikzsetnextfilename{density_vs_r}
+\includegraphics[height=100pt]{figures/theory/density_vs_r.tikz}
+ \end{columns}
+\end{frame}
+
+\subsection[]{Characterisation of the plasma}
 \begin{frame}{Characterisation of the plasma}{Hydrogen Spectrum}
 Hot plasma emits light.
 
@@ -414,36 +414,36 @@ $$ \bar{N}_e \sim 3.3 \pm \SI{0.8e17}{\per\cubic\cm}. $$
 \end{frame}
  
 \subsection{Optical Guiding}
-% \begin{frame}{Optical guiding}{System setup}
-% System setup as before, but now adding an oscillator laser.
-% 
-% Pulses at a \SI{84}{\MHz} rate.
-% \tikzset{external/export next=false}
-% \begin{figure}
-% \begin{tikzpicture}
-%     \node[anchor=south west,inner sep=0] (image) at (0,0) {\includegraphics[height=140pt]{./figures/results/oscillator/oscillator_system_setup.pdf}};
-%     \begin{scope}[xshift=230pt,yshift=76pt,scale=0.4]
-% \begin{axis}[
-%     width=260pt,
-%     height=200pt,
-%     grid=minor,
-%     change x base,
-%     x SI prefix=nano,
-%     ytick=\empty,
-%     xtick={-12.5e-9,0,12.5e-9,25e-9,37.5e-9,50e-9},
-%     xmin=-20e-9,xmax=55e-9,
-%     xlabel={Time [\si{\ns}]},
-%     ylabel={Amplitude [\si{\volt}]},
-%     label style={font=\Huge},
-%     tick label style={font=\huge} 
-%     ]
-%     \addplot [red,line width=1pt] table[x=t,y=single,col sep=comma] {figures/results/oscillator/oscillator_waveform.csv};
-% \end{axis}
-%     \end{scope}
-% \end{tikzpicture}
-% \end{figure}
-% Beam aligned through the capillary, to a fast photo--diode.
-% \end{frame}
+\begin{frame}{Optical guiding}{System setup}
+System setup as before, but now adding an oscillator laser.
+
+Pulses at a \SI{84}{\MHz} rate.
+\tikzset{external/export next=false}
+\begin{figure}
+\begin{tikzpicture}
+    \node[anchor=south west,inner sep=0] (image) at (0,0) {\includegraphics[height=140pt]{./figures/results/oscillator/oscillator_system_setup.pdf}};
+    \begin{scope}[xshift=230pt,yshift=76pt,scale=0.4]
+\begin{axis}[
+    width=260pt,
+    height=200pt,
+    grid=minor,
+    change x base,
+    x SI prefix=nano,
+    ytick=\empty,
+    xtick={-12.5e-9,0,12.5e-9,25e-9,37.5e-9,50e-9},
+    xmin=-20e-9,xmax=55e-9,
+    xlabel={Time [\si{\ns}]},
+    ylabel={Amplitude [\si{\volt}]},
+    label style={font=\Huge},
+    tick label style={font=\huge} 
+    ]
+    \addplot [red,line width=1pt] table[x=t,y=single,col sep=comma] {figures/results/oscillator/oscillator_waveform.csv};
+\end{axis}
+    \end{scope}
+\end{tikzpicture}
+\end{figure}
+Beam aligned through the capillary, to a fast photo--diode.
+\end{frame}
  
 \begin{frame}{Optical Guiding}
 Upon plasma discharge, we look for an increase in the
