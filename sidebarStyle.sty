@@ -19,21 +19,23 @@
 %% ************************* added
 \makeatletter
 
+\setbeamertemplate{sidebar left}{\insertverticalnavigation{\beamer@sidebarwidth}} % this answer tex.stackexchange.com/a/290299/180429
+
 \setbeamertemplate{subsection in sidebar}
 {%
-    \beamer@sidebarformat{5pt}{subsection in sidebar}{\color{darkred!80!gray}\footnotesize\insertsubsectionhead}% color and font size subsection << <<
+    \beamer@sidebarformat{9pt}{subsection in sidebar}{\color{darkred!80!gray}\scriptsize\insertsubsectionhead}% color and font size subsection << <<
 }
 
 \setbeamertemplate{subsection in sidebar shaded}
 {%
-    \beamer@sidebarformat{5pt}{subsection in sidebar shaded}{\color{black!60}\footnotesize\insertsubsectionhead}%  color and fontsize <<<
+    \beamer@sidebarformat{9pt}{subsection in sidebar shaded}{\color{black!60}\scriptsize\insertsubsectionhead}%  color and fontsize <<<
 }
 
 \setbeamertemplate{section in sidebar}% color and font size section << <<<
 {%
 \vbox{%
     \vskip1ex%
-    \beamer@sidebarformat{3pt}{section in sidebar}{\color{darkred!80!gray}\footnotesize\insertsectionhead}%
+    \beamer@sidebarformat{3pt}{section in sidebar}{\color{darkred!80!gray}\scriptsize\insertsectionhead}%
 }%
 }
 
@@ -41,7 +43,7 @@
 {%
 \vbox{%
     \vskip1ex%
-    \beamer@sidebarformat{3pt}{section in sidebar shaded}{\color{black!60}\footnotesize\insertsectionhead}%
+    \beamer@sidebarformat{3pt}{section in sidebar shaded}{\color{black!60}\scriptsize\insertsectionhead}%
 }%
 }
 
