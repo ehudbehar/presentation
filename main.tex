@@ -160,19 +160,19 @@ Characteristic quantities:
 is the critical plasma density.}
 \end{frame}
 \begin{frame}{Parabolic density profile}
- To achieve guiding, we need variation in $\tilde{n}$.
+To achieve guiding, we need variation in $\tilde{n}$.
 
- Ideally, the radial density profile (RDP) is parabolic:
+Ideally, the radial density profile (RDP) is parabolic:
 \begin{equation*}
 N_e(r)=N_e(0)+\Delta N_e\left( \frac{r}{r_\text{ch}}\right)^2
- \end{equation*}
+\end{equation*}
  \begin{columns}
   \column{0.5\textwidth}
   \tikzsetnextfilename{rdp}
 \includegraphics[height=100pt]{figures/theory/rdp.tikz}
-  \column{0.5\textwidth}
-  \tikzsetnextfilename{density_vs_r}
-\includegraphics[height=100pt]{figures/theory/density_vs_r.tikz}
+ \column{0.5\textwidth}
+ \tikzsetnextfilename{density_vs_r}
+\input{figures/theory/density_vs_r.tikz}
  \end{columns}
 \end{frame}
 
@@ -289,11 +289,11 @@ Weak dependence on temperature, in our experiment: $$N_e\left[\SI{e18}{\per\cubi
 \end{figure}
 Capillary inside a vacuum chamber, maintained at \SI{e-4}{\torr}.
 \end{frame}
-\begin{frame}{Experiment Scheme}{continued}
-\begin{figure}
- \includegraphics[width=\textwidth]{figures/results/jitter/system_picture.jpg}
-\end{figure}
-\end{frame}
+% \begin{frame}{Experiment Scheme}{continued}
+% \begin{figure}
+%  \includegraphics[width=\textwidth]{figures/results/jitter/system_picture.jpg}
+% \end{figure}
+% \end{frame}
 \section{Results}
 \subsection{Low Jitter}
 \begin{frame}{Results}{Low Jitter}
@@ -303,10 +303,10 @@ Plasma is generated, but not in a stable regime.
  \includegraphics[width=\textwidth,height=142pt]{figures/results/jitter/high_jitter.tikz}
 \end{figure}
 \tikzset{external/export next=false}
-\raisebox{8pt}{\tikz \draw[scale=0.7,domain=0:0.2,smooth,thick,variable=\x,blue] plot ({\x},{0*\x});}\hskip -1pt \tikz \draw[scale=0.7,domain=0:2,smooth,thick,variable=\x,blue] plot ({\x}, 
+\raisebox{8pt}{\tikz \draw[scale=0.7,domain=0:0.2,smooth,thick,variable=\x,blue] plot ({\x},{0*\x});}\hskip -1pt \tikzset{external/export next=false}\tikz \draw[scale=0.7,domain=0:2,smooth,thick,variable=\x,blue] plot ({\x}, 
  {exp(-2*\x)*sin(10*deg(\x))}); \raisebox{5pt}{--- Rogowsky coil reading \hskip 4em $\text{jitter} \approx \SI{80}{\us}$}
 \end{frame}
-\begin{frame}{Use a laser pulse to ignite}
+\begin{frame}{Use a laser pulse to ignite the plasma}
  The Nd:Yag laser pulse ionizes matter and detaches electrons.
 \begin{figure}
  \centering
@@ -338,13 +338,13 @@ Plasma is generated, but not in a stable regime.
 \textcolor{blue}{\rule{3pt}{2mm}}%
 \textcolor{orange}{\rule{3pt}{2mm}}%
 \textcolor{violet}{\rule{3pt}{2mm}}%
-\textcolor{yellow}{\rule{3pt}{2mm}}%
 \textcolor{cyan}{\rule{3pt}{2mm}}%
+\textcolor{yellow}{\rule{3pt}{2mm}}%
 }}\raisebox{-0pt}{ --- Rogowsky coil reading}
 \hskip 4em $\boxed{\text{jitter}\approx 1\pm 0.36 \si{\ns}}$
 \end{frame}
  
-\subsection[Spectro.]{Spectroscopy measurement}
+\subsection[Spectro-\\scopy]{Spectroscopy measurement}
 \begin{frame}{Spectroscopy measurements}
  \begin{itemize}
   \item Plasma channel depth and density measurement
@@ -353,14 +353,43 @@ Plasma is generated, but not in a stable regime.
  \end{itemize}
 \end{frame}
 \begin{frame}{Radial density profile}
- \begin{figure}
-\includegraphics[height=152pt]{figures/results/spectro/radial_system.pdf}
- \end{figure}
+\vskip -1em
+\begin{figure}
+\begin{tikzpicture}
+\node[anchor=south west,inner sep=0] (image) at (0,0) {\includegraphics[height=170pt]{figures/results/spectro/radial_system.pdf}};
+\begin{scope}[xshift=215pt,yshift=0pt,scale=0.4]
+\begin{axis}[
+xmin=-2e-7,
+xmax=1.7e-6,
+grid=major,
+change x base,
+x SI prefix=micro,
+%x unit=s,
+%y SI prefix=deca,
+xlabel={Time [\si{\us}]},
+ylabel={Current [\si{\A}]},
+ytick={-5,0,5,10,15},
+yticklabels={-50,0,50,100,150},
+label style={font=\huge},
+tick label style={font=\huge},
+%xtick={0,0.5e-6,1e-6,1.5e-6},
+%xticklabels={0,0.5,1,1.5}
+]
+\addplot [blue, line width = 1] 
+table[x=t,y=ch1,col sep=comma]{figures/results/jitter/discharge_sample.csv};
+\addplot [ForestGreen, line width = 1] 
+table[x=t,y=ch2,col sep=comma]{figures/results/jitter/discharge_sample.csv};
+\fill[fill=gray,opacity=0.5] (axis cs:0.26e-6,-6) rectangle (axis cs:0.47e-6,17.5);
+\end{axis} 
+\end{scope}
+
+\end{tikzpicture}
+\end{figure}
+\vskip -2em
 Imaging system --- $\times 5$ magnification.
 
 iCCD camera $\SI{40}{\ns}$ gate--on time. 
 
-Width of the spectrometer slit --- \SI{150}{\um}.
 \end{frame}
 \begin{frame}{Spectroscopy Analysis}
 \begin{figure}
@@ -421,7 +450,7 @@ Pulses at a \SI{84}{\MHz} rate.
 \tikzset{external/export next=false}
 \begin{figure}
 \begin{tikzpicture}
-    \node[anchor=south west,inner sep=0] (image) at (0,0) {\includegraphics[height=140pt]{./figures/results/oscillator/oscillator_system_setup.pdf}};
+\node[anchor=south west,inner sep=0] (image) at (0,0) {\includegraphics[height=140pt]{./figures/results/oscillator/oscillator_system_setup.pdf}};
     \begin{scope}[xshift=230pt,yshift=76pt,scale=0.4]
 \begin{axis}[
     width=260pt,
