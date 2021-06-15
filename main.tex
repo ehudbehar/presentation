@@ -18,6 +18,7 @@
 \usepgfplotslibrary{units}
 \usepgfplotslibrary{fillbetween} % used in sample_lorentzian.tikz
 \pgfplotsset{every axis/.append style={line join=round, line cap=round}}
+%\pgfplotsset{compat=newest,colormap/bluered}
 
 %% To reduce compilation time
 \usepgfplotslibrary{external}
@@ -391,10 +392,12 @@ Imaging system --- $\times 5$ magnification.
 iCCD camera $\SI{40}{\ns}$ gate--on time. 
 
 \end{frame}
-\begin{frame}{Spectroscopy Analysis}
+\begin{frame}{Data Analysis}
+\vskip -1em
+\tikzsetnextfilename{spectra_analysis}
 \begin{figure}
-\includegraphics[width=0.8\textwidth]{figures/results/spectro/spectra_analysis.png}
- \end{figure}
+\input{figures/results/spectro/spectra_analysis.tikz}
+\end{figure}
  pixel size = $\SI{26}{\um} \times \SI{26}{\um}$
 \end{frame}
 \begin{frame}{Spectroscopy Analysis}{cont.}

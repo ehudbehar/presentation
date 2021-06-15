@@ -1,0 +1,76 @@
+\documentclass[dvipsnames]{beamer}
+\setbeamertemplate{navigation symbols}{} % suppresses all navigation symbols
+\usepackage{sidebarStyle}
+\linespread{1.3} % line spacing of 1.5
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage[babel]{csquotes}
+% Graphics related packages:
+\usepackage{tikz,pgfplots,graphicx,siunitx}
+\pgfplotsset{compat=1.17}
+\DeclareSIUnit\torr{torr}
+\usepackage[mode=buildnew]{standalone}
+\usepackage{tikzscale}
+\usepackage{ifthen} % used in fiber.tikz
+\usetikzlibrary{calc} % used in fiber.tikz
+\usetikzlibrary{math} % used in starkBroadening.tikz
+\usepgfplotslibrary{units}
+\usepgfplotslibrary{fillbetween} % used in sample_lorentzian.tikz
+\pgfplotsset{every axis/.append style={line join=round, line cap=round}}
+
+%% To reduce compilation time
+\usepgfplotslibrary{external}
+\tikzexternalize[prefix=tikz/,optimize command away=\pdfpages]
+\usepackage{pdfpages} % To include pdf pages
+\usepackage{adjustbox} % for \adjincludegraphics for begin{columns}
+\setbeamertemplate{caption}{\raggedleft\insertcaption\par} % To remove figure caption prefix “figure”
+
+%Information to be included in the title page:
+\title{Creating low jitter plasma channel in a 3D--printed capillary, filled with gas}
+\subtitle{Towards a Plasma Particle Accelerator}
+\author{{Ehud Behar} \\
+{\and} \\
+{\textit{Supervisors:}} \\
+{Dr. Amir Capua and Prof. Arie Zigler}}
+\institute{The Hebrew University of Jerusalem}
+\date{}
+\logo{\includegraphics[width=10mm]{figures/logo}}
+
+\AtBeginSection[]
+{
+  \begin{frame}
+    \frametitle{Table of Contents}
+    \tableofcontents[currentsection]
+  \end{frame}
+} % put the table of contents at the beginning of each section and highlight the title of the current section
+% \AtBeginSubsection[] {
+%     \begin{frame}<beamer>{Table of Contents}
+%     \tableofcontents[currentsection,currentsubsection]
+%     \end{frame}
+% }
+% from https://tex.stackexchange.com/a/415653/180429
+%\setbeamertemplate{frametitle continuation}{\insertcontinuationcount}
+\begin{document}
+\begin{frame}{Frame Title}
+\begin{tikzpicture}
+%\begin{scope}
+\begin{axis}[width=0.5\textwidth,height=130pt,
+grid=major,
+xmin=0,xmax=30,
+ymin=9.8,ymax=10.45,
+xtick={10,20},
+xticklabels={$-r_{ch}$,$r_{ch}$},
+ytick={9.9,10.1,10.3},
+yticklabels={60,70,80},
+ylabel={$\Delta \lambda$[px]$\ \propto N_e$},
+xlabel={Spatial Coordinate},
+]
+\addplot [blue,only marks, mark size=1pt,] table[x=x1,y=y1,col sep=comma] {figures/results/spectro/spectro_analysis.csv};
+\addplot[domain=9.8:20.2,line width=1pt] {10 + ((-15 + x)^2)/70};
+\end{axis}
+%\end{scope}
+\end{tikzpicture}
+    
+\end{frame}
+\end{document}

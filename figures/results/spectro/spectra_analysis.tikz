@@ -1,0 +1,98 @@
+\begin{tikzpicture}
+\pgfplotsset{compat=newest,
+colormap/bluered,
+width=\textwidth,
+every axis/.append style={
+font=\scriptsize,
+}
+}
+%%%
+\begin{axis}[width=0.5\textwidth,height=115pt,
+    view={0}{90},
+    unit vector ratio*=1 1 1,
+    %axis line style={draw=none},
+    %tick style={draw=none},
+    xtick=\empty, ytick=\empty,
+    xlabel={Wavelength},
+    ylabel style={align=center},
+    ylabel={Spatial\\Coordinate},
+]
+    \addplot3 [
+        surf,
+        colormap name=bluered,
+        samples=62,
+        domain=1:1024,
+        y domain=0:256,
+        shader=flat,
+        ] {(10/((x-512)^2+100000))*(exp(-(0.0008)*((y-90)^2))+exp(-(0.0008)*((y-(90)-60)^2)))};
+\draw[fill=white] (1024,256)rectangle(736,206)node[midway,black]{\tiny $256\times1024$};
+\end{axis}
+%%%
+ \begin{scope}[yshift=-5cm]
+   \begin{axis}[width=0.3\textwidth,height=115pt,
+    scale only axis=true,
+    view={162}{16},
+    plot box ratio=1 4 0.75,
+xmin=0,xmax=262,ymin=0,ymax=1052,zmin=0,zmax=130,
+line width=1,
+axis lines=center,
+axis on top,
+xtick={128,256},
+xtick pos=right,
+xlabel={Spatial\\Coordinate},
+every axis x label/.style={align=center,
+        at={(axis cs:\pgfkeysvalueof{/pgfplots/xmax},0,0)},
+        xshift=-2.5em,
+    },
+ytick={256,512,768,1024},
+ytick pos=right,
+ylabel={Wavelength},
+every axis y label/.style={align=center,
+        at={(axis cs:0,\pgfkeysvalueof{/pgfplots/ymax},0)},
+        xshift=1.8em,yshift=-0.5em
+    },
+zlabel={Intensity},
+ztick=\empty,
+]
+% Curves
+\addplot3+[blue, no markers,samples=200, samples y=0,domain=11:1024,variable=\t]
+({60}, {\t}, {426803/(6400 + (-512 + \t)^2))});
+\addplot3+[blue, no markers,samples=200, samples y=0,domain=11:1024,variable=\t]
+({100}, {\t}, {810283/(6400 + (-512 + \t)^2))});
+\addplot3+[blue, no markers,samples=200, samples y=0,domain=11:1024,variable=\t]
+({120}, {\t}, {687097/(6400 + (-512 + \t)^2))});
+\addplot3+[blue, no markers,samples=200, samples y=0,domain=11:1024,variable=\t]
+({140}, {\t}, {743646/(6400 + (-512 + \t)^2))});
+\addplot3+[blue, no markers,samples=200, samples y=0,domain=11:1024,variable=\t]
+({180}, {\t}, {607385/(6400 + (-512 + \t)^2))});
+
+% Arrows
+\draw[<->] (60, 432, 33.344) -- (60, 592, 33.344);
+\draw[<->] (100, 432, 63.3033) -- (100, 592, 63.3033);
+\draw[<->] (120, 432, 53.6795) -- (120, 592, 53.6795);
+\draw[<->] (140, 432, 58.0974) -- (140, 592, 58.0974);
+\draw[<->] (180, 432, 47.452) -- node [midway,yshift=-0.6em,xshift=-0.6em] {$\Delta \lambda$}(180, 592, 47.452);
+
+\end{axis}
+\end{scope}
+%%%
+\begin{scope}[xshift=5.5cm,yshift=-4cm]
+\begin{axis}[width=0.5\textwidth,height=110pt,
+grid=major,
+xmin=0,xmax=30,
+ymin=9.8,ymax=10.45,
+xtick={10,20},
+xticklabels={$-r_{ch}$,$r_{ch}$},
+ytick={9.9,10.1,10.3},
+yticklabels={60,70,80},
+ylabel={$\Delta \lambda$[px]$\ \propto N_e$},
+xlabel style={align=center},
+xlabel={Spatial Coordinate\\(Capillary Radius)},
+]
+\addplot [
+blue,only marks, mark size=1pt,
+] table[x=x1,y=y1,col sep=comma] {./figures/results/spectro/spectro_analysis.csv};
+\addplot[domain=9.8:20.2,line width=1pt] {10 + ((-15 + x)^2)/70};
+\end{axis}
+\end{scope}
+\end{tikzpicture}
