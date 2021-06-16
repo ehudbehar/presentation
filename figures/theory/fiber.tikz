@@ -1,5 +1,4 @@
-\begin{tikzpicture}[scale=2,line cap=round,line join=round]
-\usetikzlibrary{calc}
+\begin{tikzpicture}[scale=2,line cap=round,line join=round,font=\scriptsize]
 
 \newcommand{\cylinder}[5] % center, radius (y-axis), height (to the right), color, opacity
 {

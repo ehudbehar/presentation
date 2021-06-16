@@ -1,4 +1,5 @@
 \begin{tikzpicture}
+%\pgfplotsset{every axis./append style={font=\tiny,}}
     \begin{axis} [
     scaled y ticks=false,
     xmin=0,
@@ -11,9 +12,11 @@
 	ytick={0,7100,14200},
 	yticklabels={0,1/2,1},
 	xtick={0,200,400,600,800,1024},
-    axis x line*=left,
-    ymajorgrids=true,
-    xmajorgrids=true,
+	axis x line*=left,
+        ymajorgrids=true,
+        xmajorgrids=true,
+	tick label style={font=\scriptsize},
+	label style={font=\scriptsize},
         ]
 \addplot[red,domain=0:1000,samples=400,line width=1pt]
 	{
@@ -41,6 +44,8 @@
     xtick={61.95, 226.02, 390.1, 554.17, 718.25, 882.32},
     xticklabels={639.9,648.1,656.3,664.5,672.7,680.9},
     ytick=\empty,
+	tick label style={font=\scriptsize},
+	label style={font=\scriptsize},
 ]
         \addplot [
             only marks,
